@@ -1,0 +1,223 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+@import "bootstrap";
+$header_bg: #2c2c2c;
+$breadcrumb: #b8b8b8;
+$table_border: #ececec;
+
+header,
+nav#navbar {
+  background: $header_bg;
+}
+
+nav#navbar {
+  a {
+    color: white;
+    border: 1px solid $header_bg;
+    border-radius: 20px;
+    padding: 10px 20px;
+
+    &:hover {
+      color: #068098;
+    }
+
+    &.active {
+      border-color: white;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}
+
+.nav-container {
+  justify-content: flex-end;
+  font-size: 13px;
+}
+
+#breadcrumbs {
+  font-size: 13px;
+  color: $breadcrumb;
+  font-style: italic;
+  padding: 20px 0;
+}
+
+#mainContent > .container > .row > .left h1 {
+  font-size: 27px;
+  font-weight: bold;
+}
+
+div#sort {
+  color: $breadcrumb;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+#selectContainer {
+  position: relative;
+}
+
+select#sort {
+  background: none;
+  border: none;
+  color: $breadcrumb;
+  -moz-appearance: none;
+  /* Firefox */
+  -webkit-appearance: none;
+  /* Safari and Chrome */
+  appearance: none;
+  cursor: pointer;
+  padding-right: 15px;
+  z-index: 1;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid $breadcrumb;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  z-index: -1;
+}
+
+label[for="sort"] {
+  margin-right: 5px;
+  margin-bottom: 0;
+}
+
+#hamburger {
+  background-image: image_url('menu.png');
+  background-size: 20px 14px;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+table {
+  width: 100%;
+  box-shadow: 0 0 2px $table_border;
+
+  tr {
+    td:first-of-type,
+    td:nth-of-type(2) {
+      text-align: center;
+      border-bottom: 1px solid $table_border;
+      border-right: 1px solid $table_border;
+    }
+
+    td:first-of-type {
+      padding: 10px;
+      text-align: center;
+
+      img {
+        background: black;
+        height: 115px;
+        width: 80px;
+        margin-right: 15px;
+      }
+
+      img,
+      span {
+        vertical-align: middle;
+        display: inline-block;
+      }
+
+      span {
+        font-size: 20px;
+        width: 375px;
+        line-height: 1;
+        font-weight: bold;
+        text-align: left;
+        color: #3c4043;
+      }
+    }
+
+    td:nth-of-type(2) {
+      img {
+        width: 135px;
+        background: black;
+      }
+
+      p {
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
+
+    td:nth-of-type(3) {
+      text-align: center;
+      border-bottom: 1px solid $table_border;
+
+      img,
+      span.number {
+        vertical-align: middle;
+        font-size: 18px;
+      }
+
+      span.grey {
+        color: $breadcrumb;
+        font-size: 15px;
+      }
+
+      img {
+        position: relative;
+        bottom: 1px;
+      }
+
+      p {
+        color: $breadcrumb;
+        font-size: 11px;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+th {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 1px solid $table_border;
+  font-size: 14px;
+  color: #9a9a9a;
+  font-weight: normal;
+}
+
+#mainContent > .container > .row > .right {
+  h2 {
+    font-size: 22px;
+  }
+
+  .row>.left img {
+    height: 90px;
+    width: 70px;
+    background: black;
+  }
+
+  h1 {
+    font-size: 15px;
+  }
+}

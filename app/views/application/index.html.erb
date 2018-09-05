@@ -1,0 +1,60 @@
+<%= render 'application/header' %>
+
+<section id="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        Reviews > Whey Supplement
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= render 'application/main_content' %>
+
+<section id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <nav>
+          <ul>
+            <li>
+              <%= link_to 'HOME', root_path %>
+            </li>
+            <li>
+              <%= link_to 'ABOUT', '' %>
+            </li>
+            <li>
+              <%= link_to 'CONTACT', '' %>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-sm-4">
+        <%= image_tag 'logo_footer.png' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <p>
+          &copy; <%= Time.now.year %> Groovy Media, All Rights Reserved
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <nav>
+          <ul>
+            <li>
+              <%= link_to 'Terms of Use', 'http://privacy.werecommend.com/terms' %>
+            </li>
+            <li>
+              <%= link_to 'Privacy Policy', 'http://privacy.werecommend.com/privacy' %>
+            </li>
+            <li>
+              <%= link_to 'Contact Us', 'http://privacy.werecommend.com/contact-us' %>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>

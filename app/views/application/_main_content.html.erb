@@ -1,0 +1,29 @@
+<section id="mainContent">
+  <div class="container">
+    <div class="row">
+      <%= render 'application/main_content/left' %>
+      <div class="col-xl-3 right">
+        <h2>Top Supplements</h2>
+        <% i = 0 %>
+        <% while i < 5 do %>
+          <div class="row">
+            <div class="col-sm-4 left">
+              <%= image_tag 'logo_header.png' %>
+            </div>
+            <div class="col-sm-8 right">
+              <h1>MusclePharm Combat 100% Whey</h1>
+              <p>19 reviews</p>
+              <%= image_tag 'favicon.png' %>
+              <div class="review">
+                <%= image_tag 'favicon.png' %>
+                <span>9.9/10</span>
+                <p>19 Reviews</p>
+              </div>
+            </div>
+          </div>
+        <% i += 1 %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
