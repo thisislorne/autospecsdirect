@@ -1,13 +1,6 @@
-<div class="col-xl-9 left">
+<div class="col-xl-8 left">
   <h1>Our Top Picks For Whey Supplement</h1>
-  <div id="sort">
-    <label for="sort">SORT BY:</label>
-    <div id="selectContainer">
-      <%= select_tag 'sort', options_for_select(['RANK'], 'RANK') %>
-      <div class="arrow-down"></div>
-    </div>
-  </div>
-  <table>
+  <table id="mainTable">
     <tbody>
       <% i = 1 %>
       <% while i < 5 do %>
