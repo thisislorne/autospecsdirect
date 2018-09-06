@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -31,6 +31,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'gstats_client', git: 'git@github.com:GroovyMedia/gstats_client.git', :tag => 'v0.2.3'
+gem 'newrelic_rpm'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -42,6 +45,8 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -49,7 +54,15 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-dotenv-tasks', require: false
+  gem 'capistrano-logrotate', require: false
+  gem 'capistrano-logtail', require: false
+  gem 'capistrano-rails'
+  gem 'capistrano-rails-console', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano3-nginx'
+  gem 'capistrano3-puma', require: false
+end
