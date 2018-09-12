@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'gstats_client', git: 'git@github.com:GroovyMedia/gstats_client.git', :tag => 'v0.2.3'
 gem 'newrelic_rpm'
 gem 'mini_racer'
+gem 'administrate'
+gem 'mail_form'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

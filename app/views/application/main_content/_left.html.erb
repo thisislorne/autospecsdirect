@@ -2,25 +2,25 @@
   <h1>Our Top Picks For Whey Supplement</h1>
   <table id="mainTable">
     <tbody>
-      <% i = 1 %>
-      <% while i < 5 do %>
+      <% @products.each_with_index do |product, index| %>
       <tr>
-        <th><%= i %></th>
+        <th><%= index + 1 %></th>
         <td>
-          <%= image_tag 'logo_header.png' %>
-          <span>MusclePharm Combat 100% Whey</span>
+          <div class="product-image">
+            <%= image_tag product[:image] %>
+          </div>
+          <span><%= product[:title] %></span>
         </td>
         <td>
-          <%= image_tag 'logo_header.png' %>
-          <p>MUSCLE PHARM</p>
+          <%= image_tag product[:brand_image] %>
+          <p><%= product[:brand].upcase %></p>
         </td>
         <td>
           <%= image_tag 'star.png' %>
-          <span class="number">9.9<span class="grey">/10</span></span>
-          <p>19 Reviews</p>
+          <span class="number"><%= product[:rating] %><span class="grey">/5</span></span>
+          <p><%= product[:num_reviews] %> Reviews</p>
         </td>
       </tr>
-      <% i += 1 %>
       <% end %>
     </tbody>
   </table>

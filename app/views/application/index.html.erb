@@ -1,4 +1,17 @@
-<%= render 'application/header' %>
+<header>
+  <nav id="navbar" class="container navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#"><%= image_tag 'fern.png', id: 'fern' %><%= image_tag 'logo_header.png', id: 'logoHeader' %></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span id="hamburger" class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse nav-container" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="<%= root_path %>">HOME <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="<%= about_path %>">ABOUT</a>
+      </div>
+    </div>
+  </nav>
+</header>
 
 <section id="breadcrumbs">
   <div class="container">

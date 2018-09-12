@@ -138,6 +138,19 @@ label[for="sort"] {
   }
 }
 
+table#mainTable tr:hover{
+  cursor: pointer;
+  box-shadow: 0px 0px 5px #e4e4e4;
+  th,
+  td{
+    border-color: white;
+  }
+}
+
+table#sideTable tr:hover{
+  cursor: pointer;
+}
+
 table#mainTable {
   @media screen and (max-width: 1199px) {
     display: none;
@@ -145,11 +158,17 @@ table#mainTable {
 
   tr {
     td:first-of-type {
-      img {
-        background: black;
-        height: 115px;
-        width: 80px;
+      .product-image {
+        display: inline-block;
         margin-right: 15px;
+        height: 90px;
+        overflow-y: hidden;
+        width: 90px;
+        vertical-align: middle;
+      }
+
+      img {
+        width: 100%;
       }
 
       span {
@@ -194,9 +213,11 @@ table {
       img {
         width: 135px;
         background: black;
+        margin-bottom: 5px;
       }
 
       p {
+        margin-bottom: 0;
         font-size: 13px;
         font-weight: bold;
       }
@@ -391,7 +412,6 @@ a.navbar-brand {
 }
 
 table#sideTable {
-  max-width: 350px;
   box-shadow: none;
 
   th {
@@ -410,10 +430,13 @@ table#sideTable {
     border-right: 0;
     text-align: left;
 
-    .left img {
+    .image-container {
       height: 90px;
-      width: 70px;
-      background: black;
+      overflow-y: hidden;
+    }
+
+    .left img {
+      width: 100%;
     }
   }
 
@@ -430,8 +453,7 @@ table#sideTable {
   }
 
   img.brand {
-    width: 60px;
-    height: 27px;
+    width: 100%;
   }
 
   .rating-container {
@@ -444,6 +466,52 @@ table#sideTable {
 
     th {
       display: table-cell;
+    }
+
+    td .left {
+      text-align: center;
+
+      img {
+        width: auto;
+        height: 100%;
+        overflow-x: hidden;
+      }
+    }
+  }
+}
+@media screen and (max-width: 991px){
+  nav#navbar .navbar-nav{
+    padding-top: 0.5rem;
+  }
+}
+@media screen and (max-width: 575px) {
+  table#sideTable {
+    .brand-image-container img {
+      height: 100%;
+      width: auto;
+    }
+    .review{
+      padding-top: 10px;
+    }
+  }
+}
+@media screen and (max-width: 375px) {
+  table#sideTable {
+    td .left img {
+      width: 100%;
+      height: auto;
+    }
+
+    .image-container{
+      overflow-y: hidden;
+    }
+
+    .brand-image-container{
+      overflow-y: hidden;
+      img {
+        height: auto;
+        width: 100%;
+      }
     }
   }
 }
