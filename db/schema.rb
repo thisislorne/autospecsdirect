@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_013358) do
+ActiveRecord::Schema.define(version: 2018_09_13_023829) do
+
+  create_table "links", force: :cascade do |t|
+    t.text "url", null: false
+    t.string "title", null: false
+    t.string "price", null: false
+    t.string "brand_image", null: false
+    t.integer "product_id", null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "title"
@@ -20,6 +28,17 @@ ActiveRecord::Schema.define(version: 2018_09_12_013358) do
     t.text "brand_image"
     t.string "rating"
     t.string "num_reviews"
+    t.string "key"
+    t.index ["key"], name: "index_products_on_key", unique: true
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "user", null: false
+    t.string "rating", null: false
+    t.string "review", null: false
+    t.string "flavour", null: false
+    t.integer "product_id", null: false
+    t.string "summary"
   end
 
 end

@@ -7,4 +7,7 @@ class Product < ApplicationRecord
   :rating,
   :num_reviews,
   presence: true
+
+  has_many :reviews
+  has_many :links
 end

@@ -35,6 +35,7 @@ gem 'gstats_client', git: 'git@github.com:GroovyMedia/gstats_client.git', :tag =
 gem 'newrelic_rpm'
 gem 'mini_racer'
 gem 'administrate'
+gem 'will_paginate', '~> 3.1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
