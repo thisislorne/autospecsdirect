@@ -1,0 +1,79 @@
+@import "bootstrap";
+@import "shared";
+$placeholder: #dcdcdc;
+
+form#contactForm {
+  max-width: 550px;
+}
+
+input,
+label,
+textarea {
+  display: block;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+input,
+textarea {
+  width: 100%;
+  margin-bottom: 20px;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+input {
+  border: 0;
+  border-bottom: 1px solid $placeholder;
+
+}
+
+textarea {
+  border-color: $placeholder;
+  padding: 7px 10px;
+  height: 125px;
+}
+
+input[type="submit"] {
+  background: #0090ae;
+  color: white;
+  max-width: 215px;
+  padding: 15px 0;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+img#aboutImage{
+  margin-bottom: 35px;
+  width: 100%;
+}
+@mixin placeholder() {
+  color: $placeholder;
+  font-style: italic;
+  font-weight: 300;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  @include placeholder;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  @include placeholder;
+}
+
+:-ms-input-placeholder {
+  /* IE 10+ */
+  @include placeholder;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  @include placeholder;
+}

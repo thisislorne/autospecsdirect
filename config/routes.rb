@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   end
   root to: 'application#index'
   get 'about', to: 'application#about'
+  get 'contact-me', to: 'messages#new', as: 'new_message'
+  post 'contact-me', to: 'messages#create', as: 'create_message'
 end

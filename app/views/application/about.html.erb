@@ -27,24 +27,24 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-8">
-        <h1>100% Kiwi Recommendations</h1>
-        <%= image_tag 'clean-nutrition.png' %>
+        <h1 class="main-header">100% Kiwi Recommendations</h1>
+        <%= image_tag 'clean-nutrition.png', id: 'aboutImage' %>
         <p>Vestibulum scelerisque elit sit amet auctor iaculis. Maecenas a hendrerit ligula. Cras iaculis tortor tristique auctor sagittis. In eu neque lacus. Vivamus viverra interdum luctus. Aliquam ante eros, ornare rutrum bibendum et, ullamcorper a nisi. Morbi maximus sapien at ornare tempus. Vivamus dictum nunc ut tellus mattis cursus. Suspendisse consectetur scelerisque nulla. Curabitur lectus leo, scelerisque eu metus ac, condimentum interdum lacus. Aenean consectetur neque a neque dignissim, ut feugiat nunc malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed id est dignissim, vestibulum arcu non, blandit turpis. Praesent velit metus, eleifend in convallis vel, aliquet sed erat. Nunc semper libero vitae dui ultricies, ultrices rhoncus neque convallis. Aliquam erat volutpat.</p>
         <p>Vestibulum scelerisque elit sit amet auctor iaculis. Maecenas a hendrerit ligula. Cras iaculis tortor tristique auctor sagittis. In eu neque lacus. Vivamus viverra interdum luctus. Aliquam ante eros, ornare rutrum bibendum et, ullamcorper a nisi. Morbi maximus sapien at ornare tempus. Vivamus dictum nunc ut tellus mattis cursus. Suspendisse consectetur scelerisque nulla. Curabitur lectus leo, scelerisque eu metus ac, condimentum interdum lacus. Aenean consectetur neque a neque dignissim, ut feugiat nunc malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed id est dignissim, vestibulum arcu non, blandit turpis. Praesent velit metus, eleifend in convallis vel, aliquet sed erat. Nunc semper libero vitae dui ultricies, ultrices rhoncus neque convallis. Aliquam erat volutpat.</p>
-        <%= form_tag(about_path, method: 'get') do %>
+        <%= form_for(@message, url: create_message_url, id: 'contactForm') do |f| %>
           <h1>Contact Us</h1>
           <label for="name">Name</label>
-          <%= text_field_tag 'name', '', placeholder: 'Your name here' %>
+          <%= f.text_field :name, placeholder: 'Your name here', required: true %>
           <label for="email">Email</label>
-          <%= email_field_tag 'email', '', placeholder: 'Your email here' %>
+          <%= f.email_field :email, placeholder: 'Your email here', required: true %>
           <label for="Message">Message</label>
-          <%= text_area_tag 'message', '', placeholder: 'Please enter a detailed message here ...' %>
-          <%= submit_tag 'SEND MESSAGE' %>
+          <%= f.text_area :body, placeholder: 'Please enter a detailed message here ...', required: true %>
+          <%= f.submit 'SEND MESSAGE' %>
         <% end %>
 
       </div>
       <div class="col-xl-4 right">
-        <h2>Top Supplements</h2>
+        <h2 class="sidebar-header">Top Supplements</h2>
         <table id="sideTable">
           <tbody>
             <% @products.each_with_index do |product, index| %>

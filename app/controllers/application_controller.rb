@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   end
 
   def about
-
+    @message = Message.new
   end
 
   private
