@@ -1,0 +1,144 @@
+<header>
+  <nav id="navbar" class="container navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#"><%= image_tag 'fern.png', id: 'fern' %><%= image_tag 'logo_header.png', id: 'logoHeader' %></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span id="hamburger" class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse nav-container" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="<%= root_path %>">HOME <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="<%= about_path %>">ABOUT</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<section id="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        Reviews > <%= @product.title %>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="productContent">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-8">
+        <div class="container main-content">
+          <div class="row">
+            <div class="col-xl-5 left">
+              <div class="image-box">
+                <div class="image-restrictor">
+                  <%= image_tag @product.image %>
+                </div>
+              </div>
+              <div class="review-summary">
+                <%= image_tag 'star.png' %>
+                <span class="number"><%= @product.rating %><span class="grey">/5</span></span>
+                <p><%= @reviews.count %> Reviews</p>
+              </div>
+            </div>
+            <div class="col-xl-7">
+              <h1 class="main-header"><%= @product.title %></h1>
+              <div class="reviews-summary">
+                <%= image_tag 'star.png' %>
+                <span class="number"><%= @product.rating %><span class="grey">/5</span></span>
+                <span class="num-reviews"><%= @reviews.count %> Reviews</span>
+              </div>
+              <div class="description">
+                <%= @product.description %>
+              </div>
+              <p class="where">
+                Where can I buy it?
+              </p>
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <%= image_tag 'sportsfuel_logo.png' %>
+                  </div>
+                  <div class="col-sm-8">
+                    <ul>
+                      <% @links.each do |link| %>
+                        <%= link_to link.url, target: '_blank' do %>
+                          <span class="title"><%= link.title %></span>
+                          <span class="price"><%= link.price %></span>
+                        <% end %>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 right">
+        <h2 class="sidebar-header">Top Supplements</h2>
+        <table id="sideTable">
+          <tbody>
+            <% @products.each_with_index do |product, index| %>
+            <tr>
+              <th><%= index + 1 %></th>
+              <td>
+                <div class="row">
+                  <div class="col-4 left">
+                    <div class="image-container">
+                      <%= image_tag product[:image] %>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <h1><%= product[:title] %></h1>
+                    <p class="num-reviews"><%= product[:num_reviews] %> reviews</p>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="brand-image-container">
+                          <%= image_tag product[:brand_image], class: 'brand' %>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="review">
+                          <%= image_tag 'star.png' %>
+                          <span class="rating-container"><%= product[:rating] %><span class="grey">/5</span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              </tr>
+              <% break if index == 3 %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="reviews">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <%= image_tag 'tick.png' %>
+        <h1>User Reviews <span><%= @reviews.count %></span></h1>
+        <% @reviews.each do |review| %>
+          <div class="review">
+            <h2><%= review.summary %></h2>
+            <div class="rating"><%= review.rating %></div>
+            <div class="flavour"><%= review.flavour %></div>
+            <p class="review">
+              <%= review.review %>
+            </p>
+            <p class="user">
+              Reviewed by <%= review.user %>
+            </p>
+          </div>
+        <% end %>
+        <div class="pagination">
+          <%= will_paginate @reviews %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render 'application/footer' %>

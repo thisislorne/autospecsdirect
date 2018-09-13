@@ -1,0 +1,43 @@
+@import "bootstrap";
+@import "shared";
+
+.image-restrictor {
+  width: 100%;
+  max-height: 300px;
+  overflow-y: hidden;
+
+  img {
+    width: 100%;
+  }
+}
+
+.image-box {
+  padding: 25px 15px;
+  border: 1px solid $placeholder;
+  margin-bottom: 10px;
+}
+
+section#productContent .main-content .left{
+  padding-left: 0;
+}
+
+.review-summary {
+  text-align: center;
+
+  img,
+  span.number {
+    vertical-align: middle;
+    font-size: 18px;
+  }
+
+  img {
+    position: relative;
+    bottom: 1px;
+  }
+
+  p {
+    color: $breadcrumb;
+    font-size: 11px;
+    font-style: italic;
+  }
+}
