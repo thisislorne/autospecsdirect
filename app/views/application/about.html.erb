@@ -1,18 +1,7 @@
-<header>
-  <nav id="navbar" class="container navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#"><%= image_tag 'fern.png', id: 'fern' %><%= image_tag 'logo_header.png', id: 'logoHeader' %></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span id="hamburger" class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse nav-container" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="<%= root_path %>">HOME <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link active" href="<%= about_path %>">ABOUT</a>
-      </div>
-    </div>
-  </nav>
-</header>
-
+<%= render 'shared/header' do %>
+  <a class="nav-item nav-link" href="<%= root_path %>">HOME <span class="sr-only">(current)</span></a>
+  <a class="nav-item nav-link active" href="<%= about_path %>">ABOUT</a>
+<% end %>
 <section id="breadcrumbs">
   <div class="container">
     <div class="row">
@@ -22,7 +11,6 @@
     </div>
   </div>
 </section>
-
 <section id="aboutContent">
   <div class="container">
     <div class="row">
@@ -32,7 +20,7 @@
         <p>Vestibulum scelerisque elit sit amet auctor iaculis. Maecenas a hendrerit ligula. Cras iaculis tortor tristique auctor sagittis. In eu neque lacus. Vivamus viverra interdum luctus. Aliquam ante eros, ornare rutrum bibendum et, ullamcorper a nisi. Morbi maximus sapien at ornare tempus. Vivamus dictum nunc ut tellus mattis cursus. Suspendisse consectetur scelerisque nulla. Curabitur lectus leo, scelerisque eu metus ac, condimentum interdum lacus. Aenean consectetur neque a neque dignissim, ut feugiat nunc malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed id est dignissim, vestibulum arcu non, blandit turpis. Praesent velit metus, eleifend in convallis vel, aliquet sed erat. Nunc semper libero vitae dui ultricies, ultrices rhoncus neque convallis. Aliquam erat volutpat.</p>
         <p>Vestibulum scelerisque elit sit amet auctor iaculis. Maecenas a hendrerit ligula. Cras iaculis tortor tristique auctor sagittis. In eu neque lacus. Vivamus viverra interdum luctus. Aliquam ante eros, ornare rutrum bibendum et, ullamcorper a nisi. Morbi maximus sapien at ornare tempus. Vivamus dictum nunc ut tellus mattis cursus. Suspendisse consectetur scelerisque nulla. Curabitur lectus leo, scelerisque eu metus ac, condimentum interdum lacus. Aenean consectetur neque a neque dignissim, ut feugiat nunc malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed id est dignissim, vestibulum arcu non, blandit turpis. Praesent velit metus, eleifend in convallis vel, aliquet sed erat. Nunc semper libero vitae dui ultricies, ultrices rhoncus neque convallis. Aliquam erat volutpat.</p>
         <%= form_for(@message, url: create_message_url, id: 'contactForm') do |f| %>
-          <h1>Contact Us</h1>
+          <h1 class="main-header">Contact Us</h1>
           <label for="name">Name</label>
           <%= f.text_field :name, placeholder: 'Your name here', required: true %>
           <label for="email">Email</label>
@@ -41,48 +29,16 @@
           <%= f.text_area :body, placeholder: 'Please enter a detailed message here ...', required: true %>
           <%= f.submit 'SEND MESSAGE' %>
         <% end %>
-
       </div>
       <div class="col-xl-4 right">
-        <h2 class="sidebar-header">Top Supplements</h2>
-        <table id="sideTable">
-          <tbody>
-            <% @products.each_with_index do |product, index| %>
-            <tr>
-              <th><%= index + 1 %></th>
-              <td>
-                <div class="row">
-                  <div class="col-4 left">
-                    <div class="image-container">
-                      <%= image_tag product[:image] %>
-                    </div>
-                  </div>
-                  <div class="col-8">
-                    <h1><%= product[:title] %></h1>
-                    <p class="num-reviews"><%= product[:num_reviews] %> reviews</p>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="brand-image-container">
-                          <%= image_tag product[:brand_image], class: 'brand' %>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="review">
-                          <%= image_tag 'star.png' %>
-                          <span class="rating-container"><%= product[:rating] %><span class="grey">/5</span></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <div class="side-table">
+          <%= render 'shared/side_table' %>
+        </div>
+        <div class="main-table-mobile">
+          <%= render 'application/main_content/left' %>
+        </div>
       </div>
     </div>
   </div>
 </section>
-
 <%= render 'application/footer' %>

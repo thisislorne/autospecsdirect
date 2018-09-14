@@ -1,27 +1,26 @@
-<div class="col-xl-8 left">
+
   <h1 class="main-header">Our Top Picks For Whey Supplement</h1>
   <table id="mainTable">
     <tbody>
       <% @products.each_with_index do |product, index| %>
-      <tr>
+      <tr onclick="javascript:location.href='<%= product_path("#{product.id}") %>'">
         <th><%= index + 1 %></th>
         <td>
           <div class="product-image">
-            <%= image_tag product[:image] %>
+            <%= image_tag product.image %>
           </div>
-          <span><%= product[:title] %></span>
+          <span><%= product.title %></span>
         </td>
         <td>
-          <%= image_tag product[:brand_image] %>
-          <p><%= product[:brand].upcase %></p>
+          <%= image_tag product.brand_image %>
+          <p><%= product.brand.upcase %></p>
         </td>
         <td>
           <%= image_tag 'star.png' %>
-          <span class="number"><%= product[:rating] %><span class="grey">/5</span></span>
-          <p><%= product[:num_reviews] %> Reviews</p>
+          <span class="number"><%= product.rating.to_f.round %><span class="grey">/5</span></span>
+          <p><%= @reviews.where(product: product.id).count %> Reviews</p>
         </td>
       </tr>
       <% end %>
     </tbody>
   </table>
-</div>

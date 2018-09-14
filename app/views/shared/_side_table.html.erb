@@ -1,0 +1,37 @@
+<h2 class="sidebar-header">Top Supplements</h2>
+<table id="sideTable">
+  <tbody>
+    <% @products.each_with_index do |product, index| %>
+     <tr onclick="javascript:location.href='<%= product_path("#{product.id}") %>'">
+      <th><%= index + 1 %></th>
+      <td>
+        <div class="row">
+          <div class="col-4 left">
+            <div class="image-container">
+              <%= image_tag product[:image] %>
+            </div>
+          </div>
+          <div class="col-8">
+            <h1><%= product[:title] %></h1>
+            <% reviews = @reviews.where(product: product.id).count %>
+            <p class="num-reviews"><%= reviews %> <%= reviews == 1 ? 'Review' : 'Reviews' %></p>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="brand-image-container">
+                  <%= image_tag product[:brand_image], class: 'brand' %>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="review">
+                  <%= image_tag 'star.png' %>
+                  <span class="rating-container"><%= product[:rating].to_f.round %><span class="grey">/5</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Product.destroy_all
+Product.delete_all
 
-Review.destroy_all
+Review.delete_all
 
 Product.create(
   title: 'Clean Nutrition Whey Protein',
@@ -34,6 +34,22 @@ Link.create(
   url: 'https://www.sportsfuel.co.nz/clean-nutrition-protein-1kg.html',
   title: 'Clean Nutrition Whey Protein 1kg',
   price: '$39',
+  brand_image: 'musclepharm.png',
+  product: Product.first
+)
+
+Link.create(
+  url: 'https://www.sportsfuel.co.nz/clean-nutrition-protein-2kg.html',
+  title: 'Clean Nutrition Whey Protein 2kg',
+  price: '$69',
+  brand_image: 'musclepharm.png',
+  product: Product.first
+)
+
+Link.create(
+  url: 'https://www.sportsfuel.co.nz/clean-nutrition-protein-3kg.html',
+  title: 'Clean Nutrition Whey Protein 3kg',
+  price: '$99',
   brand_image: 'musclepharm.png',
   product: Product.first
 )

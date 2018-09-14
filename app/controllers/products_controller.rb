@@ -2,9 +2,8 @@ class ProductsController < ApplicationController
   def show
     @pagination_page = params[:page] || 1
     @page = 'product'
-    @product = Product.first
-    @reviews = Review.where(product: @product.id)
-    @reviews = @reviews.paginate(page: @pagination_page, per_page: 4)
+    @product = @products.find(params[:product] || 1)
+    @reviews = @reviews.where(product: @product.id)
     @links = Link.where(product: @product.id)
   end
 end

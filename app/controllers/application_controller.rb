@@ -14,5 +14,6 @@ class ApplicationController < ActionController::Base
 
   def products
     @products = Product.all
+    @reviews = Review.all
   end
 end

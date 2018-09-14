@@ -139,7 +139,7 @@ table#sideTable tr:hover{
 }
 
 table#mainTable {
-  @media screen and (max-width: 1199px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 
@@ -250,7 +250,8 @@ h2.sidebar-header {
 }
 
 #mainContent,
-#aboutContent{
+#aboutContent,
+#productContent{
   & > .container > .row > .right {
     h1 {
       font-size: 15px;
@@ -269,6 +270,28 @@ h2.sidebar-header {
         span:not(.grey) {
           vertical-align: middle;
         }
+      }
+    }
+  }
+}
+
+#sideTableMobile{
+  h1 {
+    font-size: 15px;
+  }
+
+  .row > .right {
+    h1 {
+      margin-bottom: 0;
+      font-weight: bold;
+    }
+
+    .review {
+      display: inline-block;
+
+      img,
+      span:not(.grey) {
+        vertical-align: middle;
       }
     }
   }
@@ -449,6 +472,7 @@ table#sideTable {
 }
 @media screen and (max-width: 1199px) {
   table#sideTable {
+    display: none;
     box-shadow: 0 0 2px $table_border;
 
     th {
@@ -469,6 +493,11 @@ table#sideTable {
 @media screen and (max-width: 991px){
   nav#navbar .navbar-nav{
     padding-top: 0.5rem;
+  }
+}
+@media screen and (max-width: 767px){
+  table#sideTable{
+    display: block;
   }
 }
 @media screen and (max-width: 575px) {
@@ -500,5 +529,15 @@ table#sideTable {
         width: 100%;
       }
     }
+  }
+}
+@media screen and (min-width: 1200px){
+  .main-table-mobile{
+    display: none;
+  }
+}
+.main-table-mobile{
+  h1.main-header{
+    display: none;
   }
 }
