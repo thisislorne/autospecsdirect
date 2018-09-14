@@ -5,6 +5,10 @@ form#contactForm {
   max-width: 550px;
 }
 
+form#new_message {
+    display: none;
+}
+
 input,
 label,
 textarea {
