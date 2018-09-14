@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   private
 
   def products
-    @products = Product.all
+    @products = Product.all.order(:order)
     @reviews = Review.all
   end
 end

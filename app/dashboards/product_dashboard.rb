@@ -16,6 +16,7 @@ class ProductDashboard < Administrate::BaseDashboard
     brand_image: Field::Text,
     rating: Field::String,
     num_reviews: Field::String,
+    order: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -28,6 +29,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :title,
     :description,
     :image,
+    :order
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -41,6 +43,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :brand_image,
     :rating,
     :num_reviews,
+    :order
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -54,6 +57,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :brand_image,
     :rating,
     :num_reviews,
+    :order
   ].freeze
 
   # Overwrite this method to customize how products are displayed
