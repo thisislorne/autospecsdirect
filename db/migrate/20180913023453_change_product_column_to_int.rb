@@ -1,6 +1,6 @@
 class ChangeProductColumnToInt < ActiveRecord::Migration[5.2]
   def change
-    change_column :reviews, :product, :integer
-    rename_column :reviews, :product, :product_id
+    remove_column :reviews, :product
+    add_column :reviews, :product_id, :integer
   end
 end

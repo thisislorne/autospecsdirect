@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2018_09_13_023829) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "links", force: :cascade do |t|
     t.text "url", null: false
     t.string "title", null: false
@@ -37,8 +40,8 @@ ActiveRecord::Schema.define(version: 2018_09_13_023829) do
     t.string "rating", null: false
     t.string "review", null: false
     t.string "flavour", null: false
-    t.integer "product_id", null: false
     t.string "summary"
+    t.integer "product_id"
   end
 
 end
