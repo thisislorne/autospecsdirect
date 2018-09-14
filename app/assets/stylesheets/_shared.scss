@@ -433,6 +433,10 @@ table#sideTable {
     &:not(:last-child) {
       border-bottom: 1px solid $table_border;
     }
+
+    &:nth-child(n+5){
+      display: none;
+    }
   }
 
   td {
@@ -496,7 +500,11 @@ table#sideTable {
 }
 @media screen and (max-width: 767px){
   table#sideTable{
-    display: block;
+    display: table;
+
+    tr:nth-child(n+5){
+      display: table-row;
+    }
   }
 }
 @media screen and (max-width: 575px) {
