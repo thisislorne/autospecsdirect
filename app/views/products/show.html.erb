@@ -46,7 +46,7 @@
                         <ul>
                           <% @links.each do |link| %>
                             <li>
-                              <%= link_to link.url, target: '_blank' do %>
+                              <%= link_to link.url_source, target: '_blank' do %>
                                 <span class="title"><%= link.title %></span>
                                 <span class="price"><%= link.price %></span>
                               <% end %>
@@ -82,7 +82,7 @@
                       <ul>
                         <% @links.each do |link| %>
                           <li>
-                            <%= link_to link.url, target: '_blank' do %>
+                            <%= link_to link.url_source, target: '_blank', onclick: "trackOutboundLink('#{link.url}')" do %>
                               <span class="title"><%= link.title %></span>
                               <span class="price"><%= link.price %></span>
                             <% end %>
