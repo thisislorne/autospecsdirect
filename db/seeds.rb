@@ -8,6 +8,10 @@
 
 Product.delete_all
 
+Link.delete_all
+
+Review.delete_all
+
 Product.create(
   title: 'Eat Me 100% Whey Protein',
   description: 'Eat Me Whey Protein powder packs 24 grams of the cleanest, muscle-building protein into each 30 gram serving. This product delivers a complete spectrum of whey peptides to assist your immune and antioxidant functions and it’s one of the best sources of branched chain amino acids (BCAAs).',
