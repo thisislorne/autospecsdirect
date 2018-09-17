@@ -26,7 +26,7 @@
               <div class="review-summary">
                 <%= image_tag 'star.png' %>
                 <span class="number"><%= @product.rating.to_f.round %><span class="grey">/5</span></span>
-                <span class="num-reviews"><%= @reviews.count %> <%= @reviews.count == 1 ? 'Review' : 'Reviews' %></span>
+                <span class="num-reviews"><%= @this_product_reviews.count %> <%= @this_product_reviews.count == 1 ? 'Review' : 'Reviews' %></span>
               </div>
               <div class="description-desktop">
                 <%= render 'products/description' %>

@@ -43,3 +43,21 @@ Link.create(
   title: 'Eat Me Whey',
   price: '$42.00'
 )
+
+Review.create(
+  product: Product.first,
+  user: 'U R',
+  rating: '4',
+  review: "Awesome Product, must try....at least!*",
+  flavour: '4',
+  summary: 'Good Taste Good Result Good Value'
+)
+
+Review.create(
+  product: Product.last,
+  user: 'U R',
+  rating: '4',
+  review: "Awesome Product, must try....at least!*",
+  flavour: '4',
+  summary: 'Good Taste Good Result Good Value'
+)
