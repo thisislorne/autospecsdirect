@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-xl-12">
         <%= image_tag 'tick.png', id: 'tick' %>
-        <h1>User Reviews <span>(<%= @reviews.count %>)</span></h1>
-        <% @reviews.each do |review| %>
+        <h1>User Reviews <span>(<%= @this_product_reviews.count %>)</span></h1>
+        <% @this_product_reviews.each do |review| %>
           <div class="review outer">
             <h2><%= review.summary %></h2>
             <div class="rating">
