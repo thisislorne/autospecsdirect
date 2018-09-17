@@ -430,8 +430,8 @@ table#sideTable {
   tr {
     border: 0;
 
-    &:not(:last-child) {
-      border-bottom: 1px solid $table_border;
+    &:not(:first-child) {
+      border-top: 1px solid $table_border;
     }
 
     &:nth-child(n+5){

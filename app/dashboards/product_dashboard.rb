@@ -15,7 +15,6 @@ class ProductDashboard < Administrate::BaseDashboard
     brand: Field::String,
     brand_image: Field::Text,
     rating: Field::String,
-    num_reviews: Field::String,
     order: Field::Number,
   }.freeze
 
@@ -42,7 +41,6 @@ class ProductDashboard < Administrate::BaseDashboard
     :brand,
     :brand_image,
     :rating,
-    :num_reviews,
     :order
   ].freeze
 
@@ -56,7 +54,6 @@ class ProductDashboard < Administrate::BaseDashboard
     :brand,
     :brand_image,
     :rating,
-    :num_reviews,
     :order
   ].freeze
 

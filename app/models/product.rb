@@ -5,7 +5,6 @@ class Product < ApplicationRecord
   :brand,
   :brand_image,
   :rating,
-  :num_reviews,
   presence: true
 
   has_many :reviews

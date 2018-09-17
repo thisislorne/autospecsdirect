@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  skip_before_action :products
 
   def new
     @message = Message.new

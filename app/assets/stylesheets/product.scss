@@ -98,8 +98,8 @@ p.where {
       position: relative;
       top: 50%;
       transform: translateY(-50%);
-      width: auto;
-      max-width: 100%;
+      width: 100%;
+      max-width: 200px;
       display: inline-block;
     }
   }
@@ -116,11 +116,19 @@ p.where {
 
     li {
       text-align: center;
+      margin-bottom: 5px;
     }
 
-    a,
-    a:hover {
-      color: #0090ae;
+    a{
+      background: #0090ae;
+      color: white;
+      padding: 3px;
+      border-radius: 5px;
+      width: 100%;
+      display: block;
+      &:hover{
+        text-decoration: none;
+      }
     }
   }
 }
@@ -211,12 +219,8 @@ h1.main-header.product {
   #productContent .main-content > .row > .left {
     order: 2;
   }
-
-  #logoAndLinks .left img {
-    max-width: 200px;
-  }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 575px) {
   #logoAndLinks .left img {
     margin-bottom: 15px;
   }

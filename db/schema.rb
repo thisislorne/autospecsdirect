@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_14_050720) do
+ActiveRecord::Schema.define(version: 2018_09_17_000125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2018_09_14_050720) do
     t.text "url", null: false
     t.string "title", null: false
     t.string "price", null: false
-    t.string "brand_image", null: false
     t.integer "product_id", null: false
   end
 
@@ -30,7 +29,6 @@ ActiveRecord::Schema.define(version: 2018_09_14_050720) do
     t.string "brand"
     t.text "brand_image"
     t.string "rating"
-    t.string "num_reviews"
     t.string "key"
     t.integer "order"
     t.index ["key"], name: "index_products_on_key", unique: true

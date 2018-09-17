@@ -1,0 +1,45 @@
+<section id="productContent">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-8">
+        <div class="container main-content">
+          <div class="row">
+            <div class="col-lg-5 left">
+              <div class="image-box">
+                <div class="image-restrictor">
+                  <%= image_tag @product.image %>
+                </div>
+              </div>
+              <div class="review-summary left">
+                <div class="reviews-summary-desktop">
+                  <%= image_tag 'star.png' %>
+                  <span class="number"><%= @product.rating.to_f.round %><span class="grey">/5</span></span>
+                  <p id="reviewCount"><%= @reviews.count %> <%= @reviews.count == 1 ? 'Review' : 'Reviews' %></p>
+                </div>
+                <div class="description-mobile">
+                  <%= render 'products/description' %>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-7 right">
+              <h1 class="main-header product"><%= @product.title %></h1>
+              <div class="review-summary">
+                <%= image_tag 'star.png' %>
+                <span class="number"><%= @product.rating.to_f.round %><span class="grey">/5</span></span>
+                <span class="num-reviews"><%= @reviews.count %> <%= @reviews.count == 1 ? 'Review' : 'Reviews' %></span>
+              </div>
+              <div class="description-desktop">
+                <%= render 'products/description' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 right">
+        <div id="sideTableDesktop">
+          <%= render 'shared/side_table' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

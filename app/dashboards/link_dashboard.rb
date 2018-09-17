@@ -13,7 +13,6 @@ class LinkDashboard < Administrate::BaseDashboard
     url: Field::Text,
     title: Field::String,
     price: Field::String,
-    brand_image: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -36,7 +35,6 @@ class LinkDashboard < Administrate::BaseDashboard
     :url,
     :title,
     :price,
-    :brand_image,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -47,7 +45,6 @@ class LinkDashboard < Administrate::BaseDashboard
     :url,
     :title,
     :price,
-    :brand_image,
   ].freeze
 
   # Overwrite this method to customize how links are displayed
