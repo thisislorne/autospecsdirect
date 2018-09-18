@@ -1,15 +1,3 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
-// vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 //= require rails-ujs
 //= require turbolinks
 //= require jquery3
@@ -25,13 +13,8 @@ $(function() {
 
 });
 
-/**
-* Function that tracks a click on an outbound link in Analytics.
-* This function takes a valid URL string as an argument, and uses that URL string
-* as the event label. Setting the transport method to 'beacon' lets the hit be sent
-* using 'navigator.sendBeacon' in browser that support it.
-*/
 var trackOutboundLink = function(url) {
+  gtag('event', 'conversion', {'send_to': 'AW-788320855/9EJwCK3VsYkBENek8_cC'});
   gtag('event', 'click', {
     'event_category': 'outbound',
     'event_label': url,
