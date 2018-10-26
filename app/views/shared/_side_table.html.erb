@@ -16,12 +16,20 @@
             <% reviews = @reviews.where(product: product.id).count %>
             <p class="num-reviews"><%= reviews %> <%= reviews == 1 ? 'Review' : 'Reviews' %></p>
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-md-6">
                 <div class="brand-image-container">
-                  <%= image_tag product[:brand_image], class: 'brand' %>
+                    <%= image_tag product[:brand_image], class: 'brand' %>
                 </div>
+                <% points = @points.where(product: product.id) %>
+                <% if points.present? %>
+                  <ul class="points">
+                  <% points.each do |point| %>
+                    <li><%= point.point %></li>
+                  <% end %>
+                  </ul>
+                <% end %>
               </div>
-              <div class="col-sm-6">
+              <div class="col-md-6">
                 <div class="review">
                   <%= image_tag 'star.png' %>
                   <span class="rating-container"><%= product[:rating].to_f.round %><span class="grey">/5</span></span>

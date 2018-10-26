@@ -109,6 +109,9 @@ p.where {
     padding-left: 0;
     font-size: 13px;
     margin-bottom: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 
     span.title {
       margin-right: 10px;
@@ -120,16 +123,13 @@ p.where {
     }
 
     a{
-      background: #0090ae;
-      color: white;
-      padding: 3px;
       border-radius: 5px;
       width: 100%;
       display: block;
 
+      &,
       &:hover{
-        text-decoration: none;
-        background: #006d84;
+          color: #006d84;
       }
     }
   }

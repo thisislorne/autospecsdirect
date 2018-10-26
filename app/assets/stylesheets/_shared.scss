@@ -423,6 +423,10 @@ a.navbar-brand {
 table#sideTable {
   box-shadow: none;
 
+  .points{
+    display: none;
+  }
+
   th {
     display: none;
   }
@@ -501,6 +505,14 @@ table#sideTable {
 @media screen and (max-width: 767px){
   table#sideTable{
     display: table;
+
+    .brand-image-container{
+      display: none;
+    }
+
+    .points{
+      display: block;
+    }
 
     tr:nth-child(n+5){
       display: table-row;
