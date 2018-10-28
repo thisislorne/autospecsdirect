@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   def products
     @products = Product.all.order(:order)
     @reviews = Review.all
-    @points = Point.all
+    @links = Link.all
   end
 end

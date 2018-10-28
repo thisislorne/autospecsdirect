@@ -20,13 +20,10 @@
                 <div class="brand-image-container">
                     <%= image_tag product[:brand_image], class: 'brand' %>
                 </div>
-                <% points = @points.where(product: product.id) %>
-                <% if points.present? %>
-                  <ul class="points">
-                  <% points.each do |point| %>
-                    <li><%= point.point %></li>
-                  <% end %>
-                  </ul>
+                <% if !product.points.blank? %>
+                  <div class="points">
+                    <%= product.points.html_safe %>
+                  </div>
                 <% end %>
               </div>
               <div class="col-md-6">

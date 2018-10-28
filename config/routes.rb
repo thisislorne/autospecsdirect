@@ -4,7 +4,6 @@ Rails.application.routes.draw do
     resources :products
     resources :links
     resources :reviews
-    resources :points
     root to: 'products#index'
   end
   root to: 'application#index'

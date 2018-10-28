@@ -11,13 +11,10 @@
         </div>
         <span class="title">
           <%= product.title %><br>
-          <% points = @points.where(product: product.id) %>
-          <% if points.present? %>
-            <ul class="points">
-            <% points.each do |point| %>
-              <li><%= point.point %></li>
-            <% end %>
-            </ul>
+          <% if !product.points.blank? %>
+            <div class="points">
+              <%= product.points.html_safe %>
+            </div>
           <% end %>
           <%= link_to 'See More...', product_path(product.id) %>
         </span>
@@ -30,7 +27,9 @@
         <%= image_tag 'star.png' %>
         <span class="number"><%= product.rating.to_f.round %><span class="grey">/5</span></span>
         <p><%= @reviews.where(product: product.id).count %> Reviews</p>
-        <%= link_to 'View Now', product_path(product.id), class: 'view-now', target: '_blank' %>
+        <% links = @links.where(product: product.id) %>
+        <% link = links.present? ? links.first.url : product_path(product.id) %>
+        <%= link_to 'View Now', link, class: 'view-now' %>
       </td>
     </tr>
     <% end %>

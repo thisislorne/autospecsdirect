@@ -420,6 +420,37 @@ a.navbar-brand {
   }
 }
 
+#mainTable,
+#sideTable{
+  .points{
+    ul{
+      padding-left: 16px;
+      padding-top: 10px;
+      margin-bottom: 5px;
+      li{
+        font-size: 14px;
+        font-weight: normal;
+        padding: 2px 0;
+      }
+    }
+  }
+  span.title a{
+    font-size: 13px;
+    font-weight: normal;
+    color: #0090ae;
+  }
+  .view-now{
+    background: #0090ae;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+
 table#sideTable {
   box-shadow: none;
 
