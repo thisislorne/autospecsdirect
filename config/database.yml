@@ -19,4 +19,4 @@ production:
 staging:
   <<: *default
   database: <%= Rails.application.credentials.staging[:db][:db] %>
-  user: <%= Rails.application.credentials.staging[:db][:user] %>
+  username: <%= Rails.application.credentials.staging[:db][:user] %>
