@@ -19,3 +19,4 @@ production:
 staging:
   <<: *default
   database: werecommend_staging
+  user: werecommend
