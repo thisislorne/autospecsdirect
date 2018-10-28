@@ -20,4 +20,3 @@ staging:
   <<: *default
   database: <%= Rails.application.credentials.staging[:db][:db] %>
   user: <%= Rails.application.credentials.staging[:db][:user] %>
-  password: <%= Rails.application.credentials.staging[:db][:password] %>
