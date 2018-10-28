@@ -3,7 +3,6 @@ default: &default
   encoding: unicode
   pool: 5
   timeout: 5000
-  host: localhost
 
 development:
   <<: *default
@@ -19,6 +18,7 @@ production:
 
 staging:
   <<: *default
+  host: localhost
   database: <%= Rails.application.credentials.staging[:db][:db] %>
   username: <%= Rails.application.credentials.staging[:db][:user] %>
   password: <%= Rails.application.credentials.staging[:db][:password] %>
