@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_28_222516) do
+ActiveRecord::Schema.define(version: 2018_10_29_001540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2018_10_28_222516) do
     t.string "rating"
     t.integer "order"
     t.text "points"
+    t.string "view_now_link"
   end
 
   create_table "reviews", force: :cascade do |t|

@@ -19,6 +19,7 @@ class ProductDashboard < Administrate::BaseDashboard
     rating: Field::String,
     order: Field::Number,
     points: Field::Text,
+    view_now_link: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -27,8 +28,6 @@ class ProductDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :reviews,
-    :links,
     :id,
     :title,
   ].freeze
@@ -36,8 +35,6 @@ class ProductDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :reviews,
-    :links,
     :id,
     :title,
     :description,
@@ -47,14 +44,13 @@ class ProductDashboard < Administrate::BaseDashboard
     :rating,
     :order,
     :points,
+    :view_now_link,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :reviews,
-    :links,
     :title,
     :description,
     :image,
@@ -63,6 +59,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :rating,
     :order,
     :points,
+    :view_now_link,
   ].freeze
 
   # Overwrite this method to customize how products are displayed

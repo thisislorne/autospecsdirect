@@ -27,8 +27,12 @@
         <%= image_tag 'star.png' %>
         <span class="number"><%= product.rating.to_f.round %><span class="grey">/5</span></span>
         <p><%= @reviews.where(product: product.id).count %> Reviews</p>
-        <% links = @links.where(product: product.id) %>
-        <% link = links.present? ? links.first.url : product_path(product.id) %>
+        <% if product.view_now_link.present? %>
+          <% link = product.view_now_link %>
+        <% else %>
+          <% links = @links.where(product: product.id) %>
+          <% link = links.present? ? links.first.url : product_path(product.id) %>
+        <% end %>
         <%= link_to 'View Now', link, class: 'view-now' %>
       </td>
     </tr>
