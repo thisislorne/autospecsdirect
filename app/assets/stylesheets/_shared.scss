@@ -447,7 +447,8 @@ a.navbar-brand {
 table#sideTable {
   box-shadow: none;
 
-  .points{
+  .points,
+  .view-now{
     display: none;
   }
 
@@ -536,6 +537,11 @@ table#sideTable {
 
     .points{
       display: block;
+    }
+
+    .view-now{
+      display: inline-block;
+      margin-top: 10px;
     }
 
     tr:nth-child(n+5){

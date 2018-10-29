@@ -31,6 +31,13 @@
                   <%= image_tag 'star.png' %>
                   <span class="rating-container"><%= product[:rating].to_f.round %><span class="grey">/5</span></span>
                 </div>
+                <% if product.view_now_link.present? %>
+                  <% link = product.view_now_link %>
+                <% else %>
+                  <% links = @links.where(product: product.id) %>
+                  <% link = links.present? ? links.first.url : product_path(product.id) %>
+                <% end %>
+                <%= link_to 'View Now', link, class: 'view-now' %>
               </div>
             </div>
           </div>
