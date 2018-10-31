@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<%= image_path 'favicon.png' %>" rel="icon" type="image/png" />
-    <%= stylesheet_link_tag 'index', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag action_name, media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-16407288-54"></script>
@@ -22,6 +22,8 @@
   </head>
 
   <body>
+    <%= render 'application/header' %>
     <%= yield %>
+    <%= render 'application/footer' %>
   </body>
 </html>
