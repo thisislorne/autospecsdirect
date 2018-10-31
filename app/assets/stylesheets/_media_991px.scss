@@ -1,0 +1,30 @@
+@media screen and (max-width: 991px){
+  nav.navbar.navbar-expand-lg{
+    padding: 20px 0;
+
+    li.nav-item{
+      &:first-child{
+        padding-top: 20px;
+      }
+      &:last-child{
+        padding-bottom: 20px;
+      }
+
+      .dropdown-menu{
+        box-shadow: none;
+      }
+    }
+  }
+
+  body footer .copyright-and-links ul{
+    text-align: center;
+
+    span.slash{
+      display: none;
+    }
+
+    li:not(:first-child){
+      margin-left: 10px;
+    }
+  }
+}

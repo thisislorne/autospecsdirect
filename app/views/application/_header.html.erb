@@ -1,0 +1,24 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <%= image_tag 'header_logo.svg', class: 'header-logo' %>
+      </div>
+      <div class="col-sm-4">
+        <nav>
+          <%= render 'application/navbar_items' %>
+        </nav>
+      </div>
+      <div class="col-sm-4 right">
+        <%= form_tag('', method: "get", class: 'search-form') do %>
+          <div class="search-wrapper">
+            <%= text_field_tag 'search',nil, class: 'search-field', placeholder: "Search" %>
+            <%= button_tag(type:'submit',class:'submit-btn',name:'') do %>
+              <%= image_tag 'search.svg' %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>

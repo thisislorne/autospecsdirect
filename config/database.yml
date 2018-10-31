@@ -6,19 +6,16 @@ default: &default
 
 development:
   <<: *default
-  database: werecommend_dev
+  database: awoolo_dev
 
 test:
   <<: *default
-  database: werecommend_test
+  database: awoolo_test
 
 production:
   <<: *default
-  database: werecommend
+  database: awoolo_production
 
 staging:
   <<: *default
-  host: localhost
-  database: <%= Rails.application.credentials.staging[:db][:db] %>
-  username: <%= Rails.application.credentials.staging[:db][:user] %>
-  password: <%= Rails.application.credentials.staging[:db][:password] %>
+  database: awoolo_staging

@@ -1,18 +1,33 @@
-<%= render 'shared/header' do %>
-  <a class="nav-item nav-link active" href="<%= root_path %>">HOME <span class="sr-only">(current)</span></a>
-  <a class="nav-item nav-link" href="<%= about_path %>">ABOUT</a>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">
+          <%= image_tag 'header_logo.svg', class: 'header-logo' %>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <%= image_tag 'menu.svg' %>
+        </button>
 
-<section id="breadcrumbs">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        Reviews > Whey Protein
-      </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <%= render 'application/navbar_items' %>
+          </ul>
+          <%= form_tag('', method: "get", class: 'search-form') do %>
+            <div class="search-wrapper">
+              <%= text_field_tag 'search',nil, class: 'search-field', placeholder: "Search" %>
+              <%= button_tag(type:'submit',class:'submit-btn',name:'') do %>
+                <%= image_tag 'search.svg' %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </nav>
     </div>
   </div>
-</section>
-
-<%= render 'application/main_content' %>
-
+</div>
+<div class="home-background">
+  <%= render 'application/intro' %>
+  <%= render 'application/solutions' %>
+</div>
 <%= render 'application/footer' %>

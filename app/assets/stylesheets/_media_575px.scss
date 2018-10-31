@@ -1,0 +1,34 @@
+@media screen and (max-width: 575px){
+  body footer{
+    nav{
+      padding: 0;
+      ul{
+        max-width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .left,
+      .center{
+        ul{
+          padding-bottom: 0;
+        }
+      }
+    }
+    .copyright-and-links{
+      ul{
+        padding-left: 0;
+      }
+
+      img.footer-logo{
+        margin-left: auto;
+      }
+
+      span.copyright{
+        text-align: center;
+        display: block;
+        margin: 15px 0;
+      }
+    }
+  }
+}
