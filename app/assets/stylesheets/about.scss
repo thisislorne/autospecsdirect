@@ -37,7 +37,7 @@ section#about {
     }
 
     a{
-      background: #3891d8;
+      background: $button-blue;
       @extend %button;
     }
   }

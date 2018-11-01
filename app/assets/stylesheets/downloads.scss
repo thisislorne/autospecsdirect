@@ -1,14 +1,5 @@
 @import "shared";
 
-section.title-bar{
-  background: #f4f4f4;
-  padding: 30px 0;
-  h1{
-    text-align: center;
-    font-size: 16px;
-  }
-}
-
 section.free-downloads{
   padding: 75px 0;
 
@@ -18,6 +9,8 @@ section.free-downloads{
   }
 
   .download{
+    margin-bottom: 20px;
+
     .left{
       padding-left: 0;
 
@@ -27,8 +20,22 @@ section.free-downloads{
         padding-bottom: 100%;
         width: 100%;
 
-        &.pink{
+        &.pdf-converter{
           background: #df4466;
+        }
+
+        &.media-player{
+          background: #f2a261;
+        }
+
+        &.video-file-converter,
+        &.radio-app,
+        &.zipfile-opener{
+          background: #f4f4f4;
+        }
+
+        &.word-processor{
+          background: #4c7fef;
         }
       }
     }
@@ -42,6 +49,7 @@ section.free-downloads{
     p.subtitle{
       color: #6c6c6c;
       font-size: 14px;
+      margin-bottom: 0;
     }
   }
 }

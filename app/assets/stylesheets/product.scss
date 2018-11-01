@@ -1,0 +1,77 @@
+@import "shared";
+
+section.title-bar{
+  text-align: center;
+  .square{
+    display: inline-block;
+    height: 28px;
+    width: 28px;
+    background: black;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
+  h1{
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+section#hero{
+  background: image_url('product_hero_bg.jpg') no-repeat top center;
+  background-size: cover;
+
+  .content{
+    padding: 230px 0;
+    color: white;
+    max-width: 612px;
+    text-align: center;
+    margin-left: auto;
+
+    h1{
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    h3{
+      font-size: 22px;
+      margin-bottom: 40px;
+    }
+
+    a{
+      background: $button-green;
+      box-shadow: $button-box-shadow;
+      @extend %button;
+    }
+  }
+}
+
+section.cta{
+  padding: 100px 0;
+  text-align: center;
+
+  h2{
+    margin-bottom: 20px;
+  }
+
+  a{
+    background: $button-blue;
+    @extend %button;
+  }
+}
+
+section#features{
+  .feature{
+    h1{
+      font-size: 30px;
+    }
+    @extend %vertical-center;
+  }
+  img{
+    width: 100%;
+    height: 404px;
+  }
+  .row.feature-row:not(:first-child){
+    margin-top: 60px;
+  }
+}

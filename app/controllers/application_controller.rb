@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def downloads
     @download = true
   end
+
+  def product
+
+  end
 end
