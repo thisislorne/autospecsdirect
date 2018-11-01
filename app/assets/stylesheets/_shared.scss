@@ -8,10 +8,21 @@ $font-family-primary: 'open-sans', sans-serif;
 $font-family-secondary: 'domus', sans-serif;
 $logo-width: 140px;
 $footer-text: #bababa;
+$button-green: #2ce560;
+$button-box-shadow: 0px 4px 20px 0px #525252;
 
 html,
 body{
   font-family: $font-family-primary;
+}
+
+h1{
+  font-weight: bold;
+  font-size: 38px;
+}
+
+h2{
+  font-size: 24px;
 }
 
 %vertical-center{
@@ -128,7 +139,7 @@ nav.navbar {
         div.sub{
           font-family: $font-family-primary;
           font-size: 12px;
-          color: #bababa;
+          color: $footer-text;
         }
 
         &:hover{
@@ -258,6 +269,61 @@ footer{
         max-width: 150px;
         margin-left: auto;
         margin-right: auto;
+      }
+    }
+  }
+}
+
+section#download{
+  background: #2f7ac0;
+  color: white;
+  text-align: center;
+
+  h1,
+  h2{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  h1{
+    font-size: 30px;
+    margin-bottom: 20px;
+    padding-top: 120px;
+  }
+
+  h2{
+    margin-bottom: 40px;
+  }
+
+  a{
+    background: $button-green;
+    box-shadow: $button-box-shadow;
+    @extend %button;
+  }
+
+  hr{
+    border-top: 1px solid white;
+    margin: 80px 0 0 0;
+  }
+
+  ul.categories{
+    padding: 40px 0;
+    list-style-type: none;
+    margin-bottom: 0;
+
+    li{
+        display: inline-block;
+      &:not(:last-child){
+        margin-right: 25px;
+      }
+      img{
+        display: inline-block;
+        width: 20px;
+        margin-right: 5px;
+      }
+      span{
+        font-size: 20px;
+        vertical-align: middle;
       }
     }
   }

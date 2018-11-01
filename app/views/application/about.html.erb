@@ -1,1 +1,16 @@
-
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="content">
+          <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ex vel ante aliquam dignissim. Etiam ac maximus nulla. Phasellus elit enim, dictum ac imperdiet eget, auctor sed nunc.</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ex vel ante aliquam dignissim. Etiam ac maximus nulla. Phasellus elit enim, dictum ac imperdiet eget, auctor sed nunc.</p>
+          <%= link_to 'VIEW SOFTWARE', '/software' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<% if @download %>
+  <%= render 'application/download' %>
+<% end %>

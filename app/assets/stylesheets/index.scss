@@ -23,10 +23,6 @@ section#solutions{
     text-align: left;
   }
 
-  h2{
-    font-size: 24px;
-  }
-
   a{
     font-size: 14px;
     border: 1px solid white;
@@ -45,11 +41,6 @@ section#intro{
     max-width: 400px;
     text-align: center;
 
-    h1{
-      font-weight: bold;
-      font-size: 38px;
-    }
-
     h3{
       font-weight: 500;
       font-size: 16px;
@@ -57,8 +48,8 @@ section#intro{
     }
 
     a{
-      background: #2ce560;
-      box-shadow: 0px 4px 20px 0px #525252;
+      background: $button-green;
+      box-shadow: $button-box-shadow;
       @extend %button;
     }
   }

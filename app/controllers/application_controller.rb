@@ -4,5 +4,10 @@ class ApplicationController < ActionController::Base
   end
 
   def about
+    @download = true
+  end
+
+  def downloads
+    @download = true
   end
 end

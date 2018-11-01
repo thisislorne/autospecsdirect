@@ -6,4 +6,18 @@
       margin-right: auto;
     }
   }
+
+  section#download{
+    ul.categories{
+      max-width: 240px;
+      text-align: left;
+      margin-left: auto;
+      margin-right: auto;
+
+      li{
+        display: block;
+        margin: 0;
+      }
+    }
+  }
 }
