@@ -12,6 +12,14 @@ class ApplicationController < ActionController::Base
   end
 
   def product
+    get_products
+    @product = params[:product] || 'pdf_converter'
+    @product = @products.find(slug: @product)
+  end
 
+  private
+
+  def get_products
+    @products = Product.all
   end
 end

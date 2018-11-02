@@ -30,4 +30,5 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  pdf_converter:
+    product_main_header: 'Export all the PDFs you want.'

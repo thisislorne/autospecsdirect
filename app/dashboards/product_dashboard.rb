@@ -8,18 +8,9 @@ class ProductDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    reviews: Field::HasMany,
-    links: Field::HasMany,
     id: Field::Number,
     title: Field::String,
-    description: Field::Text,
-    image: Field::Text,
-    brand: Field::String,
-    brand_image: Field::Text,
-    rating: Field::String,
-    order: Field::Number,
-    points: Field::Text,
-    view_now_link: Field::String,
+    slug: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -30,6 +21,7 @@ class ProductDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :title,
+    :slug,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -37,14 +29,7 @@ class ProductDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :id,
     :title,
-    :description,
-    :image,
-    :brand,
-    :brand_image,
-    :rating,
-    :order,
-    :points,
-    :view_now_link,
+    :slug,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -52,14 +37,7 @@ class ProductDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :title,
-    :description,
-    :image,
-    :brand,
-    :brand_image,
-    :rating,
-    :order,
-    :points,
-    :view_now_link,
+    :slug,
   ].freeze
 
   # Overwrite this method to customize how products are displayed
