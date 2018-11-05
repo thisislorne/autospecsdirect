@@ -9,10 +9,10 @@ set :default_stage, 'staging'
 set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-2.3.1'
 
-set :application, 'werecommend'
+set :application, 'awoolo'
 
-set :repo_url, 'git@github.com:GroovyMedia/werecommend.git'
-set :deploy_to, '/home/deploy/werecommend'
+set :repo_url, 'git@github.com:GroovyMedia/awoolo.git'
+set :deploy_to, '/home/deploy/awoolo'
 
 set :keep_releases, 2
 
