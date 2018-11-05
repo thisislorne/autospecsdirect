@@ -18,4 +18,7 @@ production:
 
 staging:
   <<: *default
-  database: awoolo_staging
+  host: localhost
+  database: <%= Rails.application.credentials.staging[:db][:db] %>
+  username: <%= Rails.application.credentials.staging[:db][:user] %>
+  password: <%= Rails.application.credentials.staging[:db][:password] %>
