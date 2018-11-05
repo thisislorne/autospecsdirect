@@ -3,61 +3,35 @@
     OFFICE SOLUTIONS
   </a>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <a class="dropdown-item" href="#">
+    <% @office_solutions.each do |product| %>
+      <%= link_to product_path(product.slug), class: 'dropdown-item' do %>
       <div class="main">
-        ACTION
+        <%= product.title.upcase %>
       </div>
       <div class="sub">
-        sub-text
+        <%= t("#{product.slug}.description") %>
       </div>
-    </a>
-    <a class="dropdown-item" href="#">
-      <div class="main">
-        ACTION
-      </div>
-      <div class="sub">
-        sub-text
-      </div>
-    </a>
-    <a class="dropdown-item" href="#">
-      <div class="main">
-        ACTION
-      </div>
-      <div class="sub">
-        sub-text
-      </div>
-    </a>
+      <% end %>
+    <% end %>
   </div>
+</li>
 <li class="nav-item dropdown">
     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       MEDIA
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <a class="dropdown-item" href="#">
+      <% @media.each do |product| %>
+        <%= link_to product_path(product.slug), class: 'dropdown-item' do %>
         <div class="main">
-          ACTION
+          <%= product.title.upcase %>
         </div>
         <div class="sub">
-          sub-text
+          <%= t("#{product.slug}.description") %>
         </div>
-      </a>
-      <a class="dropdown-item" href="#">
-        <div class="main">
-          ACTION
-        </div>
-        <div class="sub">
-          sub-text
-        </div>
-      </a>
-      <a class="dropdown-item" href="#">
-        <div class="main">
-          ACTION
-        </div>
-        <div class="sub">
-          sub-text
-        </div>
-      </a>
+        <% end %>
+      <% end %>
     </div>
+</li>
 <li class="nav-item dropdown">
       <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         SUPPORT
@@ -65,26 +39,18 @@
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="#">
           <div class="main">
-            ACTION
-          </div>
-          <div class="sub">
-            sub-text
+            FAQ
           </div>
         </a>
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="<%= downloads_path %>">
           <div class="main">
-            ACTION
-          </div>
-          <div class="sub">
-            sub-text
+            DOWNLOAD & INSTALL
           </div>
         </a>
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href='http://privacy.awoolo.com/contact-us' target="_blank">
           <div class="main">
-            ACTION
-          </div>
-          <div class="sub">
-            sub-text
+            CONTACT
           </div>
         </a>
       </div>
+</li>

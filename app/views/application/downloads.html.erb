@@ -10,96 +10,23 @@
           <% download_col = 'col-sm-6 col-md-6 col-lg-4' %>
           <% content_left_col = 'col-3' %>
           <% content_right_col = 'col-9' %>
+          <% @products.each do |product| %>
           <div class="<%= download_col %> download">
             <div class="container">
               <div class="row">
                 <div class="<%= content_left_col %> left">
-                  <div class="square pdf-converter"></div>
+                  <div class="square <%= product.slug %>"></div>
                 </div>
                 <div class="<%= content_right_col %>">
-                  <h1 class="title">PDF CONVERTER</h1>
+                  <h1 class="title"><%= product.title.upcase %></h1>
                   <p class="subtitle">
-                    Easily convert your documents to PDF format.
+                    <%= t("#{product}.description") %>
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="<%= download_col %> download">
-            <div class="container">
-              <div class="row">
-                <div class="<%= content_left_col %> left">
-                  <div class="square media-player"></div>
-                </div>
-                <div class="<%= content_right_col %>">
-                  <h1 class="title">MEDIA PLAYER</h1>
-                  <p class="subtitle">
-                    Free multiefiawovneiwav
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="<%= download_col %> download">
-            <div class="container">
-              <div class="row">
-                <div class="<%= content_left_col %> left">
-                  <div class="square video-file-converter"></div>
-                </div>
-                <div class="<%= content_right_col %>">
-                  <h1 class="title">IDJFOAWEIGJIEOAF</h1>
-                  <p class="subtitle">
-                    fhjeiowajieajfoejfoei
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="<%= download_col %> download">
-            <div class="container">
-              <div class="row">
-                <div class="<%= content_left_col %> left">
-                  <div class="square word-processor"></div>
-                </div>
-                <div class="<%= content_right_col %>">
-                  <h1 class="title">FJEOIAFJFOIWJAF</h1>
-                  <p class="subtitle">
-                    gioresfaoifjewao
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="<%= download_col %> download">
-            <div class="container">
-              <div class="row">
-                <div class="<%= content_left_col %> left">
-                  <div class="square radio-app"></div>
-                </div>
-                <div class="<%= content_right_col %>">
-                  <h1 class="title">JFAOWIEJEOIFAWJ</h1>
-                  <p class="subtitle">
-                    jvoiaefjwofieafjwfjoewa
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="<%= download_col %> download">
-            <div class="container">
-              <div class="row">
-                <div class="<%= content_left_col %> left">
-                  <div class="square zipfile-opener"></div>
-                </div>
-                <div class="<%= content_right_col %>">
-                  <h1 class="title">EJFOAIJFIFAWEJO</h1>
-                  <p class="subtitle">
-                    vjaoijaewofiajwoifejaweofiji
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>

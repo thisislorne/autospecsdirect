@@ -30,5 +30,33 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  pdf_converter:
-    product_main_header: 'Export all the PDFs you want.'
+ pdf_converter:
+  description: 'fejiaofjejfwia'
+  home:
+   header: 'fjieaofjeiwfwa'
+   sub_header: 'ifejowaifjeiowaj'
+   solution_header: 'jifeoajfeijfao'
+   solution_sub_header: 'fejiofjaifoewaj'
+  product:
+   main_header: 'Export all the PDFs you want.'
+   sub_header: 'iejfoaifjewoaif'
+   cta: 'ivejoifjaoifa'
+   feature_1_header: 'feiawofjoafeaw'
+   feature_1_sub_header: 'fjieowjfiawfjo'
+   feature_2_header: 'ijeoafjiefjawofje'
+   feature_2_sub_header: 'jeofaijaofijaofi'
+   feature_3_header: 'ijeoafjiefjawofje'
+   feature_3_sub_header: 'jeofaijaofijaofi'
+   what_else_header: 'ejifjaofeiwaf'
+   what_else_sub_header: 'jfieoajfaofjewoaf'
+   what_else_point_one_header: 'fjeoifjaoifewja'
+   what_else_point_one_sub_header: 'fjieowafjowaijew'
+   what_else_point_two_header: 'fjeoifjaoifewja'
+   what_else_point_two_sub_header: 'fjieowafjowaijew'
+   what_else_point_three_header: 'fjeoifjaoifewja'
+   what_else_point_three_sub_header: 'fjieowafjowaijew'
+   what_else_point_four_header: 'fjeoifjaoifewja'
+   what_else_point_four_sub_header: 'fjieowafjowaijew'
+   download_now_header: 'fijeowafjiewa'
+   download_now_sub_header: 'fjeifjaweofjweio'
+   download_now_sub_sub_header: 'fjeifjaweofjweio'

@@ -3,10 +3,9 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="content">
-            <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
-            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed velit mauris. Sed quis lectus ac magna lobortis accumsan. Fusce aliquam id ante non cursus. Integer eu pharetra sapien.</h3>
-            <%= t("#{product.slug}.title") %>
-            <%= link_to 'DOWNLOAD PDF CONVERTER', '', target: '_blank' %>
+            <h1><%= t("#{@product.slug}.home.header") %></h1>
+            <h3><%= t("#{@product.slug}.home.sub_header") %></h3>
+            <%= link_to "DOWLOAD #{@product.title.upcase}", '', target: '_blank' %>
         </div>
       </div>
     </div>

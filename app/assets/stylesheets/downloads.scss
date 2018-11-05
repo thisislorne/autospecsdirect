@@ -20,21 +20,21 @@ section.free-downloads{
         padding-bottom: 100%;
         width: 100%;
 
-        &.pdf-converter{
+        &.pdf_converter{
           background: #df4466;
         }
 
-        &.media-player{
+        &.media_player{
           background: #f2a261;
         }
 
-        &.video-file-converter,
-        &.radio-app,
-        &.zipfile-opener{
+        &.video_file_converter,
+        &.radio_app,
+        &.zipfile_converter{
           background: #f4f4f4;
         }
 
-        &.word-processor{
+        &.word_processor{
           background: #4c7fef;
         }
       }

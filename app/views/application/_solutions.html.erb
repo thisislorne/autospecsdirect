@@ -2,33 +2,17 @@
   <div class="background">
     <div class="container">
       <div class="row">
-        <div class="col-sm-6 col-md-4">
-          <h4>WORD PROCESSOR</h4>
-          <div class="image-container">
-            <%= image_tag '' %>
+        <% @solutions.each do |solution| %>
+          <div class="col-sm-6 col-md-4">
+            <h4><%= solution.title.upcase %></h4>
+            <div class="image-container">
+              <%= image_tag '' %>
+            </div>
+            <h2><%= t("#{solution.slug}.solution.header") %></h2>
+            <p><%= t("#{solution.slug}.solution.sub_header") %></p>
+            <%= link_to 'LEARN MORE', product_path(solution.slug) %>
           </div>
-          <h2>It's an experience.</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed velit mauris. Sed quis lectus ac magna lobortis accumsan. Fusce aliquam id ante non cursus. Integer eu pharetra sapien. Nullam enim nulla, tristique non rhoncus id, facilisis sed nisi. Donec hendrerit scelerisque mi in condimentum. Donec felis diam, imperdiet et justo ac, feugiat porttitor velit.</p>
-          <%= link_to 'LEARN MORE', '' %>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <h4>WORD PROCESSOR</h4>
-          <div class="image-container">
-            <%= image_tag '' %>
-          </div>
-          <h2>It's an experience.</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed velit mauris. Sed quis lectus ac magna lobortis accumsan. Fusce aliquam id ante non cursus. Integer eu pharetra sapien. Nullam enim nulla, tristique non rhoncus id, facilisis sed nisi. Donec hendrerit scelerisque mi in condimentum. Donec felis diam, imperdiet et justo ac, feugiat porttitor velit.</p>
-          <%= link_to 'Learn More', '' %>
-        </div>
-        <div class="col-sm-6 col-md-4 last">
-          <h4>WORD PROCESSOR</h4>
-          <div class="image-container">
-            <%= image_tag '' %>
-          </div>
-          <h2>It's an experience.</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed velit mauris. Sed quis lectus ac magna lobortis accumsan. Fusce aliquam id ante non cursus. Integer eu pharetra sapien. Nullam enim nulla, tristique non rhoncus id, facilisis sed nisi. Donec hendrerit scelerisque mi in condimentum. Donec felis diam, imperdiet et justo ac, feugiat porttitor velit.</p>
-          <%= link_to 'Learn More', '' %>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -4,11 +4,8 @@
   <%= link_to 'DOWNLOAD BUNDLE', '' %>
   <hr>
   <ul class="categories">
-    <li><%= image_tag 'tick.svg' %><span>PDF converter</span></li>
-    <li><%= image_tag 'tick.svg' %><span>Word Processor</span></li>
-    <li><%= image_tag 'tick.svg' %><span>Media Player</span></li>
-    <li><%= image_tag 'tick.svg' %><span>Radio App</span></li>
-    <li><%= image_tag 'tick.svg' %><span>Video File Converter</span></li>
-    <li><%= image_tag 'tick.svg' %><span>Zipfile Opener</span></li>
+    <% @products.each do |product| %>
+      <li><%= image_tag 'tick.svg' %><span><%= product.title %></span></li>
+    <% end %>
   </ul>
 </section>
