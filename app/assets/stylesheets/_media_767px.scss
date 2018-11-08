@@ -1,7 +1,9 @@
 @media screen and (max-width: 767px){
   section#solutions{
-    .last{
-      margin: 40px auto 0 auto;
+    .solution{
+      &:last-child{
+        margin: 40px auto 0 auto;
+      }
     }
   }
   body footer nav{
@@ -13,5 +15,10 @@
     padding: 100px 0;
     background-size: cover;
     background-position-y: top;
+  }
+  body section#hero{
+    .content h1{
+      font-size: 33px;
+    }
   }
 }

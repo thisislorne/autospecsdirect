@@ -5,7 +5,7 @@
 @import "media_575px";
 @import url("https://use.typekit.net/ipt6odz.css");
 $font-family-primary: 'open-sans', sans-serif;
-$font-family-secondary: 'domus', sans-serif;
+$font-family-secondary: 'jaf-domus', sans-serif;
 $logo-width: 140px;
 $footer-text: #bababa;
 $button-green: #2ce560;
@@ -48,6 +48,7 @@ h2{
   width: auto;
   max-width: 100%;
   border-radius: 30px;
+  letter-spacing: 1px;
 
   &:hover{
     text-decoration: none;
@@ -101,6 +102,24 @@ nav.navbar {
   ul.navbar-nav{
     margin-left: auto;
 
+    li.nav-item{
+      a.nav-link{
+        letter-spacing: 1.5px;
+
+        &.office{
+          width: 185px;
+        }
+
+        &.media{
+          width: 83px;
+        }
+
+        &.support{
+          width: 105px;
+        }
+      }
+    }
+
     @media screen and (min-width: 992px){
       li.nav-item{
         a.nav-link{
@@ -127,11 +146,18 @@ nav.navbar {
       border-radius: 0;
       left: -1px;
       border: 0;
-      box-shadow: 0px 5px 6px -3px #232323;
+      box-shadow: 0px 13px 20px -5px rgba(35, 35, 35, 0.4);
 
       a.dropdown-item{
         font-size: 14px;
         width: 250px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 20px;
+
+        &:first-child{
+          padding-top: 20px;
+        }
 
         &:hover,
         &:focus{
@@ -143,6 +169,10 @@ nav.navbar {
           font-family: $font-family-primary;
           font-size: 12px;
           color: $footer-text;
+        }
+
+        div.main{
+          letter-spacing: 1px;
         }
 
         &:hover{
@@ -162,8 +192,7 @@ nav.navbar {
   }
 
   .header-logo {
-    width: 100%;
-    max-width: $logo-width;
+    height: 36px;
   }
 
   form.search-form{
@@ -176,10 +205,12 @@ nav.navbar {
     }
 
     .search-field{
-      border: 1px solid #bbbbbb;
-      padding: 7px 10px;
+      border: 1px solid #bababa;
+      border-radius: 5px;
+      padding: 10px 15px;
       font-size: 14px;
       width: 100%;
+      font-family: $font-family-primary;
       @extend %no-focus-outline;
       @include placeholder(){
         color: black;
@@ -191,7 +222,7 @@ nav.navbar {
       top: -1px;
       background: 0;
       border: 0;
-      right: 2px;
+      right: 5px;
       bottom: 0;
       cursor: pointer;
       @extend %no-focus-outline;
@@ -213,7 +244,7 @@ footer{
     border-top: 1px solid $footer-text;
 
     .footer-logo{
-      max-width: $logo-width;
+      height: 45px;
       vertical-align: middle;
       margin-right: 15px;
     }
@@ -248,20 +279,17 @@ footer{
       @extend %footer-links;
 
       li.category{
-        a{
-          color: white;
-          font-weight: bold;
-          font-size: 24px;
-          font-family: $font-family-secondary;
-
-          &:hover{
-            color: #3a91d8;
-          }
-        }
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: $font-family-secondary;
       }
 
       li:not(.category){
         padding-top: 10px;
+        font-weight: 300;
+        font-size: 14px;
+        letter-spacing: 1.5px;
       }
     }
 

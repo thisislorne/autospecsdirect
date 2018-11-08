@@ -55,4 +55,10 @@
       margin: 40px 0;
     }
   }
+
+  section#solutions .solution{
+    &:not(:first-child){
+      margin-top: 40px;
+    }
+  }
 }

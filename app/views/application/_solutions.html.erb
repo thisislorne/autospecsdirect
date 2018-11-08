@@ -3,13 +3,13 @@
     <div class="container">
       <div class="row">
         <% @solutions.each do |solution| %>
-          <div class="col-sm-6 col-md-4">
+          <div class="col-sm-6 col-md-4 solution">
             <h4><%= solution.title.upcase %></h4>
             <div class="image-container">
               <%= image_tag '' %>
             </div>
-            <h2><%= t("#{solution.slug}.solution.header") %></h2>
-            <p><%= t("#{solution.slug}.solution.sub_header") %></p>
+            <h2><%#= t("#{solution.slug}.solution.header") %>Lorem ipsum dolor sit amet</h2>
+            <p><%#= t("#{solution.slug}.solution.sub_header") %>Praesent scelerisque est ut nulla imperdiet, et auctor libero cursus.</p>
             <%= link_to 'LEARN MORE', product_path(solution.slug) %>
           </div>
         <% end %>

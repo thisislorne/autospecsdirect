@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def get_products
     @products = Product.all
-    @office_solutions = @products.where("slug = 'word_processor' OR slug = 'pdf_converter' OR slug = 'zipfile_converter'")
+    @office_solutions = @products.where("slug = 'word_processor' OR slug = 'pdf_converter' OR slug = 'zipfile_opener'")
     @media = @products.where("slug = 'media_player' OR slug = 'radio_app' OR slug = 'video_file_converter'")
   end
 end

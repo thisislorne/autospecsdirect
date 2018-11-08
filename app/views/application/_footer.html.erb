@@ -4,25 +4,26 @@
       <div class="row">
         <div class="col-sm-4 left">
           <ul>
-            <li class="category"><%= link_to 'OFFICE SOLUTIONS', '' %></li>
-            <li><%= link_to 'Word Processor', product_path('word_processor') %></li>
-            <li><%= link_to 'PDF Converter', product_path('pdf_converter') %></li>
-            <li><%= link_to 'ZIP File Opener', product_path('zipfile_converter') %></li>
+            <li class="category">OFFICE SOLUTIONS</li>
+            <% @office_solutions.each do |product| %>
+              <li><%= link_to product.title, product_path(product.slug) %></li>
+            <% end %>
           </ul>
         </div>
         <div class="col-sm-4 center">
           <ul>
-            <li class="category"><%= link_to 'MEDIA', '' %></li>
-            <li><%= link_to 'Media Player', product_path('media_player') %></li>
-            <li><%= link_to 'Radio App', product_path('radio_app') %></li>
-            <li><%= link_to 'Video File Converter', product_path('video_file_converter') %></li>
+            <li class="category">MEDIA</li>
+            <% @media.each do |product| %>
+              <li><%= link_to product.title, product_path(product.slug) %></li>
+            <% end %>
           </ul>
         </div>
         <div class="col-sm-4 right">
           <ul>
-            <li class="category"><%= link_to 'SUPPORT', '' %></li>
+            <li class="category">SUPPORT</li>
             <li><%= link_to 'FAQs', '' %></li>
             <li><%= link_to 'Download &amp; Install'.html_safe, downloads_path %></li>
+            <li><%= link_to 'About', about_path %></li>
             <li><%= link_to 'Contact', 'http://privacy.awoolo.com/contact-us', target: '_blank' %></li>
           </ul>
         </div>
