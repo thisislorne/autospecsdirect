@@ -27,4 +27,10 @@
       margin-left: 10px;
     }
   }
+
+  body section#about{
+    &:before{
+      background-position-x: 28%, 145%;
+    }
+  }
 }

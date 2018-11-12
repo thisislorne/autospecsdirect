@@ -9,47 +9,45 @@ section.free-downloads{
   }
 
   .download{
-    margin-bottom: 20px;
+    margin-bottom: 65px;
+    cursor: pointer;
 
     .left{
       padding-left: 0;
 
-      .square{
-        display: inline-block;
-        height: 0;
-        padding-bottom: 100%;
-        width: 100%;
-
-        &.pdf_converter{
-          background: #df4466;
-        }
-
-        &.media_player{
-          background: #f2a261;
-        }
-
-        &.video_file_converter,
-        &.radio_app,
-        &.zipfile_converter{
-          background: #f4f4f4;
-        }
-
-        &.word_processor{
-          background: #4c7fef;
-        }
+      img{
+        display: block;
+        height: 72.5px;
+        background: black;
       }
     }
 
-    .title{
-      font-family: $font-family-secondary;
-      font-size: 20px;
-      font-weight: normal;
-    }
+    .right{
+      padding-left: 0;
 
-    p.subtitle{
-      color: #6c6c6c;
-      font-size: 14px;
-      margin-bottom: 0;
+      h1{
+        margin-bottom: 0;
+      }
+
+      .title{
+        font-family: $font-family-secondary;
+        font-size: 20px;
+        font-weight: normal;
+      }
+
+      p.subtitle{
+        color: #6c6c6c;
+        font-size: 13px;
+        margin-bottom: 3px;
+        line-height: 1.2;
+      }
+
+      p.os{
+        color: #a0a0a0;
+        font-size: 12px;
+        font-weight: 300;
+        font-family: $font-family-secondary;
+      }
     }
   }
 }

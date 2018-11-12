@@ -32,33 +32,15 @@
     }
   }
 
-  body section#features{
-    .row.feature-row{
-      margin-top: 0;
-
-      &:not(:first-child){
-        margin-top: 0;
-      }
-
-      &:first-child{
-        .feature{
-          margin-top: 0;
-        }
-      }
-    }
-    .second-row .left{
-      order: 2;
-    }
-    .feature{
-      position: static;
-      transform: none;
-      margin: 40px 0;
-    }
-  }
-
   section#solutions .solution{
     &:not(:first-child){
       margin-top: 40px;
+    }
+  }
+
+  body footer .copyright-and-links ul{
+    li:not(:first-child){
+      margin-left: 10px;
     }
   }
 }

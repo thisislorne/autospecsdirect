@@ -19,3 +19,5 @@ Product.create(title: 'Word Processor', slug: 'word_processor')
 Product.create(title: 'Radio App', slug: 'radio_app')
 
 Product.create(title: 'Zipfile Opener', slug: 'zipfile_opener')
+
+Product.create(title: 'FTP Client', slug: 'ftp_client')

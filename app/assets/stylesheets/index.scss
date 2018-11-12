@@ -27,7 +27,7 @@ section#solutions{
   }
 
   img{
-    height: 250px;
+    width: 100%;
      background: gray;
      display: block;
      margin-bottom: 20px;
@@ -50,15 +50,20 @@ section#solutions{
 }
 
 section#intro{
-  padding: 100px 0;
+  padding: 105px 0;
   .content{
     max-width: 540px;
+    min-height: 317px;
     text-align: center;
 
     h3{
       font-weight: 500;
       font-size: 16px;
       margin: 30px 0;
+      line-height: 1.5;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     a{
@@ -71,6 +76,5 @@ section#intro{
 
 .home-background{
   background: image_url('home_bg.jpg') no-repeat top center;
-  background-size: cover;
   color: white;
 }

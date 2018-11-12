@@ -6,29 +6,29 @@ header {
 
 section#about {
   position: relative;
-  padding: 220px 0;
-  background-image: image_url('about_bg_1.svg'), image_url('about_bg_2.png');
-  background-repeat: no-repeat;
-  background-position-x: 100px, 130%;
-  background-size: 500px, 1200px;
-  background-position-y: 60px;
+  padding: 240px 0 135px;
+  overflow-x: hidden;
 
-  @media screen and (max-width: 1650px){
-    background-position-x: left, right;
-    &:before{
-      content: '';
-      display: block;
-      width: 100%;
-      height: 100%;
-      background: white;
-      position: absolute;
-      top: 0;
-      opacity: 0.9;
-    }
+  &:before{
+    content: '';
+    display: block;
+    width: 100%;
+    min-width: 1920px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-image: image_url('about_bg_1.svg'), image_url('about_bg_2.png');
+    background-repeat: no-repeat;
+    background-position-x: 207px, 130%;
+    background-size: 395px, 1200px;
+    background-position-y: 79px, 60px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
   }
 
   .content {
-    max-width: 600px;
+    max-width: 675px;
 
     h2,
     p {
@@ -36,7 +36,14 @@ section#about {
       margin-bottom: 30px;
     }
 
-    a{
+    p{
+      font-weight: 300;
+      a{
+        color: $button-blue;
+      }
+    }
+
+    a.cta{
       background: $button-blue;
       @extend %button;
     }

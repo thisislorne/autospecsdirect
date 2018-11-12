@@ -13,12 +13,59 @@
   }
   body section#about{
     padding: 100px 0;
-    background-size: cover;
-    background-position-y: top;
+
+    &:before{
+      background-position-x: 34%, 134%;
+      background-position-y: 9%, top;
+    }
   }
   body section#hero{
     .content h1{
       font-size: 33px;
     }
+  }
+  body footer .copyright-and-links ul{
+    li:not(:first-child){
+      margin-left: 0;
+    }
+  }
+
+  body section#features{
+    .row.feature-row{
+      margin-top: 0;
+
+      .left{
+        padding-right: 15px;
+      }
+
+      .right{
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      &:not(:first-child){
+        margin-top: 0;
+      }
+
+      &:first-child{
+        .feature{
+          margin-top: 0;
+        }
+      }
+    }
+    .second-row .left{
+      order: 2;
+    }
+    .feature{
+      position: static;
+      transform: none;
+      margin: 40px 0;
+    }
+  }
+
+  body section#whatElse,
+  body section#features,
+  body section#downloadNow{
+    padding: 100px 0;
   }
 }

@@ -165,6 +165,10 @@ nav.navbar {
           outline: 0;
         }
 
+        &:active{
+          color: black;
+        }
+
         div.sub{
           font-family: $font-family-primary;
           font-size: 12px;
@@ -238,10 +242,13 @@ footer{
   background: black;
   color: $footer-text;
   font-family: $font-family-primary;
+  font-size: 14px;
 
   .copyright-and-links{
     padding: 53px 0;
     border-top: 1px solid $footer-text;
+    font-weight: 300;
+    letter-spacing: 1.5px;
 
     .footer-logo{
       height: 45px;
@@ -286,7 +293,7 @@ footer{
       }
 
       li:not(.category){
-        padding-top: 10px;
+        padding-top: 20px;
         font-weight: 300;
         font-size: 14px;
         letter-spacing: 1.5px;
@@ -319,7 +326,7 @@ section#download{
   h1{
     font-size: 30px;
     margin-bottom: 20px;
-    padding-top: 120px;
+    padding-top: 150px;
   }
 
   h2{
@@ -334,7 +341,7 @@ section#download{
 
   hr{
     border-top: 1px solid white;
-    margin: 80px 0 0 0;
+    margin: 110px 0 0 0;
   }
 
   ul.categories{

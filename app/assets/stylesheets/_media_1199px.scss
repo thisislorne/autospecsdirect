@@ -24,4 +24,16 @@
   body section#hero{
     background-position-x: 70%;
   }
+
+  body footer .copyright-and-links ul{
+    span.slash{
+      padding: 0 4px 0 0px;
+    }
+  }
+
+  body section#about{
+    &:before{
+      background-position-x: 20%, 130%;
+    }
+  }
 }
