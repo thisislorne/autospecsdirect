@@ -75,6 +75,7 @@ section#intro{
 }
 
 .home-background{
-  background: image_url('home_bg.jpg') no-repeat top center;
+  background: image_url('home_bg.jpg');
+  background-position: top center;
   color: white;
 }
