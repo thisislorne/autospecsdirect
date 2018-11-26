@@ -1,14 +1,14 @@
 @import "shared";
 
-section.free-downloads{
+.free-downloads{
   padding: 75px 0;
 
-  h1.section-header{
+  .section-header{
     font-size: 30px;
     margin-bottom: 60px;
   }
 
-  .download{
+  .Download{
     margin-bottom: 65px;
     cursor: pointer;
 
@@ -29,20 +29,20 @@ section.free-downloads{
         margin-bottom: 0;
       }
 
-      .title{
+      .Download__title{
         font-family: $font-family-secondary;
         font-size: 20px;
         font-weight: normal;
       }
 
-      p.subtitle{
+      .Download__subtitle{
         color: #6c6c6c;
         font-size: 13px;
         margin-bottom: 3px;
         line-height: 1.2;
       }
 
-      p.os{
+      .Download__os{
         color: #a0a0a0;
         font-size: 12px;
         font-weight: 300;

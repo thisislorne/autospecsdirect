@@ -1,4 +1,4 @@
-<section class="title-bar">
+<section class="TitleBar">
   <h1>AWOOLO FREE DOWNLOADS</h1>
 </section>
 <section class="free-downloads">
@@ -11,18 +11,18 @@
           <% content_left_col = 'col-3' %>
           <% content_right_col = 'col-9' %>
           <% @products.each do |product| %>
-          <div class="<%= download_col %> download" onclick="location.href='<%= product_path(product.slug) %>';">
+          <div class="<%= download_col %> Download" onclick="location.href='<%= product_path(product.slug) %>';">
             <div class="container">
               <div class="row">
                 <div class="<%= content_left_col %> left">
                   <%= image_tag '' %>
                 </div>
                 <div class="<%= content_right_col %> right">
-                  <h1 class="title"><%= product.title.upcase %></h1>
-                  <p class="subtitle">
+                  <h1 class="Download__title"><%= product.title.upcase %></h1>
+                  <p class="Download__subtitle">
                     <%#= t("#{product}.description") %>A multi media format player for videos or music, free & safe to download
                   </p>
-                  <p class="os">
+                  <p class="Download__os">
                     <%#= t("#{product}.os") %>Awoolo media / windows &amp; mac
                   </p>
                 </div>

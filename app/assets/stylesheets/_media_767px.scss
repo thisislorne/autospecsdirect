@@ -1,38 +1,7 @@
 @media screen and (max-width: 767px){
-  section#solutions{
-    .solution{
-      &:last-child{
-        margin: 40px auto 0 auto;
-      }
-    }
-  }
-  body footer nav{
-    .right{
-      border-left: 0;
-    }
-  }
-  body section#about{
-    padding: 100px 0;
 
-    &:before{
-      background-position-x: 34%, 134%;
-      background-position-y: 9%, top;
-    }
-  }
-  body section#hero{
-    .content h1{
-      font-size: 33px;
-    }
-  }
-  body footer .copyright-and-links ul{
-    li:not(:first-child){
-      margin-left: 0;
-    }
-  }
-
-  body section#features{
+  body .features{
     .row.feature-row{
-      margin-top: 0;
 
       .left{
         padding-right: 15px;
@@ -63,9 +32,9 @@
     }
   }
 
-  body section#whatElse,
-  body section#features,
-  body section#downloadNow{
+  body .what-else,
+  body .features,
+  body .download-now{
     padding: 100px 0;
   }
 }

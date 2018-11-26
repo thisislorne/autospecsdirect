@@ -1,8 +1,9 @@
 @import "shared";
 
-section.title-bar{
+.TitleBar{
   text-align: center;
-  .square{
+
+  .TitleBar__square{
     display: inline-block;
     height: 28px;
     width: 28px;
@@ -17,10 +18,14 @@ section.title-bar{
   }
 }
 
-section#hero{
+.hero{
   background: image_url('product_hero_bg.jpg') no-repeat top center;
   position: relative;
   height: 590px;
+
+  @media screen and (max-width: 1199px){
+    background-position-x: 70%;
+  }
 
   .container,
   .row{
@@ -40,6 +45,10 @@ section#hero{
     h1{
       font-size: 42px;
       margin-bottom: 20px;
+
+      @media screen and (max-width: 767px){
+        font-size: 33px;
+      }
     }
 
     h3{
@@ -55,7 +64,7 @@ section#hero{
   }
 }
 
-section.cta{
+.cta{
   padding: 100px 0;
   text-align: center;
 
@@ -70,19 +79,22 @@ section.cta{
   }
 }
 
-section#features{
+.features{
   padding-bottom: 150px;
 
   .feature{
+    @extend %vertical-center;
+
     h1{
       font-size: 30px;
     }
-    @extend %vertical-center;
   }
+
   .image-container{
     height: 0;
     padding-bottom: 71%;
     position: relative;
+
     img{
       width: 100%;
       height: 100%;
@@ -90,13 +102,20 @@ section#features{
       background: #f4f4f4;
     }
   }
+
   .row.feature-row{
+    @media screen and (max-width: 767px){
+      margin-top: 0;
+    }
+
     &:not(:first-child){
       margin-top: 60px;
     }
+
     .left{
       padding-right: 28px;
     }
+
     .right{
       padding-right: 0;
       padding-left: 28px;
@@ -104,7 +123,7 @@ section#features{
   }
 }
 
-section#whatElse{
+.what-else{
   text-align: center;
   background: $blue-background;
   color: white;
@@ -116,22 +135,22 @@ section#whatElse{
     }
   }
 
-  h1,
-  h2.sub-header{
+  .header,
+  .sub-header{
     margin-left: 15px;
     margin-right: 15px;
   }
 
-  h1{
+  .header{
     font-size: 30px;
     margin-bottom: 15px;
   }
 
-  h2.sub-header{
+  .sub-header{
     margin-bottom: 100px;
   }
 
-  .what-else-point{
+  .point{
     img,
     h2,
     p{
@@ -154,20 +173,20 @@ section#whatElse{
   }
 }
 
-section#downloadNow{
+.download-now{
   text-align: center;
   padding: 150px 0 50px;
 
-  h1{
+  .header{
     font-size: 30px;
     margin-bottom: 15px;
   }
 
-  h2.sub-header{
+  .sub-header{
     margin-bottom: 70px;
   }
 
-  p.instruction{
+  .instruction{
     font-family: $font-family-secondary;
     font-size: 13px;
     color: #8e8e8e;

@@ -32,7 +32,7 @@
     }
   }
 
-  section#solutions .solution{
+  .solutions .solutions__solution{
     &:not(:first-child){
       margin-top: 40px;
     }

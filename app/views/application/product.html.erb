@@ -1,8 +1,8 @@
-<section class="title-bar">
-  <span class="square"></span>
+<section class="TitleBar">
+  <span class="TitleBar__square"></span>
   <h1><%= @product.title.upcase %></h1>
 </section>
-<section id="hero">
+<section id="hero" class="hero">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
@@ -19,7 +19,7 @@
   <h2><%= t("#{@product.slug}.product.cta") %></h2>
   <%= link_to 'DOWNLOAD NOW', '' %>
 </section>
-<section id="features">
+<section class="features">
   <div class="container">
     <div class="row feature-row">
       <div class="col-md-6 left">
@@ -49,27 +49,27 @@
     </div>
   </div>
 </section>
-<section id="whatElse">
-  <h1><%= t("#{@product.slug}.product.what_else_header") %></h1>
+<section class="what-else">
+  <h1 class="header"><%= t("#{@product.slug}.product.what_else_header") %></h1>
   <h2 class="sub-header"><%= t("#{@product.slug}.product.what_else_sub_header") %></h2>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-lg-3 what-else-point">
+      <div class="col-md-6 col-lg-3 point">
         <%= image_tag 'https://source.unsplash.com/random/304x260' %>
         <h2><%= t("#{@product.slug}.product.what_else_point_one_header") %></h2>
         <p><%= t("#{@product.slug}.product.what_else_point_one_sub_header") %></p>
       </div>
-      <div class="col-md-6 col-lg-3 what-else-point">
+      <div class="col-md-6 col-lg-3 point">
         <%= image_tag 'https://source.unsplash.com/random/304x260' %>
         <h2><%= t("#{@product.slug}.product.what_else_point_two_header") %></h2>
         <p><%= t("#{@product.slug}.product.what_else_point_two_sub_header") %></p>
       </div>
-      <div class="col-md-6 col-lg-3 what-else-point">
+      <div class="col-md-6 col-lg-3 point">
         <%= image_tag 'https://source.unsplash.com/random/304x260' %>
         <h2><%= t("#{@product.slug}.product.what_else_point_three_header") %></h2>
         <p><%= t("#{@product.slug}.product.what_else_point_three_sub_header") %></p>
       </div>
-      <div class="col-md-6 col-lg-3 what-else-point">
+      <div class="col-md-6 col-lg-3 point">
         <%= image_tag 'https://source.unsplash.com/random/304x260' %>
         <h2><%= t("#{@product.slug}.product.what_else_point_four_header") %></h2>
         <p><%= t("#{@product.slug}.product.what_else_point_four_sub_header") %></p>
@@ -77,11 +77,11 @@
     </div>
   </div>
 </section>
-<section id="downloadNow">
+<section class="download-now">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h1><%= t("#{@product.slug}.product.download_now_header") %></h1>
+        <h1 class="header"><%= t("#{@product.slug}.product.download_now_header") %></h1>
         <h2 class="sub-header"><%= t("#{@product.slug}.product.download_now_sub_header") %></h2>
         <p class="instruction">
           FREE DOWNLOAD BELOW

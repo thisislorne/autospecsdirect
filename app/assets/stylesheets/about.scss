@@ -4,10 +4,13 @@ header {
   border-bottom: 1px solid #dddddd;
 }
 
-section#about {
+.about {
   position: relative;
   padding: 240px 0 135px;
   overflow-x: hidden;
+  @media screen and (max-width: 767px){
+    padding: 100px 0;
+  }
 
   &:before{
     content: '';
@@ -24,7 +27,18 @@ section#about {
     background-position-y: 79px, 60px;
     left: 50%;
     -webkit-transform: translateX(-50%);
-    transform: translateX(-50%)
+    transform: translateX(-50%);
+
+    @media screen and (max-width: 1199px){
+      background-position-x: 20%, 130%;
+    }
+    @media screen and (max-width: 991px){
+      background-position-x: 28%, 145%;
+    }
+    @media screen and (max-width: 767px){
+      background-position-x: 34%, 134%;
+      background-position-y: 9%, top;
+    }
   }
 
   .content {
@@ -38,12 +52,13 @@ section#about {
 
     p{
       font-weight: 300;
+
       a{
         color: $button-blue;
       }
     }
 
-    a.cta{
+    .cta{
       background: $button-blue;
       @extend %button;
     }
