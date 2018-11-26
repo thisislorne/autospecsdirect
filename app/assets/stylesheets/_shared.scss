@@ -1,6 +1,4 @@
 @import "bootstrap";
-@import "media_767px";
-@import "media_575px";
 @import url("https://use.typekit.net/ipt6odz.css");
 $font-family-primary: 'open-sans', sans-serif;
 $font-family-secondary: 'jaf-domus', sans-serif;
@@ -25,19 +23,19 @@ h2{
   font-size: 24px;
 }
 
-%vertical-center{
+@mixin vertical-center(){
   position: relative;
   top: 50%;
   transform: translateY(-50%);
 }
 
-%no-focus-outline{
+@mixin no-focus-outline(){
   &:focus{
     outline: 0;
   }
 }
 
-%button{
+@mixin button(){
   font-family: $font-family-secondary;
   color: white;
   height: 50px;
@@ -53,7 +51,7 @@ h2{
   }
 }
 
-%footer-links{
+@mixin footer-links(){
   a{
     color: #bababa;
 
@@ -89,7 +87,7 @@ h2{
 
   .navbar-toggler{
     cursor: pointer;
-    @extend %no-focus-outline;
+    @include no-focus-outline();
 
     img{
       height: 25px;
@@ -104,23 +102,28 @@ h2{
     margin-left: auto;
 
     .nav-item {
-      @media screen and (min-width: 992px){
-        &:hover{
-          .nav-link{
+      &:hover{
+        .nav-link{
+          @media screen and (min-width: 992px){
             font-weight: bold;
             background: #f4f4f4;
           }
-          .dropdown-menu{
+        }
+        .dropdown-menu{
+          @media screen and (min-width: 992px){
             display: block;
           }
         }
       }
 
-      @media screen and (max-width: 991px){
-        &:first-child{
+      &:first-child{
+        @media screen and (max-width: 991px){
           padding-top: 20px;
         }
-        &:last-child{
+      }
+
+      &:last-child{
+        @media screen and (max-width: 991px){
           padding-bottom: 20px;
         }
       }
@@ -226,7 +229,7 @@ h2{
       font-size: 14px;
       width: 100%;
       font-family: $font-family-primary;
-      @extend %no-focus-outline;
+      @include no-focus-outline();
       @include placeholder(){
         color: black;
       }
@@ -240,7 +243,7 @@ h2{
       right: 5px;
       bottom: 0;
       cursor: pointer;
-      @extend %no-focus-outline;
+      @include no-focus-outline();
 
       img{
         width: 18px;
@@ -254,6 +257,29 @@ footer{
   color: $footer-text;
   font-family: $font-family-primary;
   font-size: 14px;
+
+  nav{
+    @media screen and (max-width: 575px){
+      padding: 0;
+    }
+
+    ul{
+      @media screen and (max-width: 575px){
+        max-width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .left,
+    .center{
+      ul{
+        @media screen and (max-width: 575px){
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
 
   .copyright-and-links{
     padding: 53px 0;
@@ -271,20 +297,32 @@ footer{
         margin-bottom: 5px;
         margin-right: auto;
       }
+      @media screen and (max-width: 575px){
+        margin-left: auto;
+      }
     }
 
     .copyright{
       vertical-align: middle;
+
+      @media screen and (max-width: 575px){
+        text-align: center;
+        display: block;
+        margin: 15px 0;
+      }
     }
 
     ul{
       margin-bottom: 0;
       list-style-type: none;
       text-align: right;
-      @extend %vertical-center;
-      @extend %footer-links;
+      @include vertical-center();
+      @include footer-links();
       @media screen and (max-width: 991px){
         text-align: center;
+      }
+      @media screen and (max-width: 575px){
+        padding-left: 0;
       }
 
       li{
@@ -296,6 +334,9 @@ footer{
           }
           @media screen and (max-width: 767px){
             margin-left: 0;
+          }
+          @media screen and (max-width: 575px){
+            margin-left: 10px;
           }
         }
 
@@ -320,7 +361,7 @@ footer{
       list-style-type: none;
       padding: 40px 0;
       margin-bottom: 0;
-      @extend %footer-links;
+      @include footer-links();
 
       .category{
         color: white;
@@ -376,7 +417,7 @@ footer{
   a{
     background: $button-green;
     box-shadow: $button-box-shadow;
-    @extend %button;
+    @include button();
   }
 
   hr{

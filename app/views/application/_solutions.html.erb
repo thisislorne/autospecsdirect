@@ -1,10 +1,10 @@
 <section class="solutions">
-  <div class="solutions__background">
+  <div class="background">
     <div class="container">
       <div class="row">
         <% @solutions.each do |solution| %>
-          <div class="col-sm-6 col-md-4 solutions__solution">
-            <h4 class="solution__title"><%= solution.title.upcase %></h4>
+          <div class="col-sm-6 col-md-4 Solution">
+            <h4 class="Solution__title"><%= solution.title.upcase %></h4>
             <%= image_tag 'https://source.unsplash.com/random/350x250' %>
             <h2><%#= t("#{solution.slug}.solution.header") %>Lorem ipsum dolor sit amet</h2>
             <p><%#= t("#{solution.slug}.solution.sub_header") %>Praesent scelerisque est ut nulla imperdiet, et auctor libero cursus.</p>

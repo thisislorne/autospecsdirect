@@ -8,11 +8,11 @@ header {
   position: relative;
   padding: 240px 0 135px;
   overflow-x: hidden;
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     padding: 100px 0;
   }
 
-  &:before{
+  &:before {
     content: '';
     display: block;
     width: 100%;
@@ -28,14 +28,13 @@ header {
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-
-    @media screen and (max-width: 1199px){
+    @media screen and (max-width: 1199px) {
       background-position-x: 20%, 130%;
     }
-    @media screen and (max-width: 991px){
+    @media screen and (max-width: 991px) {
       background-position-x: 28%, 145%;
     }
-    @media screen and (max-width: 767px){
+    @media screen and (max-width: 767px) {
       background-position-x: 34%, 134%;
       background-position-y: 9%, top;
     }
@@ -50,17 +49,17 @@ header {
       margin-bottom: 30px;
     }
 
-    p{
+    p {
       font-weight: 300;
 
-      a{
+      a {
         color: $button-blue;
       }
     }
 
-    .cta{
+    .cta {
       background: $button-blue;
-      @extend %button;
+      @include button();
     }
   }
 }

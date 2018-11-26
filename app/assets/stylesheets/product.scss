@@ -59,7 +59,7 @@
     a{
       background: $button-green;
       box-shadow: $button-box-shadow;
-      @extend %button;
+      @include button();
     }
   }
 }
@@ -75,15 +75,24 @@
 
   a{
     background: $button-blue;
-    @extend %button;
+    @include button();
   }
 }
 
 .features{
   padding-bottom: 150px;
 
+  @media screen and (max-width: 767px){
+    padding: 100px 0;
+  }
+
   .feature{
-    @extend %vertical-center;
+    @include vertical-center();
+    @media screen and (max-width: 767px){
+      position: static;
+      transform: none;
+      margin: 40px 0;
+    }
 
     h1{
       font-size: 30px;
@@ -110,15 +119,42 @@
 
     &:not(:first-child){
       margin-top: 60px;
+
+      @media screen and (max-width: 767px){
+        margin-top: 0;
+      }
+    }
+
+    &:first-child{
+      @media screen and (max-width: 767px){
+        .feature{
+          margin-top: 0;
+        }
+      }
     }
 
     .left{
       padding-right: 28px;
+
+      @media screen and (max-width: 767px){
+        padding-right: 15px;
+      }
     }
 
     .right{
       padding-right: 0;
       padding-left: 28px;
+
+      @media screen and (max-width: 767px){
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 767px){
+    .second-row .left{
+      order: 2;
     }
   }
 }
@@ -128,9 +164,12 @@
   background: $blue-background;
   color: white;
   padding: 150px 0;
+  @media screen and (max-width: 767px){
+    padding: 100px 0;
+  }
 
-  @media screen and (min-width: 1200px){
-    .container{
+  .container{
+    @media screen and (min-width: 992px){
       max-width: 1340px;
     }
   }
@@ -158,15 +197,18 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     img,
     p{
       margin-bottom: 30px;
     }
+
     img{
       width: 100%;
       display: block;
       border: 1px solid black;
     }
+
     h2{
       margin-bottom: 15px;
     }
@@ -176,6 +218,9 @@
 .download-now{
   text-align: center;
   padding: 150px 0 50px;
+  @media screen and (max-width: 767px){
+    padding: 100px 0;
+  }
 
   .header{
     font-size: 30px;
@@ -193,7 +238,7 @@
     margin-bottom: 10px;
   }
 
-  .download{
+  .download-box{
     border: 1px solid #bfbfbf;
     max-width: 370px;
     margin-left: auto;
@@ -221,7 +266,7 @@
       font-weight: bold;
       width: 100%;
       max-width: 220px;
-      @extend %button;
+      @include button();
     }
 
     p{
