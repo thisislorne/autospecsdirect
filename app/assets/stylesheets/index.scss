@@ -89,8 +89,9 @@
   }
 }
 
-.HomeBackground{
+.home-background{
   background: image_url('home_bg.jpg');
   background-position: top center;
+  background-size: cover;
   color: white;
 }
