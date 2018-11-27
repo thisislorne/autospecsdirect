@@ -15,8 +15,27 @@ class ApplicationController < ActionController::Base
   end
 
   def product
-    @product = params[:product] || 'pdf_converter'
-    @product = @products.find_by(slug: @product)
+    @os = params[:os] || 'mac'
+    return unless %w(mac windows).include?(@os)
+     @product = params[:product] || 'pdf_converter'
+     @product = @products.find_by(slug: @product)
+    @download_link = "#{@os}_download"
+  end
+
+  def mac_download
+    send_file(
+    "#{Rails.root}/public/Awoolo_Mac.zip",
+    filename: "Awoolo_Mac.zip",
+    type: "application/zip"
+    )
+  end
+
+  def windows_download
+    send_file(
+    "#{Rails.root}/public/Awoolo_Windows.zip",
+    filename: "Awoolo_Windows.zip",
+    type: "application/zip"
+    )
   end
 
   private

@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   root to: 'application#index'
   get 'about', to: 'application#about'
   get 'downloads', to: 'application#downloads'
-  get ':product', to: 'application#product', as: :product
+  get 'mac_download', to: 'application#mac_download'
+  get 'windows_download', to: 'application#windows_download'
+  get ':os/:product', to: 'application#product', as: :product
 end
