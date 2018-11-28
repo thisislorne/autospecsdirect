@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
     @os = params[:os] || 'mac'
     @product = @products.find_by(slug: params[:product])
     @local_url = download_url(@os, @product.slug)
+    @features = Feature.where(product: @product)
     @other_products = @products.where("slug != '#{@product.slug}'")
     @other_products = @other_products.order("RANDOM()").limit(4)
 

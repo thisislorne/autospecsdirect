@@ -43,11 +43,6 @@ en:
    download_now_sub_sub_header: 'Binge Your Favourite TV Shows, Music And Movies.'
  pdf_viewer:
   menu_description: 'Open, edit and convert PDF files'
-  home:
-   header: 'fjieaofjeiwfwa'
-   sub_header: 'ifejowaifjeiowaj'
-   solution_header: 'jifeoajfeijfao'
-   solution_sub_header: 'fejiofjaifoewaj'
   product:
    main_header: 'Instantly Convert And Edit Your PDF Files.'
    sub_header: 'Awoolo PDF gives you the power to open, edit and convert PDF files in just a couple of clicks.'
@@ -73,3 +68,30 @@ en:
    download_now_header: 'Start your free download now'
    download_now_sub_header: 'Who Said Radio Was Dead?'
    download_now_sub_sub_header: 'Access hundreds of different radio stations.'
+ zip_file_opener:
+  menu_description: 'Extract Compressed Files Faster'
+  product:
+   main_header: 'Extract Compressed Files Faster'
+   sub_header: 'Easily extract your compressed files and folders with Awoolo Unzip. '
+   follow_up: "No complicated steps, no complicated interface - simply select the “unarchive” button and watch as your files are instantly extracted. And don't worry, it works with almost all zip file types."
+   download_now_header: 'Start your free download now'
+   download_now_sub_header: 'Easily extract your compressed files and folders with Awoolo Unzip.'
+   download_now_sub_sub_header: 'Extract Compressed Files Faster'
+ video_converter:
+  menu_description: 'Convert And Optimize Your Video Files'
+  product:
+   main_header: 'Convert And Optimize Your Video Files In Minutes'
+   sub_header: 'You’ll never have to cancel movie night again. '
+   follow_up: "Because the Awoolo Converter lets you convert any video file into a format which suits the device you’re watching on. "
+   download_now_header: 'Start your free download now'
+   download_now_sub_header: 'Whether it’s your Mac, PC, Android, or IPhone - this clever converter automatically senses the appropriate file format for that particular device.'
+   download_now_sub_sub_header: 'Convert And Optimize Your Video Files In Minutes'
+ ultimate_converter:
+  menu_description: 'Convert Your Video, Audio and Text Files'
+  product:
+   main_header: 'Convert Your Video, Audio and Text Files... All In One Place'
+   sub_header: 'What do you get when you take the best parts of a video, audio, and text converter? You get our “Ultimate Converter.”'
+   follow_up: "When all else fails, this life saving converter works on just about any file type you can think of."
+   download_now_header: 'Start your free download now'
+   download_now_sub_header: 'When all else fails, this life saving converter works on just about any file type you can think of.'
+   download_now_sub_sub_header: 'Convert Your Video, Audio and Text Files'

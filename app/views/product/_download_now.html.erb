@@ -12,9 +12,9 @@
           <h2><%= @product.title %></h2>
           <p class="description"><%= t("#{@product.slug}.product.download_now_sub_sub_header") %></p>
           <p class="for-what-os">
-            <% if @product.windows_software && @product.mac_software %>
+            <% if @product.windows && @product.mac %>
               For Windows and Mac.
-            <% elsif @products.mac_software %>
+            <% elsif @product.mac %>
               For Mac.
             <% else %>
               For Windows.

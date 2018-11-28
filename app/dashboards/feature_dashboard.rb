@@ -11,7 +11,7 @@ class FeatureDashboard < Administrate::BaseDashboard
     product: Field::BelongsTo,
     id: Field::Number,
     header: Field::String,
-    content: Field::String,
+    content: Field::Text,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
