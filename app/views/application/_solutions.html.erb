@@ -8,7 +8,7 @@
             <%= image_tag 'https://source.unsplash.com/random/350x250' %>
             <h2><%#= t("#{solution.slug}.solution.header") %>Lorem ipsum dolor sit amet</h2>
             <p><%#= t("#{solution.slug}.solution.sub_header") %>Praesent scelerisque est ut nulla imperdiet, et auctor libero cursus.</p>
-            <%= link_to 'LEARN MORE', product_path(solution.slug) %>
+            <%= link_to 'LEARN MORE', product_path(@os, solution.slug) %>
           </div>
         <% end %>
       </div>

@@ -1,0 +1,34 @@
+<section class="download-now">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="header"><%= t("#{@product.slug}.product.download_now_header") %></h1>
+        <h2 class="sub-header"><%= t("#{@product.slug}.product.download_now_sub_header") %></h2>
+        <p class="instruction">
+          FREE DOWNLOAD BELOW
+        </p>
+        <div class="download-box">
+          <%= image_tag 'https://source.unsplash.com/random/78x78' %>
+          <h2><%= @product.title %></h2>
+          <p class="description"><%= t("#{@product.slug}.product.download_now_sub_sub_header") %></p>
+          <p class="for-what-os">
+            <% if @product.windows_software && @product.mac_software %>
+              For Windows and Mac.
+            <% elsif @products.mac_software %>
+              For Mac.
+            <% else %>
+              For Windows.
+            <% end %>
+          </p>
+          <%= render 'product/cta' %>
+        </div>
+        <small class="first">
+          * Download the <%= link_to 'Acrobat Reader mobile app', '', target: '_blank' %> to access Export PDF on Android, iOS, and Windows Phone devices.
+        </small>
+        <small class="second">
+          Adobe online services are available only to users 13 and older and require agreement to additional terms and the <%= link_to 'Adobe Privacy Policy', '', target: '_blank' %>. Online services are not available in all countries or languages, may require user registration, and may be discontinued or modified in whole or in part without notice. Additional fees or subscription charges may apply.
+        </small>
+      </div>
+    </div>
+  </div>
+</section>

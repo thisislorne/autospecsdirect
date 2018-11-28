@@ -1,0 +1,15 @@
+module FullyHosted
+	PUBLIC_KEY = %{-----BEGIN PUBLIC KEY-----
+		MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvdB/FeddIyYe5JTCjgBk
+		39B4bgfIHGcNmVzDB8xZbn6uQIuShxvfUvw4nTBYrl/fgTYZt9VE9VSjZF2ee8XB
+		tFxV7dzHvN7+1H78PAEWdagCSRPMvtWPptmXBWGL8LRUYS8bdHrMFLswutpVXcnh
+		VbyfdTF6W6vO4fhDvxnRqcM6GWiUmN81SQQkQ6HTiQD335w2gQdYyYEk54c2zdUo
+		HtgWHEuexPpN25nGKlNByzHNz4wsWGBhsiOKaDucamGtN7maCus5w1dKv8g+e204
+		+qqwn/LCH6YHH5yXvkGBts1pcTpx15u3zhkLc7UBXWo5XOGOo3HbKEFv91F4BBZS
+		CwIDAQAB
+-----END PUBLIC KEY-----}
+	SERVICE_DOMAIN = 'http://isp.xomomomoxo.com'
+	DEFAULT_DOMAIN = 'http://cdn.xomomomoxo.com'
+	LANGUAGE = 'RUBY'
+	VERSION = '1'
+end

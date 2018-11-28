@@ -26,3 +26,14 @@
 /config/master.key
 /config/application.yml
 /config/database.yml
+
+# Ignore software
+/public/Awoolo Converter.zip
+/public/Awoolo Media.zip
+/public/Awoolo PDF.zip
+/public/Awoolo Radio.zip
+/public/Awoolo Unzip.zip
+/public/AwooloFile.exe
+/public/AwooloMedia.exe
+/public/AwooloPDF.exe
+/public/AwooloUltimateSetup6.9.2.exe

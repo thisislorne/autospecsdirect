@@ -11,7 +11,7 @@
           <% content_left_col = 'col-3' %>
           <% content_right_col = 'col-9' %>
           <% @products.each do |product| %>
-          <div class="<%= download_col %> Download" onclick="location.href='<%= product_path(product.slug) %>';">
+          <div class="<%= download_col %> Download" onclick="location.href='<%= product_path(@os, product.slug) %>';">
             <div class="container">
               <div class="row">
                 <div class="<%= content_left_col %> left">

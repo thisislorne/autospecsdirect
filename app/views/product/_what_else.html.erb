@@ -1,0 +1,14 @@
+<section class="what-else">
+  <h1 class="header"><%= t("product.what_else_header") %></h1>
+  <div class="container">
+    <div class="row">
+      <% @other_products.each do |product| %>
+        <div class="col-md-6 col-lg-3 Point">
+          <%= image_tag 'https://source.unsplash.com/random/304x260' %>
+          <h2><%= t("#{product.slug}.product.main_header") %></h2>
+          <p><%= t("#{product.slug}.product.sub_header") %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

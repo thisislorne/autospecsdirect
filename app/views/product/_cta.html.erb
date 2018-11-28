@@ -1,0 +1,6 @@
+<script type="text/javascript" src="http://js.omxcontent.com/dl.min.js"></script>
+<%= link_to 'DOWNLOAD NOW', @download_link, class: 'download-link', target: '_blank' %>
+<% if @product.mac_software && @product.windows_software %>
+<% alternative = @os == 'mac' ? 'windows' : 'mac' %>
+<p class="AlsoAvailable">Also available on <%= link_to alternative.capitalize, download_path(alternative, @product.slug), class: 'AlsoAvailable__link' %></p>
+<% end %>

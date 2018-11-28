@@ -4,12 +4,12 @@
   </a>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
     <% @office_solutions.each do |product| %>
-      <%= link_to product_path(product.slug), class: 'dropdown-item' do %>
+      <%= link_to product_path(@os, product.slug), class: 'dropdown-item' do %>
       <div class="main">
         <%= product.title.upcase %>
       </div>
       <div class="sub">
-        <%= t("#{product.slug}.description") %>
+        <%= t("#{product.slug}.menu_description") %>
       </div>
       <% end %>
     <% end %>
@@ -21,12 +21,12 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
       <% @media.each do |product| %>
-        <%= link_to product_path(product.slug), class: 'dropdown-item' do %>
+        <%= link_to product_path(@os, product.slug), class: 'dropdown-item' do %>
         <div class="main">
           <%= product.title.upcase %>
         </div>
         <div class="sub">
-          <%= t("#{product.slug}.description") %>
+          <%= t("#{product.slug}.menu_description") %>
         </div>
         <% end %>
       <% end %>

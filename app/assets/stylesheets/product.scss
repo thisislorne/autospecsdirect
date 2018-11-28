@@ -56,7 +56,7 @@
       margin-bottom: 40px;
     }
 
-    a{
+    .download-link{
       background: $button-green;
       box-shadow: $button-box-shadow;
       @include button();
@@ -64,7 +64,18 @@
   }
 }
 
-.cta{
+.AlsoAvailable{
+  font-size: 13px;
+
+  &__link{
+    &,
+    &:hover{
+      color: white;
+    }
+  }
+}
+
+.follow-up{
   padding: 100px 0;
   text-align: center;
 
@@ -73,9 +84,13 @@
     padding: 0 20px;
   }
 
-  a{
+  .download-link{
     background: $button-blue;
     @include button();
+  }
+
+  .AlsoAvailable__link{
+    color: $button-blue;
   }
 }
 
@@ -96,6 +111,11 @@
 
     h1{
       font-size: 30px;
+    }
+
+    h1,
+    .text p{
+      margin-bottom: 8px;
     }
   }
 
@@ -182,14 +202,10 @@
 
   .header{
     font-size: 30px;
-    margin-bottom: 15px;
-  }
-
-  .sub-header{
     margin-bottom: 100px;
   }
 
-  .point{
+  .Point{
     img,
     h2,
     p{
@@ -217,7 +233,7 @@
 
 .download-now{
   text-align: center;
-  padding: 150px 0 50px;
+  padding-bottom: 50px;
   @media screen and (max-width: 767px){
     padding: 100px 0;
   }
@@ -261,7 +277,7 @@
       margin: 25px 0;
     }
 
-    a{
+    .download-link{
       background: $button-blue;
       font-weight: bold;
       width: 100%;
@@ -269,12 +285,19 @@
       @include button();
     }
 
-    p{
-      margin-bottom: 44px;
+    .AlsoAvailable__link{
+      color: $button-blue;
+    }
+
+    .description{
       max-width: 280px;
       margin-left: auto;
       margin-right: auto;
       padding: 0 10px;
+    }
+
+    .for-what-os{
+      margin-bottom: 44px;
     }
   }
 

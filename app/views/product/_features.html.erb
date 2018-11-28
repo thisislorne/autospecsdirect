@@ -1,0 +1,49 @@
+<section class="features">
+  <div class="container">
+    <div class="row feature-row">
+      <div class="col-md-6 left">
+        <div class="feature">
+          <h1><%= @product.feature_one_header %></h1>
+          <div class="text">
+            <%= @product.feature_one_text.html_safe %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 right">
+        <div class="image-container">
+          <%= image_tag 'https://source.unsplash.com/random/542x385' %>
+        </div>
+      </div>
+    </div>
+    <div class="row feature-row second-row">
+      <div class="col-md-6 left">
+        <div class="image-container">
+          <%= image_tag 'https://source.unsplash.com/random/542x385' %>
+        </div>
+      </div>
+      <div class="col-md-6 right">
+        <div class="feature">
+          <h1><%= @product.feature_two_header %></h1>
+          <div class="text">
+            <%= @product.feature_two_text.html_safe %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row feature-row">
+      <div class="col-md-6 left">
+        <div class="feature">
+          <h1><%= @product.feature_three_header %></h1>
+          <div class="text">
+            <%= @product.feature_three_text.html_safe %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 right">
+        <div class="image-container">
+          <%= image_tag 'https://source.unsplash.com/random/542x385' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

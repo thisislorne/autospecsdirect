@@ -30,33 +30,46 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
- pdf_converter:
-  description: 'fejiaofjejfwia'
+ product:
+  what_else_header: 'Check out these other products'
+ media_player:
+  menu_description: 'Enjoy TV Shows, Music And Movies'
+  product:
+   main_header: 'Binge Your Favourite TV Shows, Music And Movies.'
+   sub_header: 'Awoolo Media has all of the essential features needed for an immersive visual and audio experience.'
+   follow_up: "Looking for a convenient, no frills way to enjoy your favourite TV shows, music or movies? It’s simple and easy to use, plus it’s compatible with a wide range of different file types - so you’ll never have to annoyingly switch media players, or rush to download new files again."
+   download_now_header: 'Start your free download now'
+   download_now_sub_header: 'Enjoy TV Shows, Music And Movies'
+   download_now_sub_sub_header: 'Binge Your Favourite TV Shows, Music And Movies.'
+ pdf_viewer:
+  menu_description: 'Open, edit and convert PDF files'
   home:
    header: 'fjieaofjeiwfwa'
    sub_header: 'ifejowaifjeiowaj'
    solution_header: 'jifeoajfeijfao'
    solution_sub_header: 'fejiofjaifoewaj'
   product:
-   main_header: 'Export all the PDFs you want.'
-   sub_header: 'Convert an unlimited number of PDFs to Work or Excel.'
-   cta: 'Export PDFs to Word or Excel, online or on a mobile device.'
-   feature_one_header: 'Step retyping. Start making progress.'
-   feature_one_sub_header: "with adobe export pdf, it's easy to start new projects without starting over. just convert your pdfs to word files that are easy to update. fonts and formatting get converted, too."
-   feature_two_header: 'take your work with you'
-   feature_two_sub_header: "you don't have to stay at your desk to stay productive. it's easy to turn PDFs into editable Word or Excel files from a web browser, tablet, or mobile device."
-   feature_three_header: 'ijeoafjiefjawofje'
-   feature_three_sub_header: 'jeofaijaofijaofi'
-   what_else_header: 'see what else you can do with export pdf.'
-   what_else_sub_header: "export pdfs to other formats - from a browser or mobile device."
-   what_else_point_one_header: 'Convert PDF to RTF online.'
-   what_else_point_one_sub_header: "Need to edit and analyze spreadsheet data but all you have is a PDF? Don't spend time."
-   what_else_point_two_header: 'Convert scanned text'
-   what_else_point_two_sub_header: 'need to edit and analyze spreadsheet data but all you have is a pdf?'
-   what_else_point_three_header: 'fjeoifjaoifewja'
-   what_else_point_three_sub_header: 'fjieowafjowaijew'
-   what_else_point_four_header: 'fjeoifjaoifewja'
-   what_else_point_four_sub_header: 'fjieowafjowaijew'
-   download_now_header: 'start your free download now'
-   download_now_sub_header: 'export pdfs to other formats - from a browser or mobile device free.'
-   download_now_sub_sub_header: 'reliably create, edit and sign PDFs. For Windows and Mac.'
+   main_header: 'Instantly Convert And Edit Your PDF Files.'
+   sub_header: 'Awoolo PDF gives you the power to open, edit and convert PDF files in just a couple of clicks.'
+   follow_up: "Whether it's converting a PDF file to a Word doc (or vice versa), or adding annotations to a PDF document - this software covers all of your needs."
+   download_now_header: 'Start your free download now'
+   download_now_sub_header: 'Open, edit and convert PDF files.'
+   download_now_sub_sub_header: 'Instantly Convert And Edit Your PDF Files.'
+ ftp_client:
+  menu_description: 'Manage And Move Your Files Between Servers'
+  product:
+   main_header: 'Easily Manage And Move Your Files Between Servers'
+   sub_header: 'While some people think FTP is outdated, it remains a viable and secure way to move files between your computer and web servers.'
+   follow_up: "It’s also a lot simpler than it sounds. All you have to do is enter a few basic server settings. Once you’ve done that, you’ll be greeted with a user friendly interface ANYONE can master. We know this because we designed it that way."
+   download_now_header: 'Start your free download now'
+   download_now_sub_header: 'Open, edit and convert PDF files.'
+   download_now_sub_sub_header: 'Instantly Convert And Edit Your PDF Files.'
+ radio_app:
+  menu_description: 'Access hundreds of different radio stations'
+  product:
+   main_header: 'With endless music streaming options these days, sometimes it’s nice to just pop on the radio and not have to worry about setting up crowd pleasing playlists or song queues.'
+   sub_header: 'Awoolo Radio gives you instant access to hundreds of different radio stations from around the world. So you’ll be hard pressed not to find the perfect station for you.'
+   follow_up: "Who Said Radio Was Dead?"
+   download_now_header: 'Start your free download now'
+   download_now_sub_header: 'Who Said Radio Was Dead?'
+   download_now_sub_sub_header: 'Access hundreds of different radio stations.'

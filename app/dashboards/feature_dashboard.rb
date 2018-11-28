@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class ProductDashboard < Administrate::BaseDashboard
+class FeatureDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,17 +8,10 @@ class ProductDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    features: Field::HasMany,
+    product: Field::BelongsTo,
     id: Field::Number,
-    title: Field::String,
-    slug: Field::String,
-    description: Field::Text,
-    version_number: Field::String,
-    app_name: Field::String,
-    mac: Field::Boolean,
-    windows: Field::Boolean,
-    file_name_mac: Field::String,
-    file_name_windows: Field::String,
+    header: Field::String,
+    content: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -27,48 +20,34 @@ class ProductDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :features,
+    :product,
     :id,
-    :title,
-    :slug,
+    :header,
+    :content,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :features,
+    :product,
     :id,
-    :title,
-    :slug,
-    :description,
-    :version_number,
-    :app_name,
-    :mac,
-    :windows,
-    :file_name_mac,
-    :file_name_windows,
+    :header,
+    :content,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :features,
-    :title,
-    :slug,
-    :description,
-    :version_number,
-    :app_name,
-    :mac,
-    :windows,
-    :file_name_mac,
-    :file_name_windows,
+    :product,
+    :header,
+    :content,
   ].freeze
 
-  # Overwrite this method to customize how products are displayed
+  # Overwrite this method to customize how features are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(product)
-  #   "Product ##{product.id}"
+  # def display_resource(feature)
+  #   "Feature ##{feature.id}"
   # end
 end
