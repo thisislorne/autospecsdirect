@@ -22,11 +22,8 @@
           </p>
           <%= render 'product/cta' %>
         </div>
-        <small class="first">
-          * Download the <%= link_to 'Acrobat Reader mobile app', '', target: '_blank' %> to access Export PDF on Android, iOS, and Windows Phone devices.
-        </small>
-        <small class="second">
-          Adobe online services are available only to users 13 and older and require agreement to additional terms and the <%= link_to 'Adobe Privacy Policy', '', target: '_blank' %>. Online services are not available in all countries or languages, may require user registration, and may be discontinued or modified in whole or in part without notice. Additional fees or subscription charges may apply.
+        <small>
+          <strong>Please read carefully:</strong> By downloading <%= @product.title %>, I accept & agree to abide by the <%= link_to 'Terms', 'http://privacy.awoolo.com/terms', target: '_blank' %> &amp; <%= link_to 'Privacy Policy', 'http://privacy.awoolo.com/privacy', target: '_blank' %>.
         </small>
       </div>
     </div>

@@ -477,3 +477,42 @@ footer {
     font-family: $font-family-secondary;
   }
 }
+
+.Solution{
+
+  &:not(:last-child){
+    @media screen and (max-width: 991px){
+      margin-bottom: 40px;
+    }
+  }
+
+  &__title{
+    font-family: $font-family-secondary;
+    font-weight: 500;
+    font-size: 13px;
+    text-align: left;
+    letter-spacing: 1.5px;
+  }
+
+  img{
+    width: 100%;
+     background: gray;
+     display: block;
+     margin-bottom: 20px;
+  }
+
+  p{
+    font-weight: 300;
+  }
+
+  a{
+    font-size: 14px;
+    border: 1px solid white;
+    @include button();
+  }
+
+  a:hover{
+    background: white;
+    font-weight: bold;
+  }
+}

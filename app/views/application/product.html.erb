@@ -3,10 +3,12 @@
   <h1><%= @product.title.upcase %></h1>
 </section>
 <%= render 'product/hero' %>
+<% if @follow_up %>
 <section class="follow-up">
   <h2><%= t("#{@product.slug}.product.follow_up") %></h2>
   <%= render 'product/cta' %>
 </section>
+<% end %>
 <%= render 'product/features' %>
 <%= render 'product/download_now' %>
 <%= render 'product/what_else' %>

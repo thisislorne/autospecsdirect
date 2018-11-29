@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   root to: 'application#index'
   get 'about', to: 'application#about'
-  get 'downloads', to: 'application#downloads_list'
+  get 'downloads', to: 'application#downloads'
   get 'download/:os/:product', to: 'application#download_software', as: :download
   get ':os/:product', to: 'application#product', as: :product
 end

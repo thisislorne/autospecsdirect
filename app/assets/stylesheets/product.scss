@@ -95,10 +95,10 @@
 }
 
 .features{
-  padding-bottom: 150px;
+  padding: 150px 0;
 
   @media screen and (max-width: 767px){
-    padding: 100px 0;
+    padding: 70px 0;
   }
 
   .feature{
@@ -187,9 +187,9 @@
   text-align: center;
   background: $blue-background;
   color: white;
-  padding: 150px 0;
+  padding: 100px 0;
   @media screen and (max-width: 767px){
-    padding: 100px 0;
+    padding: 70px 0;
   }
 
   .container{
@@ -207,6 +207,20 @@
   .header{
     font-size: 30px;
     margin-bottom: 100px;
+
+    @media screen and (max-width: 767px){
+      margin-bottom: 70px;
+    }
+  }
+
+  .Solution{
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+
+    a:hover{
+      color: $blue-background;
+    }
   }
 
   .Point{
@@ -238,9 +252,6 @@
 .download-now{
   text-align: center;
   padding-bottom: 50px;
-  @media screen and (max-width: 767px){
-    padding: 100px 0;
-  }
 
   .header{
     font-size: 30px;
@@ -309,11 +320,7 @@
     display: block;
     font-size: 12px;
     color: #a5a5a5;
-    text-align: left;
-
-    &.first{
-      margin-bottom: 10px;
-    }
+    text-align: center;
 
     a,
     a:hover{

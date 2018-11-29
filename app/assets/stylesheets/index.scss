@@ -11,55 +11,11 @@
     background-color: rgba(0, 0, 0, 0.85);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
-    max-width: 1400px;
+    max-width: 1580px;
     margin-left: auto;
     margin-right: auto;
     padding: 80px 0;
     border-radius: 5px;
-  }
-
-  .Solution{
-    &:last-child{
-      @media screen and (max-width: 767px){
-        margin: 40px auto 0 auto;
-      }
-    }
-    &:not(:first-child){
-      @media screen and (max-width: 575px){
-        margin-top: 40px;
-      }
-    }
-
-    &__title{
-      font-family: $font-family-secondary;
-      font-weight: 500;
-      font-size: 13px;
-      text-align: left;
-      letter-spacing: 1.5px;
-    }
-
-    img{
-      width: 100%;
-       background: gray;
-       display: block;
-       margin-bottom: 20px;
-    }
-
-    p{
-      font-weight: 300;
-    }
-
-    a{
-      font-size: 14px;
-      border: 1px solid white;
-      @include button();
-    }
-
-    a:hover{
-      background: white;
-      color: black;
-      font-weight: bold;
-    }
   }
 }
 
@@ -91,7 +47,38 @@
 
 .home-background{
   background: image_url('home_bg.jpg');
-  background-position: top center;
+  background-position-y: top;
+  background-position-x: center;
   background-size: cover;
+  background-repeat: repeat;
   color: white;
+  position: relative;
+
+  &:before{
+    content: '';
+    display: block;
+    width: 100%;
+    min-width: 1920px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: image_url('home_laptop.png');
+    background-position-y: 5%;
+    background-position-x: 86%;
+    background-size: 812px;
+    background-repeat: no-repeat;
+  }
+}
+
+.Solution{
+  a:hover{
+    color: black;
+  }
+
+  &:last-child{
+    @media screen and (max-width: 767px){
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }

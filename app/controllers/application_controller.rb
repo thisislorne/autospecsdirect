@@ -4,16 +4,15 @@ class ApplicationController < ActionController::Base
   before_action :get_products, :get_os
   def index
     @product = @products.find_by(slug: 'pdf_viewer')
-    @solutions = @products.where("slug != '#{@product.slug}'")
-    @solutions = @solutions.order("RANDOM()").limit(3)
+    solutions 3
   end
 
   def about
     @download = true
   end
 
-  def downloads_list
-    @download = true
+  def downloads
+    @download = false
   end
 
   def product
@@ -21,8 +20,8 @@ class ApplicationController < ActionController::Base
     @product = @products.find_by(slug: params[:product])
     @local_url = download_url(@os, @product.slug)
     @features = Feature.where(product: @product)
-    @other_products = @products.where("slug != '#{@product.slug}'")
-    @other_products = @other_products.order("RANDOM()").limit(4)
+    @follow_up = true
+    solutions 4
 
     injection_params = {
   	  PRODUCT_TITLE: @product.title,
@@ -77,5 +76,10 @@ class ApplicationController < ActionController::Base
 
   def get_os
     @os = OS.windows? ? 'windows' : 'mac'
+  end
+
+  def solutions number
+    @solutions = @products.where("slug != '#{@product.slug}'")
+    @solutions = @solutions.order("RANDOM()").limit(number)
   end
 end
