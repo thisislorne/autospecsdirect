@@ -9,7 +9,7 @@
   }
 
   .Download{
-    margin-bottom: 65px;
+    margin-bottom: 45px;
     cursor: pointer;
 
     .left{
@@ -17,8 +17,8 @@
 
       img{
         display: block;
-        height: 72.5px;
-        background: black;
+        width: 100%;
+        max-width: 100px;
       }
     }
 
@@ -38,7 +38,7 @@
       .Download__subtitle{
         color: #6c6c6c;
         font-size: 13px;
-        margin-bottom: 3px;
+        margin: 3px 0;
         line-height: 1.2;
       }
 
@@ -47,6 +47,7 @@
         font-size: 12px;
         font-weight: 300;
         font-family: $font-family-secondary;
+        margin-bottom: 0;
       }
     }
   }

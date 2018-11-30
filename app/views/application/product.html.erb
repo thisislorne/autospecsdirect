@@ -1,14 +1,16 @@
 <section class="TitleBar">
+  <%= image_tag "#{@product.slug}/logo.svg", class: 'product-logo' %>
   <span class="TitleBar__square"></span>
   <h1><%= @product.title.upcase %></h1>
 </section>
 <%= render 'product/hero' %>
 <% if @follow_up %>
 <section class="follow-up">
-  <h2><%= t("#{@product.slug}.product.follow_up") %></h2>
-  <%= render 'product/cta' %>
+  <h1 class="title"><%= t("#{@product.slug}.product.follow_up_title") %></h1>
+  <p class="text"><%= t("#{@product.slug}.product.follow_up_text").html_safe %></p>
+  <%#= render 'product/cta' %>
 </section>
 <% end %>
 <%= render 'product/features' %>
 <%= render 'product/download_now' %>
-<%= render 'product/what_else' %>
+<%= render 'shared/solutions', product_page: true %>

@@ -8,7 +8,7 @@
           FREE DOWNLOAD BELOW
         </p>
         <div class="download-box">
-          <%= image_tag 'https://source.unsplash.com/random/78x78' %>
+          <%= image_tag "#{@product.slug}/logo.svg", class: 'product-logo' %>
           <h2><%= @product.title %></h2>
           <p class="description"><%= t("#{@product.slug}.product.download_now_sub_sub_header") %></p>
           <p class="for-what-os">

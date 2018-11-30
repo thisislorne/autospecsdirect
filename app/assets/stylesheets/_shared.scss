@@ -167,7 +167,6 @@ h2 {
 
       .dropdown-item {
         font-size: 14px;
-        width: 250px;
         padding-left: 30px;
         padding-right: 30px;
         padding-bottom: 20px;
@@ -496,13 +495,23 @@ footer {
 
   img{
     width: 100%;
-     background: gray;
      display: block;
      margin-bottom: 20px;
   }
 
-  p{
+  .Solution__image{
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .Solution__sub-header{
+    overflow-y: hidden;
+  }
+
+  .Solution__sub-header{
     font-weight: 300;
+    height: 48px;
   }
 
   a{
@@ -512,7 +521,13 @@ footer {
   }
 
   a:hover{
-    background: white;
     font-weight: bold;
   }
+}
+
+.solutions{
+  text-align: center;
+  padding-bottom: 100px;
+  padding-left: 15px;
+  padding-right: 15px;
 }

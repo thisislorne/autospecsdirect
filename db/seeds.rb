@@ -12,8 +12,8 @@ Feature.delete_all
 
 description = 'Awoolo PDF gives you the power to open, edit and convert PDF files in just a couple of clicks.'
 
-Product.create(title: 'PDF Viewer',
-  slug: 'pdf_viewer',
+Product.create(title: 'Awoolo PDF',
+  slug: 'awoolo_pdf',
   description: description,
   version_number: '1.0.1',
   app_name: 'Awoolo PDF',
@@ -24,19 +24,21 @@ Product.create(title: 'PDF Viewer',
 
 description = 'Awoolo Media is a convenient, no frills way to enjoy your favourite TV shows, music or movies.'
 
-Product.create(title: 'Media Player', slug: 'media_player', description: description,
-        version_number: '1.4',
-        app_name: 'Awoolo Media',
-        mac: true,
-        windows: true,
-        file_name_mac: 'Awoolo Media.zip',
-        file_name_windows: 'AwooloMedia.exe')
+Product.create(title: 'Awoolo Media',
+  slug: 'awoolo_media',
+  description: description,
+  version_number: '1.4',
+  app_name: 'Awoolo Media',
+  mac: true,
+  windows: true,
+  file_name_mac: 'Awoolo Media.zip',
+  file_name_windows: 'AwooloMedia.exe')
 
 description = 'Awoolo Converter lets you convert any video file into a format which suits the device you’re watching on.'
 
 Product.create(
-  title: 'Video Converter',
-  slug: 'video_converter',
+  title: 'Awoolo Converter',
+  slug: 'awoolo_converter',
   description: description,
   version_number: '1.0',
   app_name: 'Awoolo Converter',
@@ -46,17 +48,49 @@ Product.create(
 
 description = 'Awoolo Radio gives you instant access to hundreds of different radio stations from around the world.'
 
-Product.create(title: 'Radio App', slug: 'radio_app', description: description, version_number: '1.0', app_name: 'Awoolo Radio', mac: true, windows: false, file_name_mac: 'Awoolo Radio.zip')
+Product.create(title: 'Awoolo Radio',
+  slug: 'awoolo_radio',
+  description: description,
+  version_number: '1.0',
+  app_name: 'Awoolo Radio',
+  mac: true,
+  windows: false,
+  file_name_mac: 'Awoolo Radio.zip')
 
 description = 'Easily extract your compressed files and folders with Awoolo Unzip.'
 
-Product.create(title: 'Zip File Opener', slug: 'zip_file_opener', description: description, version_number: '1.0', app_name: 'Awoolo Unzip', mac: true, windows: false, file_name_mac: 'Awoolo Unzip.zip')
+Product.create(title: 'Awoolo Unzip',
+  slug: 'awoolo_unzip',
+  description: description,
+  version_number: '1.0',
+  app_name: 'Awoolo Unzip',
+  mac: true,
+  windows: false,
+  file_name_mac: 'Awoolo Unzip.zip')
 
 description = 'Convert Your Video, Audio and Text Files... All In One Place.'
 
-Product.create(title: 'Ultimate Converter', slug: 'ultimate_converter', description: description, version_number: '1.0', app_name: 'Awoolo Ultimate', mac: false, windows: true, file_name_windows: 'AwooloUltimateSetup6.9.2.exe')
+Product.create(title: 'Awoolo Ultimate',
+  slug: 'awoolo_ultimate',
+  description: description,
+  version_number: '1.0',
+  app_name: 'Awoolo Ultimate',
+  mac: false,
+  windows: true,
+  file_name_windows: 'AwooloUltimateSetup6.9.2.exe')
 
-product = Product.find_by(slug: 'pdf_viewer')
+description = 'Easily Manage And Move Your Files Between Servers'
+
+Product.create(title: 'Awoolo File',
+  slug: 'awoolo_file',
+  description: description,
+  version_number: '1.0',
+  app_name: 'Awoolo File',
+  mac: false,
+  windows: true,
+  file_name_windows: 'AwooloFile.exe')
+
+product = Product.find_by(slug: 'awoolo_pdf')
 
 Feature.create(
   header: 'View And Annotate Your PDF Files',
@@ -76,7 +110,7 @@ Feature.create(
   product: product
 )
 
-product = Product.find_by(slug: 'media_player')
+product = Product.find_by(slug: 'awoolo_media')
 
 Feature.create(
   header: 'Watch Your Favourite TV Shows And Movies Without Interruption',
@@ -96,7 +130,7 @@ Feature.create(
   product: product
 )
 
-product = Product.find_by(slug: 'ftp_client')
+product = Product.find_by(slug: 'awoolo_file')
 
 Feature.create(
   header: 'Simple Navigation Anyone Can Use',
@@ -116,7 +150,7 @@ Feature.create(
   product: product
 )
 
-product = Product.find_by(slug: 'radio_app')
+product = Product.find_by(slug: 'awoolo_radio')
 
 Feature.create(
   header: 'Choose Your Ideal Radio Station by Genre',
@@ -136,7 +170,7 @@ Feature.create(
   product: product
 )
 
-product = Product.find_by(slug: 'zip_file_opener')
+product = Product.find_by(slug: 'awoolo_unzip')
 
 Feature.create(
   header: 'Compatible With A Range Of Compressed File Types',
@@ -156,7 +190,7 @@ Feature.create(
   product: product
 )
 
-product = Product.find_by(slug: 'video_converter')
+product = Product.find_by(slug: 'awoolo_converter')
 
 Feature.create(
   header: 'Works With A Range Of Video Formats',
@@ -176,7 +210,7 @@ Feature.create(
   product: product
 )
 
-product = Product.find_by(slug: 'ultimate_converter')
+product = Product.find_by(slug: 'awoolo_ultimate')
 
 Feature.create(
   header: 'Compatible With A Range Of Audio, Video And Text Files',

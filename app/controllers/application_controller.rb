@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :get_products, :get_os
   def index
-    @product = @products.find_by(slug: 'pdf_viewer')
-    solutions 3
+    @product = @products.find_by(slug: 'awoolo_pdf')
+    solutions
   end
 
   def about
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     @local_url = download_url(@os, @product.slug)
     @features = Feature.where(product: @product)
     @follow_up = true
-    solutions 4
+    solutions
 
     injection_params = {
   	  PRODUCT_TITLE: @product.title,
@@ -70,16 +70,16 @@ class ApplicationController < ActionController::Base
 
   def get_products
     @products = Product.all
-    @office_solutions = @products.where("slug = 'ultimate_converter' OR slug = 'pdf_viewer' OR slug = 'zip_file_opener'")
-    @media = @products.where("slug = 'media_player' OR slug = 'radio_app' OR slug = 'video_converter'")
+    @office_solutions = @products.where("slug = 'awoolo_ultimate' OR slug = 'awoolo_pdf' OR slug = 'awoolo_unzip' OR slug = 'awoolo_file'")
+    @media = @products.where("slug = 'awoolo_media' OR slug = 'awoolo_radio' OR slug = 'awoolo_converter'")
   end
 
   def get_os
     @os = OS.windows? ? 'windows' : 'mac'
   end
 
-  def solutions number
+  def solutions
     @solutions = @products.where("slug != '#{@product.slug}'")
-    @solutions = @solutions.order("RANDOM()").limit(number)
+    @solutions = @solutions.order("RANDOM()").limit(4)
   end
 end

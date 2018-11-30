@@ -1,0 +1,22 @@
+<section class="solutions">
+  <% if product_page == true %>
+  <h1 class="header"><%= t("product.what_else_header") %></h1>
+  <% else %>
+    <div class="background">
+  <% end %>
+    <div class="container">
+      <div class="row">
+        <% @solutions.each do |solution| %>
+          <div class="col-sm-6 col-lg-3 Solution">
+            <%= image_tag "#{solution.slug}/logo.svg", class: 'Solution__image' %>
+            <h2 class="Solution__header"><%= solution.title %></h2>
+            <p class="Solution__sub-header"><%= t("#{solution.slug}.product.sub_header") %></p>
+            <%= link_to 'LEARN MORE', product_path(@os, solution.slug), class: 'Solution__link' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% if product_page == false %>
+      </div>
+  <% end %>
+</section>
