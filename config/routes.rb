@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get 'about', to: 'application#about'
   get 'downloads', to: 'application#downloads'
   # get 'download/:os/:product', to: 'application#download_software', as: :download
-  get ':os/:product', to: 'application#product', as: :product
+  get ':product', to: 'application#product', as: :product
 end

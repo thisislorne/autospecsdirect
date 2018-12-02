@@ -11,7 +11,7 @@
             <%= image_tag "#{solution.slug}/logo.svg", class: 'Solution__image' %>
             <h2 class="Solution__header"><%= solution.title %></h2>
             <p class="Solution__sub-header"><%= t("#{solution.slug}.product.sub_header") %></p>
-            <%= link_to 'LEARN MORE', product_path(@os, solution.slug), class: 'Solution__link' %>
+            <%= link_to 'LEARN MORE', product_path(solution.slug), class: 'Solution__link' %>
           </div>
         <% end %>
       </div>

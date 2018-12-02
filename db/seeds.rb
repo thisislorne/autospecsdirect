@@ -12,26 +12,28 @@ Feature.delete_all
 
 description = 'Awoolo PDF gives you the power to open, edit and convert PDF files in just a couple of clicks.'
 
-Product.create(title: 'Awoolo PDF',
+Product.create(
+  title: 'Awoolo PDF',
   slug: 'awoolo_pdf',
   description: description,
   version_number: '1.0.1',
-  app_name: 'Awoolo PDF',
+  app_name: 'AwooloPDF',
   mac: true,
   windows: true,
-  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/Awoolo+PDF.zip',
+  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloPDF.zip',
   file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloPDF.exe')
 
 description = 'Awoolo Media is a convenient, no frills way to enjoy your favourite TV shows, music or movies.'
 
-Product.create(title: 'Awoolo Media',
+Product.create(
+  title: 'Awoolo Media',
   slug: 'awoolo_media',
   description: description,
   version_number: '1.4',
-  app_name: 'Awoolo Media',
+  app_name: 'AwooloMedia',
   mac: true,
   windows: true,
-  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/Awoolo+Media.zip',
+  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloMedia.zip',
   file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloMedia.exe')
 
 description = 'Awoolo Converter lets you convert any video file into a format which suits the device you’re watching on.'
@@ -41,51 +43,55 @@ Product.create(
   slug: 'awoolo_converter',
   description: description,
   version_number: '1.0',
-  app_name: 'Awoolo Converter',
+  app_name: 'AwooloConverter',
   mac: true,
   windows: false,
-  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/Awoolo+Converter.zip')
+  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloConverter.zip')
 
 description = 'Awoolo Radio gives you instant access to hundreds of different radio stations from around the world.'
 
-Product.create(title: 'Awoolo Radio',
+Product.create(
+  title: 'Awoolo Radio',
   slug: 'awoolo_radio',
   description: description,
   version_number: '1.0',
-  app_name: 'Awoolo Radio',
+  app_name: 'AwooloRadio',
   mac: true,
   windows: false,
-  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/Awoolo+Radio.zip')
+  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloRadio.zip')
 
 description = 'Easily extract your compressed files and folders with Awoolo Unzip.'
 
-Product.create(title: 'Awoolo Unzip',
+Product.create(
+  title: 'Awoolo Unzip',
   slug: 'awoolo_unzip',
   description: description,
   version_number: '1.0',
-  app_name: 'Awoolo Unzip',
+  app_name: 'AwooloUnzip',
   mac: true,
   windows: false,
-  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/Awoolo+Unzip.zip')
+  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloUnzip.zip')
 
 description = 'Convert Your Video, Audio and Text Files... All In One Place.'
 
-Product.create(title: 'Awoolo Ultimate',
+Product.create(
+  title: 'Awoolo Ultimate',
   slug: 'awoolo_ultimate',
   description: description,
   version_number: '1.0',
-  app_name: 'Awoolo Ultimate',
+  app_name: 'AwooloUltimate',
   mac: false,
   windows: true,
   file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloUltimateSetup6.9.2.exe')
 
 description = 'Easily Manage And Move Your Files Between Servers'
 
-Product.create(title: 'Awoolo File',
+Product.create(
+  title: 'Awoolo File',
   slug: 'awoolo_file',
   description: description,
   version_number: '1.0',
-  app_name: 'Awoolo File',
+  app_name: 'AwooloFile',
   mac: false,
   windows: true,
   file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloFile.exe')
@@ -229,3 +235,5 @@ Feature.create(
   content: "<p>First click: select or drag in the file you wish to upload and convert.</p><p>Second click: select the preferred watching device (if applicable) e.g. Apple TV.</p><p>Third click: hit convert!</p>",
   product: product
 )
+
+puts 'Database Seeded.'

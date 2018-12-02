@@ -6,7 +6,7 @@
           <ul>
             <li class="category">OFFICE SOLUTIONS</li>
             <% @office_solutions.each do |product| %>
-              <li><%= link_to product.title, product_path(@os, product.slug) %></li>
+              <li><%= link_to product.title, product_path(product.slug) %></li>
             <% end %>
           </ul>
         </div>
@@ -14,7 +14,7 @@
           <ul>
             <li class="category">MEDIA</li>
             <% @media.each do |product| %>
-              <li><%= link_to product.title, product_path(@os, product.slug) %></li>
+              <li><%= link_to product.title, product_path(product.slug) %></li>
             <% end %>
           </ul>
         </div>

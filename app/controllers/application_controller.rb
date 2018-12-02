@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def product
-    @os = params[:os] || 'mac'
     @product = @products.find_by(slug: params[:product])
     @features = Feature.where(product: @product)
     @follow_up = true
@@ -34,18 +33,6 @@ class ApplicationController < ActionController::Base
       @download_link_windows = @local_url_windows unless params[:gclid].present?
     end
   end
-
-  # def download_software
-  #   @product = @products.find_by(slug: params[:product])
-  #   file_name = params[:os] == 'mac' ? @product.file_name_mac : @product.file_name_windows
-  #   unless @product.nil?
-  #     send_file(
-  #     "#{Rails.root}/public/#{file_name}",
-  #     filename: "#{file_name}",
-  #     type: "application/zip"
-  #     )
-  #   end
-  # end
 
   private
 
@@ -70,6 +57,7 @@ class ApplicationController < ActionController::Base
       downloadAs: download_as,
       IC_USER_ID: ic_user_id
     }
+    FullyHosted.get_link(options)
   end
 
   def get_products
