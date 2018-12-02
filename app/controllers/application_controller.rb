@@ -25,13 +25,13 @@ class ApplicationController < ActionController::Base
       @local_url_mac = @product.file_name_mac
       @dlm_mac = dlm_url(@product.title, @local_url_mac, @product.app_name, @product.description, @product.version_number, @product.app_name, 10771)
       @download_link_mac = @dlm_mac
-      @download_link_mac = @local_url_mac unless params[:glcid].present?
+      @download_link_mac = @local_url_mac unless params[:gclid].present?
     end
     if @product.windows
       @local_url_windows = @product.file_name_windows
       @dlm_windows = dlm_url(@product.title, @local_url_windows, @product.app_name, @product.description, @product.version_number, @product.app_name, 10772)
       @download_link_windows = @dlm_windows
-      @download_link_windows = @local_url_windows unless params[:glcid].present?
+      @download_link_windows = @local_url_windows unless params[:gclid].present?
     end
   end
 
