@@ -1,24 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Basic Functionality
 
-Things you may want to cover:
+* The user comes to the home page, sees a variety of software and can navigate through different product pages which inform the user about the product and give them the call-to-action to download that software for either Mac and/or Windows.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
