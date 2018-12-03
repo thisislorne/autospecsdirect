@@ -11,3 +11,4 @@
 #### Software Download
 
 * On CTA button click, the appropriate version of the software is downloaded for the user. (It is said directly on the button which OS version of the software will be downloaded.) The alternative version is downloadable from the link below the button.
+* The OS variable can be controlled by setting params[:os] to be either 'mac' or 'windows'
