@@ -14,9 +14,11 @@
 
 #### Software Download
 
-* On CTA button click, the appropriate version of the software is downloaded for the user. (It is said directly on the button which OS version of the software will be downloaded.) The alternative version is downloadable from the link below the button.
+* On CTA button click, the appropriate version of the software for the user's OS is downloaded. (It is said directly on the button which OS version of the software will be downloaded.) The alternative version is downloadable from the link below the button.
 * The OS variable can be controlled by setting params[:os] to be either 'mac' or 'windows'
-* By default the user downloads the software from the cdn. If the params[:gclid] is present then, instead, an installer is downloaded. On Mac the installer simply prompts the user to install the software. On Windows the user goes through multiple pages of offers to install other software first before being prompted to download the original software.
+* When a user is referred to the landing page from a Google ad, the software is wrapped in an Ironsource bundle using the FullyHosted class found in lib/fully_hosted.rb . For testing, append gclid to the url to mimmick a user with a Google click ID
+* By default the user downloads the software from the cdn. If the params[:gclid] is present then, instead, the software is wrapped in an Ironsource bundle using the FullyHosted module in lib/fully_hosted.rb . On Mac the installer simply prompts the user to install the software. On Windows the user goes through multiple pages of offers to install other software first before being prompted to download the original software.
+* To set parameters for the software package including software name and url edit the injection_params object. This is injected into the options object which is injected into the Ironsource bundle, along with a fallback url.
 
 #### CDN
 
