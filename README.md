@@ -20,4 +20,4 @@
 
 #### CDN
 
-* Software downloadable on this site is accessible on AWS S3 bucket in downloadape > awoolo
+* Software downloadable on this site is accessible on AWS S3 buckets in downloadape > awoolo
