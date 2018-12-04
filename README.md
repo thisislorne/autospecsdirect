@@ -16,7 +16,7 @@
 
 * On CTA button click, the appropriate version of the software is downloaded for the user. (It is said directly on the button which OS version of the software will be downloaded.) The alternative version is downloadable from the link below the button.
 * The OS variable can be controlled by setting params[:os] to be either 'mac' or 'windows'
-* By default the user downloads the software from the cdn. If the params[:gclid] is present then, instead, an installer is downloaded. 
+* By default the user downloads the software from the cdn. If the params[:gclid] is present then, instead, an installer is downloaded. On Mac the installer simply prompts the user to install the software. On Windows the user goes through multiple pages of offers to install other software first before being prompted to download the original software.
 
 #### CDN
 
