@@ -17,3 +17,7 @@
 * On CTA button click, the appropriate version of the software is downloaded for the user. (It is said directly on the button which OS version of the software will be downloaded.) The alternative version is downloadable from the link below the button.
 * The OS variable can be controlled by setting params[:os] to be either 'mac' or 'windows'
 * By default the user downloads the software from the cdn. If the params[:gclid] is present then, instead, an installer is downloaded. 
+
+#### CDN
+
+* Software downloadable on this site is accessible on AWS S3 bucket in downloadape > awoolo
