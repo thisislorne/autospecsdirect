@@ -4,6 +4,23 @@ $green: #3cb758;
 $smaller-screen-padding: 10px;
 $box-spacing: 50px;
 
+.compatibility{
+  margin-top: 5px;
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  span,
+  i{
+    vertical-align: middle;
+  }
+
+  i{
+    font-size: 20px;
+  }
+}
+
 ul{
   list-style-type: none;
 }

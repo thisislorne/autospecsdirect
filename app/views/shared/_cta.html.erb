@@ -10,7 +10,19 @@
     <% alternative_link = @download_link_mac %>
   <% end %>
   <%= link_to "DOWNLOAD FOR #{@os.upcase}", download_link, class: 'download-link', target: '_blank' %>
-  <p class="AlsoAvailable">Also available on <%= link_to alternative, alternative_link, class: 'AlsoAvailable__link' %></p>
+  <% if action_name == 'lp' %>
+    <div class="compatibility">
+      <span>Compatible with:</span>
+      <%= link_to download_link, target: '_blank' do %>
+        <i class="fa fa-apple"></i>
+      <% end %>
+      <%= link_to alternative_link, target: '_blank' do %>
+        <i class="fa fa-windows"></i>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="AlsoAvailable">Also available on <%= link_to alternative, alternative_link, class: 'AlsoAvailable__link' %></p>
+  <% end %>
 <% elsif @product.mac %>
   <%= link_to 'DOWNLOAD FOR MAC', @download_link_mac, class: 'download-link', target: '_blank' %>
 <% else %>
