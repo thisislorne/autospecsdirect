@@ -1,6 +1,6 @@
 GstatsClient.configure do |config|
-  config.enabled = true
-  config.project_id = 'awoolo.com'
-  config.api_key = '6000f95b-e0c2-485c-895d-7645e6ba4482'
-  config.new_relic_enabled = true
+  config.enabled = ActiveRecord::Type::Boolean.new.cast(Rails.application.credentials.production[:gstats][:enabled]) || false
+  config.project_id = Rails.application.credentials.production[:gstats][:site]
+  config.api_key = Rails.application.credentials.production[:gstats][:api_key]
+  config.new_relic_enabled = Rails.application.credentials.production[:newrelic][:license_key].present?
 end
