@@ -1,0 +1,65 @@
+@import "shared";
+
+.cta {
+  margin: 50px 0;
+
+  ol {
+    list-style-type: none;
+    font-size: 20px;
+    margin-bottom: 0;
+    top: 50%;
+    position: relative;
+    transform: translateY(-50%);
+
+    .important {
+      color: #3cb758;
+      font-size: 30px;
+    }
+  }
+
+  .Box{
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+.ButtonDisclaimer{
+  text-align: center;
+
+  &__container{
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__button {
+    color: #fff;
+    border-radius: 7px;
+    border: 1px solid #266835;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    background: linear-gradient(#3cb758 3%, #11912f);
+    font-size: 40px;
+    width: 100%;
+    font-weight: 400;
+    padding-top: 15px;
+    margin-right: 10px;
+    display: inline-block;
+
+    &:hover {
+      background: linear-gradient(#19672b 3%, #0a4217);
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  &__disclaimer{
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+}
+
+.Box{
+  border: 3px solid #dde0e6;
+}
