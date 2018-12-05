@@ -1,25 +1,94 @@
 @import "shared";
+$border-colour: #dde0e6;
+$green: #3cb758;
+$smaller-screen-padding: 10px;
+
+.lp{
+  padding: 50px 0;
+}
+
+.ticks{
+  display: flex;
+  justify-content: space-around;
+}
+
+.Tick{
+  text-align: center;
+
+  &__symbol{
+    color: $green;
+  }
+}
+
+hr{
+  border-color: $border-colour;
+}
+
+.product-description{
+  padding: 20px 25px 15px;
+}
+
+.product-details{
+  .title{
+    color: #0092dd;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 0 10px 25px;
+    border-bottom: 3px solid $border-colour;
+
+    img{
+      width: 100%;
+      max-width: 60px;
+    }
+  }
+
+  ul{
+    padding-top: 20px;
+
+    li{
+      color: #5f6d80;
+    }
+  }
+}
 
 .cta {
-  margin: 50px 0;
+  margin-bottom: 50px;
 
   ol {
     list-style-type: none;
     font-size: 20px;
     margin-bottom: 0;
-    top: 50%;
     position: relative;
     transform: translateY(-50%);
+    @media screen and (min-width: 992px){
+      top: 50%;
+    }
+    @media screen and (max-width: 991px){
+      padding-left: $smaller-screen-padding;
+      display: inline-block;
+      padding-left: 0;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    li{
+      @media screen and (max-width: 575px){
+        font-size: 4.5vw;
+      }
+    }
 
     .important {
-      color: #3cb758;
+      color: $green;
       font-size: 30px;
+      @media screen and (max-width: 575px){
+        font-size: 5.5vw;
+      }
     }
   }
 
   .Box{
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 50px 15px;
   }
 }
 
@@ -27,25 +96,30 @@
   text-align: center;
 
   &__container{
-    max-width: 400px;
-    margin-left: auto;
+    max-width: 450px;
     margin-right: auto;
+
+    @media screen and (max-width: 991px){
+      margin-left: auto;
+      margin-top: 25px;
+    }
   }
 
-  &__button {
+  .download-link {
     color: #fff;
     border-radius: 7px;
     border: 1px solid #266835;
     text-align: center;
     cursor: pointer;
-    padding: 10px;
-    background: linear-gradient(#3cb758 3%, #11912f);
-    font-size: 40px;
+    padding: 25px 10px;
+    background: linear-gradient($green 3%, #11912f);
+    font-size: 35px;
     width: 100%;
     font-weight: 400;
-    padding-top: 15px;
-    margin-right: 10px;
     display: inline-block;
+    @media screen and (max-width: 575px){
+      font-size: 7vw;
+    }
 
     &:hover {
       background: linear-gradient(#19672b 3%, #0a4217);
@@ -61,5 +135,9 @@
 }
 
 .Box{
-  border: 3px solid #dde0e6;
+  border: 3px solid $border-colour;
+
+  &--thin{
+    border-width: 1px;
+  }
 }

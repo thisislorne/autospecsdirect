@@ -1,54 +1,65 @@
-<section class="cta">
-  <div class="container">
-    <div class="Box">
-      <div class="row">
-        <div class="col-sm-6">
-          <ol>
-            <li><strong>Step 1:</strong> Start</li>
-            <li class="important"><strong>Step 2:</strong> Click Continue</li>
-            <li><strong>Step 3:</strong> Enjoy <%=  @product.title %></li>
-          </ol>
-        </div>
-        <div class="col-sm-6 ButtonDisclaimer">
-          <div class="ButtonDisclaimer__container">
-            <%= link_to 'Download For Mac', '', class: 'ButtonDisclaimer__button' %>
-            <p class="ButtonDisclaimer__also-available">Also available on <%= link_to 'Windows', '' %></p>
-            <p class="ButtonDisclaimer__disclaimer">
-              By clicking the button above and installing Awoolo PDF, I accept and agree to abide by the <%= link_to 'terms of service', 'http://privacy.awoolo.com/terms', target: '_blank' %> and <%= link_to 'privacy policy', 'http://privacy.awoolo.com/privacy', target: '_blank' %>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-5">
+<div class="lp">
+  <section class="cta">
+    <div class="container">
       <div class="Box">
-        <section class="product-details">
-          <div class="title">
-            <%= @product.title %>
+        <div class="row">
+          <div class="col-lg-6">
+            <ol>
+              <li><strong>Step 1:</strong> Start</li>
+              <li class="important"><strong>Step 2:</strong> Click Continue</li>
+              <li><strong>Step 3:</strong> Enjoy <%=  @product.title %></li>
+            </ol>
           </div>
-          <ul>
-            <li><strong>Info:</strong> info</li>
-          </ul>
-        </section>
-      </div>
-    </div>
-    <div class="col-sm-7">
-      <section class="product-description">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit natus quasi tenetur dolor aliquam enim, dicta, amet officiis sit. Fugiat aspernatur corporis numquam, quis reprehenderit praesentium laudantium voluptatem rerum illum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor iure voluptates ratione quisquam, voluptatem quaerat cumque voluptatum dolores repellendus, autem delectus similique velit maxime sunt accusamus porro assumenda debitis praesentium.</p>
-        <hr>
-        <div class="ticks">
-          <div class="Tick">
-            <span class="glyphicon glyphicon-ok"></span>
-            <i class="fal fa-circle Tick__tick_symbol"></i>
-            <p class="Tick__note">Versatile</p>
+          <div class="col-lg-6 ButtonDisclaimer">
+            <div class="ButtonDisclaimer__container">
+              <%= render 'shared/cta' %>
+              <p class="ButtonDisclaimer__disclaimer">
+                By clicking the button above and installing Awoolo PDF, I accept and agree to abide by the <%= link_to 'terms of service', 'http://privacy.awoolo.com/terms', target: '_blank' %> and <%= link_to 'privacy policy', 'http://privacy.awoolo.com/privacy', target: '_blank' %>.
+              </p>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="Box">
+          <section class="product-details">
+            <div class="title">
+              <%= image_tag "#{@product.slug}/logo.svg" %>
+              <%= @product.title %>
+            </div>
+            <ul>
+              <li><strong>Info:</strong> info</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="Box Box--thin">
+          <section class="product-description">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit natus quasi tenetur dolor aliquam enim, dicta, amet officiis sit. Fugiat aspernatur corporis numquam, quis reprehenderit praesentium laudantium voluptatem rerum illum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor iure voluptates ratione quisquam, voluptatem quaerat cumque voluptatum dolores repellendus, autem delectus similique velit maxime sunt accusamus porro assumenda debitis praesentium.</p>
+            <hr>
+            <div class="ticks">
+              <div class="Tick">
+                <i class="fa fa-check Tick__symbol"></i>
+                <p class="Tick__note">Versatile</p>
+              </div>
+              <div class="Tick">
+                <i class="fa fa-check Tick__symbol"></i>
+                <p class="Tick__note">Versatile</p>
+              </div>
+              <div class="Tick">
+                <i class="fa fa-check Tick__symbol"></i>
+                <p class="Tick__note">Versatile</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
   </div>
 </div>
