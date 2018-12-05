@@ -16,10 +16,25 @@ class ApplicationController < ActionController::Base
   end
 
   def product
-    @product = @products.find_by(slug: params[:product])
-    @features = Feature.where(product: @product)
+    get_product_and_features
     @follow_up = true
     solutions
+    get_download_files
+  end
+
+  def lp
+    get_product_and_features
+    get_download_files
+  end
+
+  private
+
+  def get_product_and_features
+    @product = @products.find_by(slug: params[:product])
+    @features = Feature.where(product: @product)
+  end
+
+  def get_download_files
     if @product.mac
       @local_url_mac = @product.file_name_mac
       @dlm_mac = dlm_url(@product.title, @local_url_mac, @product.app_name, @product.description, @product.version_number, @product.app_name, 10771)
@@ -33,8 +48,6 @@ class ApplicationController < ActionController::Base
       @download_link_windows = @local_url_windows unless params[:gclid].present?
     end
   end
-
-  private
 
   def dlm_url(title, url, app_name, description, version_number, download_as, ic_user_id)
     injection_params = {

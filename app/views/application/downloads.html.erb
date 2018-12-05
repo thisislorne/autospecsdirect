@@ -23,13 +23,7 @@
                     <%= t("#{product.slug}.product.main_header") %>
                   </p>
                   <p class="Download__os">
-                    <% if product.mac? && product.windows? %>
-                      Mac &amp; Windows
-                    <% elsif product.mac? %>
-                      Mac
-                    <% else %>
-                      Windows
-                    <% end %>
+                    <%= render 'shared/display_os', product: product %>
                   </p>
                 </div>
               </div>

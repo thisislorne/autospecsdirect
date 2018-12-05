@@ -2,21 +2,30 @@
 $border-colour: #dde0e6;
 $green: #3cb758;
 $smaller-screen-padding: 10px;
+$box-spacing: 50px;
+
+ul{
+  list-style-type: none;
+}
 
 .lp{
   padding: 50px 0;
 }
 
 .ticks{
-  display: flex;
-  justify-content: space-around;
-}
+  text-align: left;
+  padding-left: 0;
 
-.Tick{
-  text-align: center;
+  .Tick{
+    font-weight: bold;
 
-  &__symbol{
-    color: $green;
+    &__symbol{
+      color: $green;
+    }
+
+    &:not(:last-child){
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -26,6 +35,8 @@ hr{
 
 .product-description{
   padding: 20px 25px 15px;
+  background: #f8f8f8;
+  color: #5f6d80;
 }
 
 .product-details{
@@ -40,6 +51,10 @@ hr{
       width: 100%;
       max-width: 60px;
     }
+
+    span{
+      vertical-align: middle;
+    }
   }
 
   ul{
@@ -48,12 +63,14 @@ hr{
     li{
       color: #5f6d80;
     }
+
+    li:not(:last-child){
+      margin-bottom: 10px;
+    }
   }
 }
 
 .cta {
-  margin-bottom: 50px;
-
   ol {
     list-style-type: none;
     font-size: 20px;
@@ -113,12 +130,12 @@ hr{
     cursor: pointer;
     padding: 25px 10px;
     background: linear-gradient($green 3%, #11912f);
-    font-size: 35px;
+    font-size: 31px;
     width: 100%;
     font-weight: 400;
     display: inline-block;
     @media screen and (max-width: 575px){
-      font-size: 7vw;
+      font-size: 5vw;
     }
 
     &:hover {
@@ -131,6 +148,7 @@ hr{
   &__disclaimer{
     font-size: 12px;
     margin-bottom: 0;
+    margin-top: 5px;
   }
 }
 
@@ -139,5 +157,9 @@ hr{
 
   &--thin{
     border-width: 1px;
+  }
+
+  &--bottom-spacing{
+    margin-bottom: $box-spacing;
   }
 }

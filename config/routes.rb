@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   root to: 'application#index'
   get 'about', to: 'application#about'
   get 'downloads', to: 'application#downloads'
-  get 'lp/:product', to: 'lp#show', as: :lp
+  get 'lp/:product', to: 'application#lp', as: :lp
   get ':product', to: 'application#product', as: :product
 end
