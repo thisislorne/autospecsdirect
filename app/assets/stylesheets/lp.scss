@@ -58,7 +58,6 @@ hr{
 
 .product-details{
   .title{
-    color: #0092dd;
     font-size: 20px;
     font-weight: 600;
     padding: 10px 0 10px 25px;
@@ -115,6 +114,9 @@ hr{
     .important {
       color: $green;
       font-size: 30px;
+      @media screen and (min-width: 992px) and (max-width: 1199px){
+        font-size: 26px;
+      }
       @media screen and (max-width: 575px){
         font-size: 5.5vw;
       }
@@ -122,7 +124,7 @@ hr{
   }
 
   .Box{
-    padding: 50px 15px;
+    padding: 90px 15px;
   }
 }
 
@@ -139,26 +141,30 @@ hr{
     }
   }
 
+  .click-here{
+    position: absolute;
+    width: 180px;
+    top: -79%;
+    left: -29%;
+
+    @media screen and (max-width: 991px){
+      top: -35%;
+      left: -8%;
+    }
+    @media screen and (max-width: 767px){
+      display: none;
+    }
+  }
+
   .download-link {
-    color: #fff;
-    border-radius: 7px;
-    border: 1px solid #266835;
-    text-align: center;
-    cursor: pointer;
-    padding: 25px 10px;
-    background: linear-gradient($green 3%, #11912f);
     font-size: 31px;
-    width: 100%;
-    font-weight: 400;
-    display: inline-block;
+    background: $green;
+    height: auto !important;
+    width: 100% !important;
+    border-radius: 40px;
+    @include button();
     @media screen and (max-width: 575px){
       font-size: 5vw;
-    }
-
-    &:hover {
-      background: linear-gradient(#19672b 3%, #0a4217);
-      color: white;
-      text-decoration: none;
     }
   }
 
