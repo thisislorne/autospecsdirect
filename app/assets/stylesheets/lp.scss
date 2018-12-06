@@ -144,12 +144,12 @@ hr{
   .click-here{
     position: absolute;
     width: 180px;
-    top: -79%;
-    left: -29%;
+    top: -65%;
+    left: -19%;
 
     @media screen and (max-width: 991px){
-      top: -35%;
-      left: -8%;
+      top: -40%;
+      left: -2%;
     }
     @media screen and (max-width: 767px){
       display: none;
