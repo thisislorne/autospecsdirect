@@ -1,7 +1,7 @@
 require 'fully_hosted'
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :get_products, :get_os
+  before_action :get_products, :get_os, :set_source
   def index
     @product = @products.find_by(slug: 'awoolo_pdf')
     get_download_files
@@ -44,15 +44,15 @@ class ApplicationController < ActionController::Base
       @local_url_mac = @product.file_name_mac
       @dlm_mac = dlm_url(@product.title, @local_url_mac, @product.app_name, @product.description, @product.version_number, @product.app_name, 10771)
       @download_link_mac = @dlm_mac
-      @download_link_mac = @local_url_mac unless params[:gclid].present?
+      @download_link_mac = @local_url_mac unless session[:dlm].present?
     end
     if @product.windows
       @local_url_windows = @product.file_name_windows
       @dlm_windows = dlm_url(@product.title, @local_url_windows, @product.app_name, @product.description, @product.version_number, @product.app_name, 10772)
       @download_link_windows = @dlm_windows
-      @download_link_windows = @local_url_windows unless params[:gclid].present?
+      @download_link_windows = @local_url_windows unless session[:dlm].present?
     end
-    @download_type = params[:gclid].present? ? 'offer' : 'software'
+    @download_type = session[:dlm].present? ? 'offer' : 'software'
   end
 
   def dlm_url(title, url, app_name, description, version_number, download_as, ic_user_id)
@@ -96,4 +96,11 @@ class ApplicationController < ActionController::Base
     @solutions = @products.where("slug != '#{@product.slug}'")
     @solutions = @solutions.order("RANDOM()").limit(4)
   end
+
+  def set_source
+    if params[:gclid].present?
+      session[:dlm] = true
+    end
+  end
+
 end
