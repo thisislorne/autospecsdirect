@@ -19,6 +19,7 @@ class ProductDashboard < Administrate::BaseDashboard
     windows: Field::Boolean,
     file_name_mac: Field::String,
     file_name_windows: Field::String,
+    file_size: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -46,6 +47,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :windows,
     :file_name_mac,
     :file_name_windows,
+    :file_size
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -61,6 +63,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :windows,
     :file_name_mac,
     :file_name_windows,
+    :file_size
   ].freeze
 
   # Overwrite this method to customize how products are displayed

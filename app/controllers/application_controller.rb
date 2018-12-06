@@ -42,29 +42,32 @@ class ApplicationController < ActionController::Base
   def get_download_files
     if @product.mac
       @local_url_mac = @product.file_name_mac
-      @dlm_mac = dlm_url(@product.title, @local_url_mac, @product.app_name, @product.description, @product.version_number, @product.app_name, 10771)
+      @dlm_mac = dlm_url(@product.title, @local_url_mac, @product.app_name, get_file_name(@local_url_mac), @product.file_size, @product.description, @product.version_number, @product.app_name, 10771)
       @download_link_mac = @dlm_mac
       @download_link_mac = @local_url_mac unless session[:dlm].present?
     end
     if @product.windows
       @local_url_windows = @product.file_name_windows
-      @dlm_windows = dlm_url(@product.title, @local_url_windows, @product.app_name, @product.description, @product.version_number, @product.app_name, 10772)
+      @dlm_windows = dlm_url(@product.title, @local_url_windows, @product.app_name, get_file_name(@local_url_mac), @product.file_size, @product.description, @product.version_number, @product.app_name, 10772)
       @download_link_windows = @dlm_windows
       @download_link_windows = @local_url_windows unless session[:dlm].present?
     end
     @download_type = session[:dlm].present? ? 'offer' : 'software'
   end
 
-  def dlm_url(title, url, app_name, description, version_number, download_as, ic_user_id)
+  def dlm_url(title, url, app_name, file_name, file_size, description, version_number, download_as, ic_user_id)
     injection_params = {
   	  PRODUCT_TITLE: title,
       DOWNLOAD_URL: url,
       APP_NAME: app_name,
       ROOT_IF_INSTALLED: '',
       MOUNT_PRODUCT: '1',
+      PRODUCT_FILE_NAME: file_name,
+      PRODUCT_FILE_SIZE: file_size,
       PRODUCT_DESCRIPTION: description,
       PRODUCT_VERSION: version_number,
-      CHNL: @gstats.session_id
+      CHNL: @gstats.session_id,
+      PRODUCT_PUBLIC_DATE: '01/12/2018'
     }
 
     options = {
@@ -101,6 +104,13 @@ class ApplicationController < ActionController::Base
     if params[:gclid].present?
       session[:dlm] = true
     end
+  end
+
+  # returns the file name from the given url
+  def get_file_name(url)
+    url_object = URI.parse(url)
+    url_path = url_object.path
+    url_path.split("/").last
   end
 
 end

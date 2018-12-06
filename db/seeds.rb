@@ -21,7 +21,9 @@ Product.create(
   mac: true,
   windows: true,
   file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloPDF.zip',
-  file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloPDF.exe')
+  file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloPDF.exe',
+  file_size: '4.0 MB'
+)
 
 description = 'Awoolo Media is a convenient, no frills way to enjoy your favourite TV shows, music or movies.'
 
@@ -34,7 +36,8 @@ Product.create(
   mac: true,
   windows: true,
   file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloMedia.zip',
-  file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloMedia.exe')
+  file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloMedia.exe',
+  file_size: '5.7 MB')
 
 description = 'Awoolo Converter lets you convert any video file into a format which suits the device you’re watching on.'
 
@@ -46,7 +49,8 @@ Product.create(
   app_name: 'AwooloConverter',
   mac: true,
   windows: false,
-  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloConverter.zip')
+  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloConverter.zip',
+  file_size: '13.4 MB')
 
 description = 'Awoolo Radio gives you instant access to hundreds of different radio stations from around the world.'
 
@@ -58,7 +62,8 @@ Product.create(
   app_name: 'AwooloRadio',
   mac: true,
   windows: false,
-  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloRadio.zip')
+  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloRadio.zip',
+  file_size: '20.1 MB')
 
 description = 'Easily extract your compressed files and folders with Awoolo Unzip.'
 
@@ -70,7 +75,8 @@ Product.create(
   app_name: 'AwooloUnzip',
   mac: true,
   windows: false,
-  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloUnzip.zip')
+  file_name_mac: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloUnzip.zip',
+  file_size: '2.0 MB')
 
 description = 'Convert Your Video, Audio and Text Files... All In One Place.'
 
@@ -82,7 +88,8 @@ Product.create(
   app_name: 'AwooloUltimate',
   mac: false,
   windows: true,
-  file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloUltimateSetup6.9.2.exe')
+  file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloUltimateSetup6.9.2.exe',
+  file_size: '153.3 MB')
 
 description = 'Easily Manage And Move Your Files Between Servers'
 
@@ -94,7 +101,8 @@ Product.create(
   app_name: 'AwooloFile',
   mac: false,
   windows: true,
-  file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloFile.exe')
+  file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloFile.exe',
+  file_size: '6.7 MB')
 
 product = Product.find_by(slug: 'awoolo_pdf')
 
