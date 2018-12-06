@@ -144,14 +144,10 @@ hr{
   .click-here{
     position: absolute;
     width: 180px;
-    top: -65%;
-    left: -19%;
+    top: -98px;
+    left: -86px;
 
     @media screen and (max-width: 991px){
-      top: -40%;
-      left: -2%;
-    }
-    @media screen and (max-width: 767px){
       display: none;
     }
   }
@@ -159,10 +155,10 @@ hr{
   .download-link {
     font-size: 31px;
     background: $green;
-    height: auto !important;
-    width: 100% !important;
-    border-radius: 40px;
     @include button();
+    border-radius: 40px;
+    height: auto;
+    width: 100%;
     @media screen and (max-width: 575px){
       font-size: 5vw;
     }
