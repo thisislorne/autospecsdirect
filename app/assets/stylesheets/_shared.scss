@@ -42,6 +42,7 @@ h2 {
   max-width: 100%;
   border-radius: 30px;
   letter-spacing: 1px;
+  cursor: pointer;
 
   &:hover {
     text-decoration: none;
@@ -82,11 +83,16 @@ h2 {
 
 .AlsoAvailable{
   font-size: 13px;
+  cursor: pointer;
 
   &__link{
     &,
     &:hover{
       color: white;
+    }
+
+    &:hover{
+      text-decoration: underline;
     }
   }
 }

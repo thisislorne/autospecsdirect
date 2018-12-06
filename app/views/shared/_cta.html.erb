@@ -9,22 +9,28 @@
     <% download_link = @download_link_windows %>
     <% alternative_link = @download_link_mac %>
   <% end %>
-  <%= link_to "DOWNLOAD FOR #{@os.upcase}", '#', class: 'download-link', onclick: "gtag_report_conversion('#{download_link}', '#{@download_type}')" %>
+  <span class="download-link" onclick="gtag_report_conversion('<%= download_link %>', '<%= @download_type %>')">
+    DOWNLOAD FOR <%= @os.upcase %>
+  </span>
   <% if action_name == 'lp' %>
     <div class="compatibility">
       <span>Compatible with:</span>
-      <%= link_to '#', onclick: "gtag_report_conversion('#{download_link}', '#{@download_type}')" do %>
+      <span class="os-symbol" onclick="gtag_report_conversion('<%= download_link %>', '<%= @download_type %>')">
         <i class="fa fa-apple"></i>
-      <% end %>
-      <%= link_to '#', onclick: "gtag_report_conversion('#{alternative_link}', '#{@download_type}')" do %>
+      </span>
+      <span class="os-symbol" onclick="gtag_report_conversion('<%= alternative_link %>', '<%= @download_type %>')">
         <i class="fa fa-windows"></i>
-      <% end %>
+      </span>
     </div>
   <% else %>
-    <p class="AlsoAvailable">Also available on <%= link_to alternative, '#', class: 'AlsoAvailable__link', onclick: "gtag_report_conversion('#{alternative_link}', '#{@download_type}')" %></p>
+    <p class="AlsoAvailable">Also available on <span class="AlsoAvailable__link" onclick="gtag_report_conversion('<%= alternative_link %>', '<%= @download_type %>')"><%= alternative %></span></p>
   <% end %>
 <% elsif @product.mac %>
-  <%= link_to 'DOWNLOAD FOR MAC', '#', class: 'download-link', onclick: "gtag_report_conversion('#{@download_link_mac}', '#{@download_type}')" %>
+  <span class="download-link" onclick="gtag_report_conversion('<%= @download_link_mac %>', '<%= @download_type %>')">
+    DOWNLOAD FOR MAC
+  </span>
 <% else %>
-  <%= link_to 'DOWNLOAD FOR WINDOWS', '#', class: 'download-link', onclick: "gtag_report_conversion('#{@download_link_windows}', '#{@download_type}')" %>
+  <span class="download-link" onclick="gtag_report_conversion('<%= @download_link_windows %>', '<%= @download_type %>')">
+    DOWNLOAD FOR WINDOWS
+  </span>
 <% end %>

@@ -15,9 +15,18 @@ $box-spacing: 50px;
     text-decoration: none;
   }
 
-  span,
-  i{
+  span{
     vertical-align: middle;
+  }
+
+  .os-symbol{
+    cursor: pointer;
+    color: #007bff;
+
+    &:hover{
+      color: #0056b3;
+      text-decoration: none;
+    }
   }
 
   i{
