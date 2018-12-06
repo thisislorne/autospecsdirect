@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :get_products, :get_os
   def index
     @product = @products.find_by(slug: 'awoolo_pdf')
+    get_download_files
     solutions
   end
 
@@ -51,6 +52,7 @@ class ApplicationController < ActionController::Base
       @download_link_windows = @dlm_windows
       @download_link_windows = @local_url_windows unless params[:gclid].present?
     end
+    @download_type = params[:gclid].present? ? 'offer' : 'software'
   end
 
   def dlm_url(title, url, app_name, description, version_number, download_as, ic_user_id)
@@ -61,7 +63,8 @@ class ApplicationController < ActionController::Base
       ROOT_IF_INSTALLED: '',
       MOUNT_PRODUCT: '1',
       PRODUCT_DESCRIPTION: description,
-      PRODUCT_VERSION: version_number
+      PRODUCT_VERSION: version_number,
+      CHNL: @gstats.session_id
     }
 
     options = {
