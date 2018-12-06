@@ -59,18 +59,7 @@
     .download-link{
       background: $button-green;
       box-shadow: $button-box-shadow;
-      @include button();
-    }
-  }
-}
-
-.AlsoAvailable{
-  font-size: 13px;
-
-  &__link{
-    &,
-    &:hover{
-      color: white;
+      @include button(#3bf971);
     }
   }
 }
@@ -86,7 +75,7 @@
 
   .download-link{
     background: $button-blue;
-    @include button();
+    @include button(#3ba8ff);
   }
 
   .AlsoAvailable__link{
@@ -253,7 +242,7 @@
       font-weight: bold;
       width: 100%;
       max-width: 220px;
-      @include button();
+      @include button(#3ba8ff);
     }
 
     .AlsoAvailable__link{

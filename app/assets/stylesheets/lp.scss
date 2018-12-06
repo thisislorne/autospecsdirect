@@ -160,16 +160,12 @@ hr{
   .download-link {
     font-size: 31px;
     background: $green;
-    @include button();
+    @include button(#4de670);
     border-radius: 40px;
     height: auto;
     width: 100%;
     @media screen and (max-width: 575px){
       font-size: 5vw;
-    }
-
-    &:hover{
-      background: #4de670;
     }
   }
 

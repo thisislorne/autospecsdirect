@@ -61,10 +61,10 @@
       margin-right: auto;
     }
 
-    a{
+    .download-link{
       background: $button-green;
       box-shadow: $button-box-shadow;
-      @include button();
+      @include button(#3bf971);
     }
   }
 }

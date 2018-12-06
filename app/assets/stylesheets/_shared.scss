@@ -32,7 +32,7 @@ h2 {
     outline: 0;
   }
 }
-@mixin button() {
+@mixin button($hover_colour) {
   font-family: $font-family-secondary;
   color: white;
   height: 50px;
@@ -45,6 +45,7 @@ h2 {
 
   &:hover {
     text-decoration: none;
+    background: $hover_colour;
   }
 }
 @mixin footer-links() {
@@ -76,6 +77,17 @@ h2 {
   &:-moz-placeholder {
     /* Firefox 18- */
     @content;
+  }
+}
+
+.AlsoAvailable{
+  font-size: 13px;
+
+  &__link{
+    &,
+    &:hover{
+      color: white;
+    }
   }
 }
 
@@ -422,7 +434,7 @@ footer {
   a {
     background: $button-green;
     box-shadow: $button-box-shadow;
-    @include button();
+    @include button(#3bf971);
   }
 
   hr {
@@ -521,7 +533,7 @@ footer {
   a{
     font-size: 14px;
     border: 1px solid white;
-    @include button();
+    @include button(#3bf971);
   }
 
   a:hover{
