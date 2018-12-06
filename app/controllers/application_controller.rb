@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
   def lp
     get_product_and_features
     get_download_files
+    @step_one_text = @ab.test('step_one_text',
+      start: 1,
+      download: 1
+    )
   end
 
   private

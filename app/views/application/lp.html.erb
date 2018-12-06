@@ -3,11 +3,16 @@
     <div class="container">
       <div class="Box Box--bottom-spacing">
         <div class="row">
-          <div class="col-lg-5 col-xl-6">
+          <div class="col-lg-5 col-xl-6 pl0">
             <ol>
-              <li><strong>Step 1:</strong> Start</li>
-              <li class="important"><strong>Step 2:</strong> Click DOWNLOAD</li>
-              <li><strong>Step 3:</strong> Enjoy <%=  @product.title %></li>
+              <% if @step_one_text == 'start' %>
+                <li><strong>Step 1:</strong> Start</li>
+                <li class="important"><strong>Step 2:</strong> Click DOWNLOAD</li>
+                <li><strong>Step 3:</strong> Enjoy <%=  @product.title %></li>
+              <% else %>
+                <li class="important"><strong>Step 1:</strong> Click DOWNLOAD</li>
+                <li><strong>Step 2:</strong> Enjoy <%=  @product.title %></li>
+              <% end %>
             </ol>
           </div>
           <div class="col-lg-7 col-xl-6 ButtonDisclaimer">
