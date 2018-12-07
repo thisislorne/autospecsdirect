@@ -83,16 +83,15 @@ h2 {
 
 .AlsoAvailable{
   font-size: 13px;
-  cursor: pointer;
+  margin-top: 5px;
 
   &__link{
+    text-decoration: underline;
+    cursor: pointer;
+
     &,
     &:hover{
       color: white;
-    }
-
-    &:hover{
-      text-decoration: underline;
     }
   }
 }
