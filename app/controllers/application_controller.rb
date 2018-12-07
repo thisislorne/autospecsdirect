@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
     end
     if @product.windows
       @local_url_windows = @product.file_name_windows
-      @dlm_windows = dlm_url(@product.title, @local_url_windows, @product.app_name, get_file_name(@local_url_mac), @product.file_size, @product.description, @product.version_number, @product.app_name, 10772)
+      @dlm_windows = dlm_url(@product.title, @local_url_windows, @product.app_name, get_file_name(@local_url_windows), @product.file_size, @product.description, @product.version_number, @product.app_name, 10772)
       @download_link_windows = @dlm_windows
       @download_link_windows = @local_url_windows unless session[:dlm].present?
     end
