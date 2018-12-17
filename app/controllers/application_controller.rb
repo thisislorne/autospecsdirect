@@ -1,7 +1,7 @@
 require 'fully_hosted'
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :get_products, :get_os, :set_source
+  before_action :get_products, :get_os, :set_source, except: :gs
   def index
     @product = @products.find_by(slug: 'awoolo_pdf')
     get_download_files
@@ -30,6 +30,11 @@ class ApplicationController < ActionController::Base
       start: 1,
       download: 1
     )
+  end
+
+  def gs
+    @gstats.event('download', { product: params[:product] })
+    return :ok
   end
 
   private
