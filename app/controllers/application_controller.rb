@@ -6,14 +6,17 @@ class ApplicationController < ActionController::Base
     @product = @products.find_by(slug: 'awoolo_pdf')
     get_download_files
     solutions
+    @page_title = "Awoolo"
   end
 
   def about
     @download = true
+    @page_title = "About"
   end
 
   def downloads
     @download = false
+    @page_title = "Downloads"
   end
 
   def product
@@ -21,6 +24,7 @@ class ApplicationController < ActionController::Base
     @follow_up = true
     solutions
     get_download_files
+    @page_title = "Download #{@product.title} Now - Awoolo"
   end
 
   def lp
@@ -30,6 +34,7 @@ class ApplicationController < ActionController::Base
       start: 1,
       download: 1
     )
+    @page_title = "Download #{@product.title} Now - Awoolo"
   end
 
   def gs
