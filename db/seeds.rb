@@ -274,8 +274,8 @@ Feature.create(
 )
 
 Feature.create(
-  header: 'Download for Windows',
-  content: '<p>Awoolo Speed Test is compatible with Windows 7 or later.</p><p>One of the best software for your Windows computer. It takes only seconds to Download and to Install.</p><p>Just Click on “Download for Windows” and follow the instructions. Once is finished, you can start testing your internet speed.</p>',
+  header: 'Available on Windows 7 or later',
+  content: '<p>One of the best software for your Windows computer.</p><p>It takes only seconds to Download and to Install.</p><p>Just Click on “Download for Windows” and follow the instructions. Once it is finished, you can start testing your internet speed.</p>',
   product: product
 )
 
