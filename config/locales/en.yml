@@ -45,7 +45,7 @@ en:
  awoolo_pdf:
   menu_description: 'Open, edit and convert PDF files'
   product:
-   main_header: 'Convert And Edit Your PDF Files.'
+   main_header: 'Convert And Edit Your PDF Files'
    sub_header: 'Awoolo PDF gives you the power to open, edit and convert PDF files in just a couple of clicks.'
    follow_up_title: "Instantly Convert And Edit Your PDF Files"
    follow_up_text: "<p>Stuck with a PDF you wish you could change to a Word doc? It's easy to convert your PDF files using our PDF Viewer.</p><p>Whether it's converting a PDF file to a Word doc (or vice versa), or adding annotations to a PDF document - this software covers all of your needs.</p>"
@@ -102,3 +102,13 @@ en:
    download_now_header: 'Start your free download now'
    download_now_sub_header: 'When all else fails, this life saving converter works on just about any file type you can think of.'
    download_now_sub_sub_header: 'Convert Your Video, Audio and Text Files'
+ awoolo_speed_test:
+  menu_description: 'Measure Your Internet Speed'
+  product:
+   main_header: 'Measure Your Internet Speed'
+   sub_header: 'Download Speed, Upload Speed, Ping, Jitter and Packet Loss'
+   follow_up_title: "Measure Your Internet Speed in just a few clicks"
+   follow_up_text: '<p>ISPs might offer you so many convincing plans but how can you be sure that you are getting the right figures?</p><p>Awoolo Speed Test is probably one of most widely used applications on various platforms that allows users to measure the speed of their Internet Connection either on mobile, PC and other devices.</p>'
+   download_now_header: 'Start your free download now'
+   download_now_sub_header: 'You can easily test the download and upload speed of your internet connection in just few clicks.'
+   download_now_sub_sub_header: 'Measure Your Internet Speed'

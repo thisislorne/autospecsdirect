@@ -104,6 +104,21 @@ Product.create(
   file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloFile.exe',
   file_size: '6.7 MB')
 
+description = 'Awoolo Speed Test allows users to measure the speed of their Internet Connection either on mobile, PC and other devices.'
+
+Product.create(
+  title: 'Awoolo Speed Test',
+  slug: 'awoolo_speed_test',
+  description: description,
+  version_number: '1.0',
+  app_name: 'AwooloSpeedTest',
+  mac: false,
+  windows: true,
+  file_name_mac: '',
+  file_name_windows: 'https://s3.amazonaws.com/downloadape/awoolo/AwooloSpeedTest.exe',
+  file_size: '50.8 MB'
+)
+
 product = Product.find_by(slug: 'awoolo_pdf')
 
 Feature.create(
@@ -241,6 +256,26 @@ Feature.create(
 Feature.create(
   header: 'Start Converting In Three Clicks',
   content: "<p>First click: select or drag in the file you wish to upload and convert.</p><p>Second click: select the preferred watching device (if applicable) e.g. Apple TV.</p><p>Third click: hit convert!</p>",
+  product: product
+)
+
+product = Product.find_by(slug: 'awoolo_speed_test')
+
+Feature.create(
+  header: 'User Friendly Desktop Application',
+  content: '<p>This amazing software comes with a very simple and easy-to-use interface.</p><p>You can easily test the download and upload speed of your internet connection in just few clicks.</p><p>Users can see the results in just few seconds.</p><p>This will allow them to compare the speed they are getting against the speed promised by their respective Internet Service Provider.</p>',
+  product: product
+)
+
+Feature.create(
+  header: 'Accurate Results',
+  content: '<p>You should always get the Internet connection you deserve. Users must be completely aware of the speed they are getting. With this software, you can get the most accurate result.</p><p>Metrics like Download Speed, Upload Speed, Ping, Jitter and Packet Loss are provided in the most accurate manner so you can confidently compare the details against the parameters stated from your selected Internet Speed plan.</p>',
+  product: product
+)
+
+Feature.create(
+  header: 'Compatible with Windows 7 or Later',
+  content: '<p>Just download the Software and follow the instructions.</p><p>Once it is finished, you can start testing your internet speed.</p>',
   product: product
 )
 
