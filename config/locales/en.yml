@@ -106,9 +106,9 @@ en:
   menu_description: 'Measure Your Internet Speed'
   product:
    main_header: 'Measure Your Internet Speed'
-   sub_header: 'Download Speed, Upload Speed, Ping, Jitter and Packet Loss'
+   sub_header: 'Test Your Download Speed, Upload Speed, Ping, Jitter, Packet Loss and more ...'
    follow_up_title: "Measure Your Internet Speed in just a few clicks"
-   follow_up_text: '<p>ISPs might offer you so many convincing plans but how can you be sure that you are getting the right figures?</p><p>Awoolo Speed Test is probably one of most widely used applications on various platforms that allows users to measure the speed of their Internet Connection either on mobile, PC and other devices.</p>'
+   follow_up_text: '<p>ISPs might offer you so many convincing plans but how can you be sure that you are getting the right figures?</p><p>Awoolo Speed Test is probably one of most widely used applications on various platforms that allows users to measure the speed of their Internet Connection on their PC.</p>'
    download_now_header: 'Start your free download now'
    download_now_sub_header: 'You can easily test the download and upload speed of your internet connection in just few clicks.'
    download_now_sub_sub_header: 'Measure Your Internet Speed'
