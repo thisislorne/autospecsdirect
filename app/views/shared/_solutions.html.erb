@@ -8,7 +8,7 @@
       <div class="row">
         <% @solutions.each do |solution| %>
           <div class="col-sm-6 col-lg-3 Solution">
-            <%= image_tag "#{solution.slug}/logo", class: 'Solution__image' %>
+            <%= image_tag "#{solution.slug}/logo.svg", class: 'Solution__image' %>
             <h2 class="Solution__header"><%= solution.title %></h2>
             <p class="Solution__sub-header"><%= t("#{solution.slug}.product.sub_header") %></p>
             <%= link_to 'LEARN MORE', product_path(solution.slug), class: 'Solution__link' %>
