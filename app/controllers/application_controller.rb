@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
   def downloads
     @download = false
     @page_title = "Downloads"
+    if @os == 'mac'
+      @products = @products.select { |product| product.mac? }
+    else
+      @products = @products.select { |product| product.windows? }
+    end
   end
 
   def product
