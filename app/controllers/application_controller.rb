@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
 
   def product
     get_product_and_features
+    if (@product.mac? && !@product.windows? && @os == 'windows') ||
+      (@product.windows? && !@product.mac? && @os == 'mac')
+      redirect_to "downloads"
+    end
     @follow_up = true
     solutions
     get_download_files
