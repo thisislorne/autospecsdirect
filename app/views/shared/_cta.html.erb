@@ -18,28 +18,34 @@
   </span>
 <% end %>
 
-<script>
-  var fired = false;
+<% if params[:b].present? && params[:b] != @browser.name.downcase %>
+  <script>
+    function convert(url, downloadType) {
 
-  function convert(url, downloadType) {
-    gtag_report_conversion(downloadType);
-    window.location = url;
-    if(!fired){
-      fired = true;
-      $.ajax({
-        url: '/gs_event',
-        data: {
-          product: "<%= @product.title %>"
-        }
+    }
+  </script>
+<% else %>
+  <script>
+    var fired = false;
+    function convert(url, downloadType) {
+      gtag_report_conversion(downloadType);
+      window.location = url;
+      if(!fired){
+        fired = true;
+        $.ajax({
+          url: '/gs_event',
+          data: {
+            product: "<%= @product.title %>"
+          }
+        });
+      }
+    }
+    // Event snippet for Download Offer and Software
+    function gtag_report_conversion(downloadType) {
+      var sendTo = downloadType == 'offer' ? 'AW-777281614/0hDhCMzw6pABEM7A0fIC' : 'AW-777281614/UXccCPz26pABEM7A0fIC';
+      gtag('event', 'conversion', {
+          'send_to': sendTo
       });
     }
-  }
-
-  // Event snippet for Download Offer and Software
-  function gtag_report_conversion(downloadType) {
-    var sendTo = downloadType == 'offer' ? 'AW-777281614/0hDhCMzw6pABEM7A0fIC' : 'AW-777281614/UXccCPz26pABEM7A0fIC';
-    gtag('event', 'conversion', {
-        'send_to': sendTo
-    });
-  }
-</script>
+  </script>
+<% end %>
