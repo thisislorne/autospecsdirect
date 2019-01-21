@@ -5,7 +5,7 @@
     <div class="background">
   <% end %>
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-center">
         <% @solutions.each do |solution| %>
           <div class="col-sm-6 col-lg-3 Solution">
             <%= image_tag "#{solution.slug}/logo.svg", class: 'Solution__image' %>
