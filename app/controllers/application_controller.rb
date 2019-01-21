@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     get_product_and_features
     if (@product.mac? && !@product.windows? && @os == 'windows') ||
       (@product.windows? && !@product.mac? && @os == 'mac')
-      redirect_to "downloads"
+      redirect_to downloads_path('sorry')
     end
     @follow_up = true
     solutions

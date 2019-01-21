@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   root to: 'application#index'
   get 'gs_event', to: 'application#gs'
   get 'about', to: 'application#about'
-  get 'downloads(/:sorry)', to: 'application#downloads'
+  get 'downloads(/:sorry)', to: 'application#downloads', as: :downloads
   get 'lp/:product', to: 'application#lp', as: :lp
   get ':product', to: 'application#product', as: :product
-
 end

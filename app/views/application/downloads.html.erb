@@ -5,8 +5,10 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <% if @sorry.present? %>
-          <h1 class="section-header"><%= @sorry %></h1>
+        <% if params[:sorry].present? %>
+          <h1 class="section-header">
+            Sorry that software is not available for <%= @os.titleize %>. Check out these other software instead.
+          </h1>
         <% end %>
         <div class="row">
           <% download_col = 'col-sm-6 col-md-6 col-lg-4' %>
