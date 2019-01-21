@@ -20,15 +20,16 @@
 
 <% if params[:b].present? %>
   <% if params[:b] == 'ie' %>
-    <% params[:b] = 'internet%20explorer' %>
+    <% params[:b] = 'internet explorer' %>
   <% elsif params[:b] == 'edge' %>
-    <% params[:b] = 'microsoft%20edge' %>
+    <% params[:b] = 'microsoft edge' %>
   <% end %>
 <% end %>
 
 <script>
   var fired = false;
   function convert(url, downloadType) {
+
     <% unless params[:b].present? && params[:b] != @browser.name.downcase %>
       var sendTo = downloadType == 'offer' ? 'AW-777281614/0hDhCMzw6pABEM7A0fIC' : 'AW-777281614/UXccCPz26pABEM7A0fIC';
       gtag('event', 'conversion', {
