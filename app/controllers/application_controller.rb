@@ -17,10 +17,19 @@ class ApplicationController < ActionController::Base
   def downloads
     @download = false
     @page_title = "Downloads"
+    if @os == 'mac'
+      @products = @products.select { |product| product.mac? }
+    else
+      @products = @products.select { |product| product.windows? }
+    end
   end
 
   def product
     get_product_and_features
+    if (@product.mac? && !@product.windows? && @os == 'windows') ||
+      (@product.windows? && !@product.mac? && @os == 'mac')
+      redirect_to downloads_path('sorry')
+    end
     @follow_up = true
     solutions
     get_download_files

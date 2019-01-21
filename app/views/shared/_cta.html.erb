@@ -1,28 +1,12 @@
 <% if @product.mac && @product.windows %>
   <% if @os == 'mac' %>
-    <% alternative = 'Windows' %>
-    <% download_link = @download_link_mac %>
-    <% alternative_link = @download_link_windows %>
+    <span class="download-link" onclick="convert('<%= @download_link_mac %>', '<%= @download_type %>')">
+      DOWNLOAD FOR MAC
+    </span>
   <% else %>
-    <% alternative = 'Mac' %>
-    <% download_link = @download_link_windows %>
-    <% alternative_link = @download_link_mac %>
-  <% end %>
-  <span class="download-link" onclick="convert('<%= download_link %>', '<%= @download_type %>');">
-    DOWNLOAD FOR <%= @os.upcase %>
-  </span>
-  <% if action_name == 'lp' %>
-    <div class="compatibility">
-      <span>Compatible with:</span>
-      <span class="os-symbol" onclick="convert('<%= download_link %>', '<%= @download_type %>')">
-        <i class="fa fa-apple"></i>
-      </span>
-      <span class="os-symbol" onclick="convert('<%= alternative_link %>', '<%= @download_type %>')">
-        <i class="fa fa-windows"></i>
-      </span>
-    </div>
-  <% else %>
-    <p class="AlsoAvailable">Also available on <span class="AlsoAvailable__link" onclick="convert('<%= alternative_link %>', '<%= @download_type %>')"><%= alternative %></span></p>
+    <span class="download-link" onclick="convert('<%= @download_link_windows %>', '<%= @download_type %>')">
+      DOWNLOAD FOR WINDOWS
+    </span>
   <% end %>
 <% elsif @product.mac %>
   <span class="download-link" onclick="convert('<%= @download_link_mac %>', '<%= @download_type %>')">
@@ -33,6 +17,7 @@
     DOWNLOAD FOR WINDOWS
   </span>
 <% end %>
+
 <script>
   var fired = false;
 

@@ -1,11 +1,15 @@
 <section class="TitleBar">
-  <h1>AWOOLO FREE DOWNLOADS</h1>
+  <h1>FREE DOWNLOADS FOR <%= @os.upcase %></h1>
 </section>
 <section class="free-downloads">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h1 class="section-header">Free Downloads.</h1>
+        <% if params[:sorry].present? %>
+          <h1 class="section-header">
+            Sorry that software is not available for <%= @os.titleize %>. Check out these other software instead.
+          </h1>
+        <% end %>
         <div class="row">
           <% download_col = 'col-sm-6 col-md-6 col-lg-4' %>
           <% content_left_col = 'col-3' %>
