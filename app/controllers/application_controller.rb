@@ -17,11 +17,7 @@ class ApplicationController < ActionController::Base
   def downloads
     @download = false
     @page_title = "Downloads"
-    if @os == 'mac'
-      @products = @products.select { |product| product.mac? }
-    else
-      @products = @products.select { |product| product.windows? }
-    end
+    @products = filter_by_os(@products)
   end
 
   def product
@@ -105,7 +101,9 @@ class ApplicationController < ActionController::Base
   def get_products
     @products = Product.all
     @office_solutions = @products.where("slug = 'awoolo_ultimate' OR slug = 'awoolo_pdf' OR slug = 'awoolo_unzip' OR slug = 'awoolo_file' OR slug = 'awoolo_speed_test'")
+    @office_solutions = filter_by_os(@office_solutions)
     @media = @products.where("slug = 'awoolo_media' OR slug = 'awoolo_radio' OR slug = 'awoolo_converter'")
+    @media = filter_by_os(@media)
   end
 
   def get_os
@@ -116,7 +114,8 @@ class ApplicationController < ActionController::Base
 
   def solutions
     @solutions = @products.where("slug != '#{@product.slug}'")
-    @solutions = @solutions.order("RANDOM()").limit(4)
+    @solutions = filter_by_os(@solutions)
+    @solutions.shuffle!
   end
 
   def set_source
@@ -130,6 +129,11 @@ class ApplicationController < ActionController::Base
     url_object = URI.parse(url)
     url_path = url_object.path
     url_path.split("/").last
+  end
+
+  def filter_by_os(products)
+    return products.select { |product| product.windows? } unless @os == 'mac'
+    products.select { |product| product.mac? }
   end
 
 end
