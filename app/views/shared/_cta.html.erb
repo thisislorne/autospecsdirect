@@ -29,12 +29,14 @@
 <script>
   var fired = false;
   function convert(url, downloadType) {
-
-    <% unless params[:b].present? && params[:b] != @browser.name.downcase %>
-      var sendTo = downloadType == 'offer' ? 'AW-777281614/0hDhCMzw6pABEM7A0fIC' : 'AW-777281614/UXccCPz26pABEM7A0fIC';
-      gtag('event', 'conversion', {
-          'send_to': sendTo
-      });
+    <% if params[:utm_campaign].present? %>
+      <% if params[:utm_campaign] == '1680422125' %>
+        <% unless params[:b].present? && params[:b] != @browser.name.downcase %>
+          sendConversion(downloadType);
+        <% end %>
+      <% end %>
+    <% else %>
+      sendConversion(downloadType);
     <% end %>
     window.location = url;
     if(!fired){
@@ -46,5 +48,12 @@
         }
       });
     }
+  }
+
+  function sendConversion(downloadType){
+    var sendTo = downloadType == 'offer' ? 'AW-777281614/0hDhCMzw6pABEM7A0fIC' : 'AW-777281614/UXccCPz26pABEM7A0fIC';
+    gtag('event', 'conversion', {
+        'send_to': sendTo
+    });
   }
 </script>
