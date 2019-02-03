@@ -70,7 +70,7 @@
 }
 
 .home-background{
-  background: image_url('home_bg.jpg');
+  background: image_url('home_bg.webp'), image_url('home_bg.jpg');
   background-position-y: top;
   background-position-x: center;
   background-size: cover;
