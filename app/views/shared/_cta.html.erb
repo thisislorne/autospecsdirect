@@ -35,6 +35,11 @@
           sendConversion(downloadType);
         <% end %>
       <% end %>
+      <% if params[:utm_campaign] == '1697188784' || params[:utm_campaign] == '1698305238' %>
+        <% unless params[:os].present? && params[:os] != @os %>
+          sendConversion(downloadType);
+        <% end %>
+      <% end %>
     <% else %>
       sendConversion(downloadType);
     <% end %>
