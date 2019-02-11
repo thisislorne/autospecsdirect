@@ -1,7 +1,7 @@
 require 'fully_hosted'
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :get_products, :get_os, :set_source, except: :gs
+  before_action :get_os, :get_products, :set_source, except: :gs
   def index
     @product = @products.find_by(slug: 'awoolo_pdf')
     get_download_files
