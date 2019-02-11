@@ -33,9 +33,9 @@
 
     var sendTo = downloadType == 'offer' ? 'AW-777281614/0hDhCMzw6pABEM7A0fIC' : 'AW-777281614/UXccCPz26pABEM7A0fIC';
 
-    <% if params[:os].present? %>
+    <% unless session[:os].nil? %>
 
-      <% if params[:os] == @os %>
+      <% if session[:os] == @os %>
 
         // analytics tracking
         gtag('event', 'conversion', {

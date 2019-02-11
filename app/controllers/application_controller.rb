@@ -109,6 +109,7 @@ class ApplicationController < ActionController::Base
   def get_os
     @browser = Browser.new(request.user_agent)
     @os = @browser.platform.windows? ? 'windows' : 'mac'
+    session[:os] = params[:os].present? ? params[:os] : nil
   end
 
   def solutions
