@@ -18,47 +18,66 @@
   </span>
 <% end %>
 
-<% if params[:b].present? %>
-  <% if params[:b] == 'ie' %>
-    <% params[:b] = 'internet explorer' %>
-  <% elsif params[:b] == 'edge' %>
-    <% params[:b] = 'microsoft edge' %>
-  <% end %>
-<% end %>
-
 <script>
-  var fired = false;
   function convert(url, downloadType) {
-    <% if params[:utm_campaign].present? %>
-      <% if params[:utm_campaign] == '1680422125' %>
-        <% unless params[:b].present? && params[:b] != @browser.name.downcase %>
-          sendConversion(downloadType);
-        <% end %>
-      <% end %>
-      <% if params[:utm_campaign] == '1700560231' || params[:utm_campaign] == '1697689180' %>
-        <% unless params[:os].present? && params[:os] != @os %>
-          sendConversion(downloadType);
-        <% end %>
-      <% end %>
-    <% else %>
-      sendConversion(downloadType);
-    <% end %>
+    // download the file
     window.location = url;
-    if(!fired){
-      fired = true;
-      $.ajax({
-        url: '/gs_event',
-        data: {
-          product: "<%= @product.title %>"
-        }
+
+    // gstats download event trigger on every download
+    $.ajax({
+      url: '/gs_event',
+      data: {
+        product: "<%= @product.title %>"
+      }
+    });
+
+    var sendTo = downloadType == 'offer' ? 'AW-777281614/0hDhCMzw6pABEM7A0fIC' : 'AW-777281614/UXccCPz26pABEM7A0fIC';
+
+    <% if params[:os].present? %>
+
+      <% if params[:os] == @os %>
+
+        // analytics tracking
+        gtag('event', 'conversion', {
+          'event_category': '<%= @download_type %> os_matched',
+          'event_label': '<%= @product.title %>',
+          'send_to': 'UA-16407288-57'
+        });
+
+        // adwords conversion os matched
+        gtag('event', 'conversion', {
+            'send_to': sendTo
+        });
+
+      <% else %>
+      // analytics tracking
+        gtag('event', 'conversion', {
+          'event_category': '<%= @download_type %> not_matched',
+          'event_label': '<%= @product.title %>',
+          'send_to': 'UA-16407288-57'
+        });
+        // no adwords conversion here os not matched
+        // gtag('event', 'conversion', {
+        //     'send_to': sendTo
+        // });
+
+      <% end %>
+
+    <% else %>
+      // analytics tracking
+      gtag('event', 'conversion', {
+        'event_category': '<%= @download_type %> os_null',
+        'event_label': '<%= @product.title %>',
+        'send_to': 'UA-16407288-57'
       });
-    }
+
+      // adwords conversion os not in url
+      gtag('event', 'conversion', {
+          'send_to': sendTo
+      });
+
+    <% end %>
+
   }
 
-  function sendConversion(downloadType){
-    var sendTo = downloadType == 'offer' ? 'AW-777281614/0hDhCMzw6pABEM7A0fIC' : 'AW-777281614/UXccCPz26pABEM7A0fIC';
-    gtag('event', 'conversion', {
-        'send_to': sendTo
-    });
-  }
 </script>
