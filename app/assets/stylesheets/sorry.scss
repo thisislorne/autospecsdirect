@@ -1,0 +1,19 @@
+@import "shared";
+
+.navbar-brand{
+  @media (min-width: 992px){
+    height: 100px;
+  }
+}
+
+.header-logo{
+  @media (min-width: 992px){
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.section-header{
+  margin: 70px 0px 200px;
+}

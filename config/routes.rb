@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'gs_event', to: 'application#gs'
   get 'about', to: 'application#about'
   get 'downloads(/:sorry)', to: 'application#downloads', as: :downloads
+  get 'sorry', to: 'application#sorry'
   get 'lp/:product', to: 'application#lp', as: :lp
   get ':product', to: 'application#product', as: :product
 end

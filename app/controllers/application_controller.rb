@@ -1,7 +1,7 @@
 require 'fully_hosted'
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :get_os, :get_products, :set_source, except: :gs
+  before_action :get_os, :get_products, :set_source, except: [:gs, :sorry]
   def index
     @product = @products.find_by(slug: 'awoolo_pdf')
     get_download_files
@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
     @page_title = "Downloads"
     @products = filter_by_os(@products)
   end
+
+  def sorry; end
 
   def product
     get_product_and_features
@@ -108,8 +110,12 @@ class ApplicationController < ActionController::Base
 
   def get_os
     @browser = Browser.new(request.user_agent)
-    @os = @browser.platform.windows? ? 'windows' : 'mac'
+    if !@browser.platform.mac? ||
+      (params[:os].present? && params[:os] != 'mac')
+      redirect_to sorry_path
+    end
     session[:os] = params[:os].present? ? params[:os] : nil
+    @os = 'mac'
   end
 
   def solutions
