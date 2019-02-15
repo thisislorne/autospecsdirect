@@ -110,8 +110,7 @@ class ApplicationController < ActionController::Base
 
   def get_os
     @browser = Browser.new(request.user_agent)
-    if !@browser.platform.mac? ||
-      (params[:os].present? && params[:os] != 'mac')
+    if !@browser.platform.mac?
       redirect_to sorry_path
     end
     session[:os] = params[:os].present? ? params[:os] : nil
