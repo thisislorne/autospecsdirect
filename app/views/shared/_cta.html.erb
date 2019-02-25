@@ -42,55 +42,32 @@
   // Download Software 2
   // gtag('event', 'conversion', {'send_to': 'AW-777281614/Il3nCKOWjJUBEM7A0fIC'});
 
-    <% unless session[:os].nil? %>
 
-      <% if session[:os] == @os %>
-
-        // analytics tracking
-        gtag('event', 'conversion', {
-          'event_category': '<%= @download_type %> os_matched',
-          'event_label': '<%= @product.title %>',
-          'send_to': 'UA-16407288-57'
-        });
-
-        // adwords conversion os matched
-        <% if @download_type == 'offer' %>
-          gtag('event', 'conversion', {'send_to': 'AW-777281614/tHAhCL6nkpUBEM7A0fIC'});
-        <% elsif @download_type == 'software' %>
-          gtag('event', 'conversion', {'send_to': 'AW-777281614/Il3nCKOWjJUBEM7A0fIC'});
-        <% end %>
-
-      <% else %>
-      // analytics tracking
-        gtag('event', 'conversion', {
-          'event_category': '<%= @download_type %> not_matched',
-          'event_label': '<%= @product.title %>',
-          'send_to': 'UA-16407288-57'
-        });
-        // no adwords conversion here os not matched
-        // gtag('event', 'conversion', {
-        //     'send_to': sendTo
-        // });
-
-      <% end %>
-
-    <% else %>
+    <% if @os == 'mac' %>
       // analytics tracking
       gtag('event', 'conversion', {
-        'event_category': '<%= @download_type %> os_null',
+        'event_category': '<%= @download_type %> mac',
         'event_label': '<%= @product.title %>',
         'send_to': 'UA-16407288-57'
       });
 
-      // adwords conversion os not in url
+      // adwords conversion os matched
       <% if @download_type == 'offer' %>
         gtag('event', 'conversion', {'send_to': 'AW-777281614/tHAhCL6nkpUBEM7A0fIC'});
       <% elsif @download_type == 'software' %>
         gtag('event', 'conversion', {'send_to': 'AW-777281614/Il3nCKOWjJUBEM7A0fIC'});
       <% end %>
 
-    <% end %>
+    <% else %>
+    // analytics tracking
+      gtag('event', 'conversion', {
+        'event_category': '<%= @download_type %> not_mac',
+        'event_label': '<%= @product.title %>',
+        'send_to': 'UA-16407288-57'
+      });
+      // no adwords conversion here os not matched
 
+    <% end %>
   }
 
 </script>

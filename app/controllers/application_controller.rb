@@ -35,9 +35,6 @@ class ApplicationController < ActionController::Base
   end
 
   def lp
-    if !@browser.platform.mac?
-      redirect_to sorry_path
-    end
     get_product_and_features
     get_download_files
     @step_one_text = @ab.test('step_one_text',
@@ -113,8 +110,7 @@ class ApplicationController < ActionController::Base
 
   def get_os
     @browser = Browser.new(request.user_agent)
-    session[:os] = params[:os].present? ? params[:os] : nil
-    @os = 'mac'
+    @os = @browser.platform.mac? ? 'mac' : 'windows'
   end
 
   def solutions
