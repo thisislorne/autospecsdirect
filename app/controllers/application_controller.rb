@@ -37,10 +37,17 @@ class ApplicationController < ActionController::Base
   def lp
     get_product_and_features
     get_download_files
-    @step_one_text = @ab.test('step_one_text',
-      start: 1,
-      download: 1
-    )
+    if @product.slug == 'awoolo_pdf'
+      @lp = @ab.test('lp',
+        current: 1,
+        new: 1)
+      if @lp == 'current'
+        step_one_text
+      end
+    else
+      @lp = 'current'
+      step_one_text
+    end
     @page_title = "Download #{@product.title} Now - Awoolo"
   end
 
@@ -137,4 +144,10 @@ class ApplicationController < ActionController::Base
     products.select { |product| product.mac? }
   end
 
+  def step_one_text
+    @step_one_text = @ab.test('step_one_text',
+      start: 1,
+      download: 1
+    )
+  end
 end

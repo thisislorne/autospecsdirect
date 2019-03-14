@@ -1,0 +1,69 @@
+<div class="lp">
+  <section class="cta">
+    <div class="container">
+      <div class="Box Box--bottom-spacing">
+        <div class="row">
+          <div class="col-lg-5 col-xl-6 pl0">
+            <ul class="ticks">
+              <% @features.each do |feature| %>
+                <li class="Tick">
+                  <i class="fa fa-check Tick__symbol"></i>
+                  <span class="Tick__note"><%= feature.header %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="col-lg-7 col-xl-6 ButtonDisclaimer">
+            <div class="ButtonDisclaimer__container">
+              <%= image_tag 'clickhere_arrow.png', class: 'click-here' %>
+              <%= render 'shared/cta' %>
+              <p class="ButtonDisclaimer__disclaimer">
+                By clicking the button above and installing <%= @product.title %>, I accept and agree to abide by the <%= link_to 'terms of service', 'http://privacy.awoolo.com/terms', target: '_blank' %> and <%= link_to 'privacy policy', 'http://privacy.awoolo.com/privacy', target: '_blank' %>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="Box Box--thin">
+          <section class="product-description">
+            <%= t("#{@product.slug}.product.follow_up_text").html_safe %>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="Feature">
+          <div class="FeatureIcon">
+            <%= image_tag 'pdf_icon.svg', class: 'FeatureIcon__icon' %>
+          </div>
+          <h1 class="Feature__header">View And Annotate Your PDF Files</h1>
+          <p class="Feature__text">By using the “notes tool” you can also add annotations, highlight or circle particular items, or apply anchor notes which you can view via the sidebar. You also have access to standard features like cropping and rotating.</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="Feature">
+          <div class="FeatureIcon">
+            <%= image_tag 'word_icon.svg', class: 'FeatureIcon__icon' %>
+          </div>
+          <h1 class="Feature__header">Convert PDF Files To Word In One Click (Or Vice Versa)</h1>
+          <p class="Feature__text">Stuck with a PDF you wish you could change to a Word doc? It’s easy to convert your PDF files using our PDF Viewer. All it takes is one click… we’re not even kidding... there’s literally a giant “convert” button right in your face when you open your document.</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="FeatureIcon">
+          <%= image_tag 'mouse.svg', class: 'FeatureIcon__icon' %>
+        </div>
+        <h1 class="Feature__header">Intuitive Help Tab And User Interface</h1>
+        <p class="Feature__text">We made sure to keep the interface as simple, clean and user friendly as possible. Like the unmissable “convert” button which saves you from having to search for it. Or our intuitive “help tab” which doesn’t just show you a “glossary of terms,” it literally gives you a visual road map to finding different commands and performing specific actions.</p>
+      </div>
+    </div>
+  </div>
+</div>
