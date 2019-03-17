@@ -4,6 +4,56 @@ $green: #3cb758;
 $smaller-screen-padding: 10px;
 $box-spacing: 50px;
 
+.tc{
+  text-align: center;
+}
+
+.features-container{
+  margin-top: 50px;
+}
+
+.FeatureIcon{
+  background: #4da3ff;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  position: relative;
+
+  &__icon{
+    height: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+
+.Feature{
+  @media (max-width: 991px){
+    margin-bottom: 50px;
+  }
+
+  &__header{
+    text-align: center;
+    font-size: 25px;
+    @media (min-width: 991px) and (max-width: 1199px){
+      height: 90px;
+      overflow-y: hidden;
+    }
+  }
+
+  &__text{
+    @media (max-width: 991px){
+      text-align: center;
+    }
+  }
+}
+
 .pl0{
   padding-left: 0;
 }
@@ -44,7 +94,21 @@ ul{
 
 .ticks{
   text-align: left;
-  padding-left: 0;
+  @media (max-width: 991px){
+    padding-left: 0;
+    display: block;
+    width: 449px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (max-width: 575px){
+    padding: 0 15px;
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 449px;
+  }
 
   .Tick{
     font-weight: bold;
@@ -142,6 +206,9 @@ hr{
 
   .Box{
     padding: 90px 15px;
+    @media (max-width: 575px){
+      padding: 40px 15px;
+    }
   }
 }
 
@@ -164,7 +231,9 @@ hr{
     width: 180px;
     top: -98px;
     left: -113px;
-
+    @media (max-width: 1199px){
+      left: -80px;
+    }
     @media screen and (max-width: 991px){
       display: none;
     }
