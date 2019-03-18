@@ -272,11 +272,6 @@ hr{
     pointer-events: none;
     position: absolute;
     width: 180px;
-    top: -98px;
-    left: -113px;
-    @media (max-width: 1199px){
-      left: -80px;
-    }
     @media screen and (max-width: 991px){
       display: none;
     }
@@ -298,6 +293,16 @@ hr{
     font-size: 12px;
     margin-bottom: 0;
     margin-top: 5px;
+  }
+
+  &--current{
+    .click-here{
+      top: -98px;
+      left: -75px;
+      @media (max-width: 1199px){
+        left: -80px;
+      }
+    }
   }
 
   &--new{
