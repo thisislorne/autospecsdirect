@@ -5,13 +5,13 @@
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<%= image_path 'favicon.png' %>" rel="icon" type="image/png" />
-    <%= stylesheet_link_tag action_name, media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= render 'layouts/head_scripts' %>
+    <%= stylesheet_link_tag action_name %>
   </head>
-  <body data-turbolinks="false">
+  <body>
     <%= render 'application/header' %>
     <%= yield %>
     <%= render 'application/footer' %>
+    <%= render 'layouts/head_scripts' %>
+    <%= javascript_include_tag 'application' %>
   </body>
 </html>
