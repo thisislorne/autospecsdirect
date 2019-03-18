@@ -1,31 +1,39 @@
 <div class="lp">
-  <section class="cta">
-    <div class="container">
-      <div class="Box Box--bottom-spacing">
-        <div class="row">
-          <div class="col-lg-5 col-xl-6 pl0">
-            <ul class="ticks">
-              <% @features.each do |feature| %>
-                <li class="Tick">
-                  <i class="fa fa-check Tick__symbol"></i>
-                  <span class="Tick__note"><%= feature.header %></span>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <div class="col-lg-7 col-xl-6 ButtonDisclaimer">
-            <div class="ButtonDisclaimer__container">
-              <%= image_tag 'clickhere_arrow.png', class: 'click-here' %>
-              <%= render 'shared/cta' %>
-              <p class="ButtonDisclaimer__disclaimer">
-                By clicking the button above and installing <%= @product.title %>, I accept and agree to abide by the <%= link_to 'terms of service', 'http://privacy.awoolo.com/terms', target: '_blank' %> and <%= link_to 'privacy policy', 'http://privacy.awoolo.com/privacy', target: '_blank' %>.
-              </p>
+    <section class="cta">
+      <div class="container">
+        <div class="Box Box--bottom-spacing">
+          <div class="row">
+            <div class="col-lg-5 col-xl-5 pl0">
+              <div class="ProductDetails ProductDetails--new">
+                <div class="title">
+                  <%= image_tag "#{@product.slug}/logo.svg" %>
+                  <span><%= @product.title %></span>
+                </div>
+                <ul>
+                  <li><strong>Version:</strong> <%= @product.version_number %></li>
+                  <li>
+                    <strong>OS:</strong>
+                    <%= render 'shared/display_os', product: @product %>
+                  </li>
+                  <li>
+                    <strong>Requirements:</strong> No special requirements
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-7 col-xl-7 ButtonDisclaimer ButtonDisclaimer--new">
+              <div class="ButtonDisclaimer__container">
+                <%= image_tag 'clickhere_arrow.png', class: 'click-here' %>
+                <%= render 'shared/cta' %>
+                <p class="ButtonDisclaimer__disclaimer">
+                  By clicking the button above and installing <%= @product.title %>, I accept and agree to abide by the <%= link_to 'terms of service', 'http://privacy.awoolo.com/terms', target: '_blank' %> and <%= link_to 'privacy policy', 'http://privacy.awoolo.com/privacy', target: '_blank' %>.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   <div class="container features-container">
     <div class="row">
       <div class="col-lg-4">
@@ -42,7 +50,7 @@
           <div class="FeatureIcon">
             <%= image_tag 'word_icon.svg', class: 'FeatureIcon__icon' %>
           </div>
-          <h1 class="Feature__header">Convert PDF Files To Word In One Click (Or Vice Versa)</h1>
+          <h1 class="Feature__header">Convert PDF Files to Word and Vice Versa</h1>
           <p class="Feature__text">Stuck with a PDF you wish you could change to a Word doc? It’s easy to convert your PDF files using our PDF Viewer. All it takes is one click… we’re not even kidding... there’s literally a giant “convert” button right in your face when you open your document.</p>
         </div>
       </div>

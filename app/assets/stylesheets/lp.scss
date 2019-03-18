@@ -15,15 +15,15 @@ $box-spacing: 50px;
 .FeatureIcon{
   background: #4da3ff;
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 60px;
+  height: 60px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
   position: relative;
 
   &__icon{
-    height: 100px;
+    height: 30px;
     position: absolute;
     top: 0;
     right: 0;
@@ -39,17 +39,26 @@ $box-spacing: 50px;
   }
 
   &__header{
-    text-align: center;
-    font-size: 25px;
-    @media (min-width: 991px) and (max-width: 1199px){
-      height: 90px;
-      overflow-y: hidden;
+    font-size: 15px;
+    overflow-y: hidden;
+    margin-bottom: 20px;
+    @media (max-width: 991px){
+      height: auto;
+      text-align: center;
     }
   }
 
   &__text{
+    font-size: 15px;
     @media (max-width: 991px){
       text-align: center;
+    }
+  }
+
+  &__header,
+  &__text{
+    @media (min-width: 992px){
+      padding-left: 5px;
     }
   }
 }
@@ -115,6 +124,7 @@ ul{
 
     &__symbol{
       color: $green;
+      width: 15px;
     }
 
     &:not(:last-child){
@@ -133,12 +143,20 @@ hr{
   color: #5f6d80;
 }
 
-.product-details{
+.details-box{
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  @media (max-width: 991px){
+    max-width: none;
+  }
+}
+
+.ProductDetails{
   .title{
     font-size: 20px;
     font-weight: 600;
-    padding: 10px 0 10px 40px;
-    border-bottom: 3px solid $border-colour;
 
     img{
       width: 100%;
@@ -159,6 +177,31 @@ hr{
 
     li:not(:last-child){
       margin-bottom: 10px;
+    }
+  }
+
+  &--current{
+    .title{
+      border-bottom: 3px solid $border-colour;
+      padding: 10px 0 10px 40px;
+    }
+  }
+
+  &--new{
+    padding-left: 72px;
+    @media (max-width: 991px){
+      padding-left: 0;
+      display: block;
+      width: 310px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 575px){
+      padding-left: 40px;
+    }
+
+    ul{
+      padding-left: 0;
     }
   }
 }
@@ -242,7 +285,7 @@ hr{
   .download-link {
     font-size: 31px;
     background: $green;
-    @include button(#4de670);
+    @include button(#4de670, 13px 30px);
     border-radius: 40px;
     height: auto;
     width: 100%;
@@ -255,6 +298,37 @@ hr{
     font-size: 12px;
     margin-bottom: 0;
     margin-top: 5px;
+  }
+
+  &--new{
+    padding-top: 2px;
+
+    .click-here{
+      top: -72px;
+      left: -15px;
+
+      @media (max-width: 1199px){
+        left: -77px;
+      }
+    }
+
+    .download-link{
+      @include button(#4de670, 25px 60px);
+      border-radius: 60px;
+      font-size: 40px;
+
+      @media (max-width: 575px){
+        padding: 15px 30px;
+        font-size: 30px;
+        display: block;
+      }
+    }
+
+    .ButtonDisclaimer__container{
+      @media (min-width: 1200px){
+        margin-left: 60px;
+      }
+    }
   }
 }
 

@@ -1,22 +1,6 @@
-<% if @product.mac && @product.windows %>
-  <% if @os == 'mac' %>
-    <span class="download-link" onclick="convert('<%= @download_link_mac %>')">
-      DOWNLOAD FOR MAC
-    </span>
-  <% else %>
-    <span class="download-link" onclick="convert('<%= @download_link_windows %>')">
-      DOWNLOAD FOR WINDOWS
-    </span>
-  <% end %>
-<% elsif @product.mac %>
-  <span class="download-link" onclick="convert('<%= @download_link_mac %>')">
-    DOWNLOAD FOR MAC
-  </span>
-<% else %>
-  <span class="download-link" onclick="convert('<%= @download_link_windows %>')">
-    DOWNLOAD FOR WINDOWS
-  </span>
-<% end %>
+<span class="download-link" onclick="convert('<%= @download_link %>')">
+  <%= @cta_text %>
+</span>
 
 <script>
   function convert(url) {

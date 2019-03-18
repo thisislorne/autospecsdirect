@@ -32,11 +32,11 @@ h2 {
     outline: 0;
   }
 }
-@mixin button($hover_colour) {
+@mixin button($hover_colour, $padding) {
   font-family: $font-family-secondary;
   color: white;
   display: inline-block;
-  padding: 13px 30px;
+  padding: $padding;
   width: auto;
   max-width: 100%;
   border-radius: 30px;
@@ -443,7 +443,7 @@ footer {
   a {
     background: $button-green;
     box-shadow: $button-box-shadow;
-    @include button(#3bf971);
+    @include button(#3bf971, 13px 30px);
   }
 
   hr {
@@ -539,7 +539,7 @@ footer {
   a{
     font-size: 14px;
     border: 1px solid white;
-    @include button(#3bf971);
+    @include button(#3bf971, 13px 30px);
   }
 
   a:hover{

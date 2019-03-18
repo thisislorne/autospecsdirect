@@ -33,7 +33,7 @@
     <div class="row">
       <div class="col-lg-5">
         <div class="Box Box--bottom-spacing">
-          <section class="product-details">
+          <section class="ProductDetails ProductDetails--current">
             <div class="title">
               <%= image_tag "#{@product.slug}/logo.svg" %>
               <span><%= @product.title %></span>
@@ -59,7 +59,7 @@
             <ul class="ticks">
               <% @features.each do |feature| %>
                 <li class="Tick">
-                  <i class="fa fa-check Tick__symbol"></i>
+                  <%= image_tag 'check.svg', class: 'Tick__symbol' %>
                   <span class="Tick__note"><%= feature.header %></span>
                 </li>
               <% end %>
