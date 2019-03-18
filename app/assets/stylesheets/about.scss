@@ -59,7 +59,7 @@ header {
 
     .cta {
       background: $button-blue;
-      @include button(#3bf971);
+      @include button(#71c0ff, 13px 30px);
     }
   }
 }

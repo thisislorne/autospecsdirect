@@ -64,7 +64,7 @@
     .download-link{
       background: $button-green;
       box-shadow: $button-box-shadow;
-      @include button(#3bf971);
+      @include button(#3bf971, 13px 30px);
     }
   }
 }

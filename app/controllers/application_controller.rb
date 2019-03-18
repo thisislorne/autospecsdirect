@@ -2,11 +2,13 @@ require 'fully_hosted'
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :get_os, :get_products, :set_source, except: [:gs, :sorry]
+
   def index
     @product = @products.find_by(slug: 'awoolo_pdf')
     get_download_files
     solutions
     @page_title = "Awoolo"
+    set_cta
   end
 
   def about
@@ -32,15 +34,26 @@ class ApplicationController < ActionController::Base
     solutions
     get_download_files
     @page_title = "Download #{@product.title} Now - Awoolo"
+    set_cta
   end
 
   def lp
     get_product_and_features
     get_download_files
-    @step_one_text = @ab.test('step_one_text',
-      start: 1,
-      download: 1
-    )
+    set_cta
+    if @product.slug == 'awoolo_pdf'
+      @lp = @ab.test('lp',
+        current: 1,
+        new: 1)
+      if @lp == 'current'
+        step_one_text
+      else
+        @cta_text = "FREE DOWNLOAD"
+      end
+    else
+      @lp = 'current'
+      step_one_text
+    end
     @page_title = "Download #{@product.title} Now - Awoolo"
   end
 
@@ -50,6 +63,19 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_cta
+    if @product.mac && @product.windows
+      @download_link = @os == 'mac' ? @download_link_mac : @download_link_windows
+      @cta_text = "DOWNLOAD FOR #{@os.upcase}"
+    elsif @product.mac
+      @download_link = @download_link_mac
+      @cta_text = "DOWNLOAD FOR MAC"
+    else
+      @download_link = @download_link_windows
+      @cta_text = "DOWNLOAD FOR WINDOWS"
+    end
+  end
 
   def get_product_and_features
     @product = @products.find_by(slug: params[:product])
@@ -137,4 +163,10 @@ class ApplicationController < ActionController::Base
     products.select { |product| product.mac? }
   end
 
+  def step_one_text
+    @step_one_text = @ab.test('step_one_text',
+      start: 1,
+      download: 1
+    )
+  end
 end

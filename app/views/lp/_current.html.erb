@@ -1,0 +1,72 @@
+<div class="lp">
+  <section class="cta">
+    <div class="container">
+      <div class="Box Box--bottom-spacing">
+        <div class="row">
+          <div class="col-lg-5 col-xl-6 pl0">
+            <ol>
+              <% if @step_one_text == 'start' %>
+                <li><strong>Step 1:</strong> Start</li>
+                <li class="important"><strong>Step 2:</strong> Click DOWNLOAD</li>
+                <li><strong>Step 3:</strong> Enjoy <%=  @product.title %></li>
+              <% else %>
+                <li><strong>Step 1:</strong> Click Download</li>
+                <li class="important"><strong>Step 2:</strong> DOWNLOAD our Free Software</li>
+                <li><strong>Step 3:</strong> Enjoy <%=  @product.title %></li>
+              <% end %>
+            </ol>
+          </div>
+          <div class="col-lg-7 col-xl-6 ButtonDisclaimer ButtonDisclaimer--current">
+            <div class="ButtonDisclaimer__container">
+              <%= image_tag 'clickhere_arrow.png', class: 'click-here' %>
+              <%= render 'shared/cta' %>
+              <p class="ButtonDisclaimer__disclaimer">
+                By clicking the button above and installing <%= @product.title %>, I accept and agree to abide by the <%= link_to 'terms of service', 'http://privacy.awoolo.com/terms', target: '_blank' %> and <%= link_to 'privacy policy', 'http://privacy.awoolo.com/privacy', target: '_blank' %>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="Box Box--bottom-spacing">
+          <section class="ProductDetails ProductDetails--current">
+            <div class="title">
+              <%= image_tag "#{@product.slug}/logo.svg" %>
+              <span><%= @product.title %></span>
+            </div>
+            <ul>
+              <li><strong>Version:</strong> <%= @product.version_number %></li>
+              <li>
+                <strong>OS:</strong>
+                <%= render 'shared/display_os', product: @product %>
+              </li>
+              <li>
+                <strong>Requirements:</strong> No special requirements
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="Box Box--thin">
+          <section class="product-description">
+            <%= t("#{@product.slug}.product.follow_up_text").html_safe %>
+            <hr>
+            <ul class="ticks">
+              <% @features.each do |feature| %>
+                <li class="Tick">
+                  <%= image_tag 'check.svg', class: 'Tick__symbol' %>
+                  <span class="Tick__note"><%= feature.header %></span>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

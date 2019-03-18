@@ -59,7 +59,7 @@
     .download-link{
       background: $button-green;
       box-shadow: $button-box-shadow;
-      @include button(#3bf971);
+      @include button(#3bf971, 13px 30px);
     }
   }
 }
@@ -75,7 +75,7 @@
 
   .download-link{
     background: $button-blue;
-    @include button(#3ba8ff);
+    @include button(#3ba8ff, 13px 30px);
   }
 
   .AlsoAvailable__link{
@@ -242,7 +242,7 @@
       font-weight: bold;
       margin-left: 10px;
       margin-right: 10px;
-      @include button(#3ba8ff);
+      @include button(#3ba8ff, 13px 30px);
     }
 
     .AlsoAvailable__link{
