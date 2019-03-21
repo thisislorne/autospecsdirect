@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= @page_title.present? ? @page_title : 'Awoolo' %></title>
+    <title><%= @page_title.present? ? @page_title : 'SearchBe' %></title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<%= image_path 'favicon.png' %>" rel="icon" type="image/png" />
-    <%= stylesheet_link_tag action_name %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'application' %>
   </head>
   <body>
-    <%= render 'application/header' %>
     <%= yield %>
-    <%= render 'application/footer' %>
-    <%= render 'layouts/head_scripts' %>
-    <%= javascript_include_tag 'application' %>
+    
   </body>
 </html>

@@ -9,10 +9,10 @@ set :default_stage, 'staging'
 set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-2.3.1'
 
-set :application, 'awoolo'
+set :application, 'searchbe'
 
-set :repo_url, 'git@github.com:GroovyMedia/awoolo.git'
-set :deploy_to, '/home/deploy/awoolo'
+set :repo_url, 'git@github.com:GroovyMedia/searchbe.git'
+set :deploy_to, '/home/deploy/searchbe'
 
 set :keep_releases, 2
 

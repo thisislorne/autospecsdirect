@@ -1,7 +1,0 @@
-common: &default_settings
-  license_key: <%= Rails.application.credentials.production[:newrelic][:license_key] %>
-  app_name: <%= Rails.application.credentials.production[:newrelic][:app_name] %>
-  log_level: info
-
-production:
-  <<: *default_settings

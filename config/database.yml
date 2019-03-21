@@ -1,27 +1,21 @@
 default: &default
-  adapter: postgresql
+  adapter: sqlite3
   encoding: unicode
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
-  database: awoolo_dev
+  database: db/searchbe_development.sqlite3
 
 test:
   <<: *default
-  database: awoolo_test
-
-production:
-  <<: *default
-  host: localhost
-  database: <%= Rails.application.credentials.production[:db][:db] %>
-  username: <%= Rails.application.credentials.production[:db][:user] %>
-  password: <%= Rails.application.credentials.production[:db][:password] %>
+  database: db/searchbe_test.sqlite3
 
 staging:
   <<: *default
-  host: localhost
-  database: <%= Rails.application.credentials.staging[:db][:db] %>
-  username: <%= Rails.application.credentials.staging[:db][:user] %>
-  password: <%= Rails.application.credentials.staging[:db][:password] %>
+  database: db/searchbe_staging.sqlite3
+
+production:
+  <<: *default
+  database: db/searchbe_production.sqlite3
