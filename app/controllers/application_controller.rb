@@ -18,17 +18,11 @@ class ApplicationController < ActionController::Base
     search = Search.includes(:queries).find_by(slug: params[:q])
     if search 
       query = _weighted_choice(search.queries)
-
       url = 'https://results.searchbe.com/dynamiclander/'
-      url_params = {
-        p: '1',
-        q: query.query,
-        chmn: "fb",
-        chmn2: query.query,
-        chmn3: chnm3
-      }
+      p_val = 1
+      p_val = 2 unless thumbnails == 'hide'
       
-      redirect_to "#{url}?#{url_params.to_query}"
+      redirect_to "#{url}?p=#{p_val}&q=#{query.query}&chnm=fb&chnm2=#{query.query}&chnm3=#{chnm3}"
     else
       redirect_to "https://results.searchbe.com/dynamiclander/?q=#{params[:q]}"
     end
