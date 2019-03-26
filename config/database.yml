@@ -11,3 +11,10 @@ development:
 test:
   <<: *default
   database: searchbe_test
+
+production:
+  <<: *default
+  host: localhost
+  database: <%= Rails.application.credentials.production[:db][:db] %>
+  username: <%= Rails.application.credentials.production[:db][:user] %>
+  password: <%= Rails.application.credentials.production[:db][:password] %>
