@@ -1,15 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :admin do
-    resources :products
-    resources :features
-    root to: 'products#index'
-  end
+      resources :searches
+      resources :queries
+
+      root to: "queries#index"
+    end
   root to: 'application#index'
-  get 'gs_event', to: 'application#gs'
-  get 'about', to: 'application#about'
-  get 'downloads(/:sorry)', to: 'application#downloads', as: :downloads
-  get 'sorry', to: 'application#sorry'
-  get 'lp/:product', to: 'application#lp', as: :lp
-  get ':product', to: 'application#product', as: :product
+  get '/search', to: 'application#search'
 end

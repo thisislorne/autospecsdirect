@@ -1,21 +1,13 @@
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
   encoding: unicode
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
-  database: db/searchbe_development.sqlite3
+  database: searchbe_dev
 
 test:
   <<: *default
-  database: db/searchbe_test.sqlite3
-
-staging:
-  <<: *default
-  database: db/searchbe_staging.sqlite3
-
-production:
-  <<: *default
-  database: db/searchbe_production.sqlite3
+  database: searchbe_test
