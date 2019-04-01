@@ -94,6 +94,8 @@ GEM
     capistrano-rails-console (2.3.0)
       capistrano (>= 3.5.0, < 4.0.0)
       sshkit-interactive (~> 0.3.0)
+    capistrano-rails-db (0.0.2)
+      capistrano-rails (~> 1.1)
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
@@ -294,6 +296,7 @@ DEPENDENCIES
   capistrano-logtail
   capistrano-rails
   capistrano-rails-console
+  capistrano-rails-db
   capistrano-rvm
   capistrano3-nginx
   capistrano3-puma

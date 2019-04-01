@@ -16,6 +16,8 @@ require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/rails/console'
 require 'capistrano/puma'
+require 'capistrano/rails/console' # seperate gem for rails console on production
+require 'capistrano/rails/db' # seperate gem for seeding db
 install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Monit
 install_plugin Capistrano::Nginx
