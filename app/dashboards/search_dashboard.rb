@@ -8,7 +8,8 @@ class SearchDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    queries: Field::HasMany.with_options(limit: 20),
+    # queries: Field::HasMany.with_options(limit: 20),
+    queries: Field::NestedHasMany.with_options(limit: 20),
     id: Field::Number,
     slug: Field::String,
   }.freeze
@@ -20,19 +21,23 @@ class SearchDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :slug, 
+    :queries
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :slug,
+    :queries
   ].freeze
+
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :slug,
+    :queries,
   ].freeze
 
   # Overwrite this method to customize how searches are displayed

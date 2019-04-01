@@ -31,6 +31,7 @@ gem 'gstats_client', git: 'git@github.com:GroovyMedia/gstats_client.git', :tag =
 # gem 'newrelic_rpm'
 gem 'mini_racer'
 gem 'administrate'
+gem 'administrate-field-nested_has_many'
 gem 'browser'
 
 # Use Capistrano for deployment
