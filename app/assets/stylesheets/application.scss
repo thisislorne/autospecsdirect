@@ -17,13 +17,12 @@
 
 
 .results-page {
-  // background-color: blue;
+  background-color: #dfe0e2;
   margin: 0px;
   position: relative;
   .nav {
     height: 50px;
-    background-color: #dfe0e2;
-    color: white;
+    background-color: white;
     padding: 14px 14px;
     img {
       width: 100px;
@@ -46,13 +45,26 @@
     }
 
     .result {
-      border: 2px solid #d4d4d8;
-      background-color: #e0e0e2;
+      border: 1px solid white;
+      background-color: white;
       margin-top: 1rem;
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+      position: relative;
+
 
       p {
-        padding: 0 10px;
+        color: #0402db;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 0 18px;
 
+      }
+
+      .fa-arrow-circle-right {
+        position: absolute;
+        width: 30px;
+        right: 12px;
+        top: 12px;
       }
     }
   }
@@ -60,13 +72,8 @@
   .search {
     border-bottom: 0;
     background-color: transparent;
-    position: absolute;
-    top: 70%;
-    margin-top: -90px;    
+    margin-top: 50px;    
     width: 100%;
-    
-
-
 
     .search-bar {
       width: 100%;
