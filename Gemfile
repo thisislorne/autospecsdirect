@@ -28,11 +28,13 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'gstats_client', git: 'git@github.com:GroovyMedia/gstats_client.git', :tag => 'v0.2.9'
-# gem 'newrelic_rpm'
+gem 'groovy_geo', git: 'git@github.com:GroovyMedia/groovy_geo.git', :tag => 'v0.1.5'
+gem 'newrelic_rpm'
 gem 'mini_racer'
 gem 'administrate'
 gem 'administrate-field-nested_has_many'
 gem 'browser'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

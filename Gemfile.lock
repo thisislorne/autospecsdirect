@@ -1,4 +1,12 @@
 GIT
+  remote: git@github.com:GroovyMedia/groovy_geo.git
+  revision: a2fdfa110a7d803b602a7fb1632c721f73b55398
+  tag: v0.1.5
+  specs:
+    groovy_geo (0.1.5)
+      rest-client
+
+GIT
   remote: git@github.com:GroovyMedia/gstats_client.git
   revision: 540b49ad7f815fc6b1ff60eca758fbe0d7c322b8
   tag: v0.2.9
@@ -185,6 +193,7 @@ GEM
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
     netrc (0.11.0)
+    newrelic_rpm (6.2.0.354)
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
@@ -302,11 +311,13 @@ DEPENDENCIES
   capistrano3-puma
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  groovy_geo!
   gstats_client!
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mini_racer
+  newrelic_rpm
   pg
   puma
   rails (~> 5.2)

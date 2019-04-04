@@ -44,6 +44,6 @@ class SearchDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(search)
-    "/?q=#{search.slug}"
+    "searchbe.com/search?q=#{search.slug}"
   end
 end

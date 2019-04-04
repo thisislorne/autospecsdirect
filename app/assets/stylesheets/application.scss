@@ -12,79 +12,218 @@
  *
  */
 
- @import "mixins";
+@import "mixins";
 
- footer nav {
+
+
+.results-page {
+  // background-color: blue;
+  margin: 0px;
+  position: relative;
+  .nav {
+    height: 50px;
+    background-color: #dfe0e2;
+    color: white;
+    padding: 14px 14px;
+    img {
+      width: 100px;
+    }
+  }
+
+  .results {
+    color: black;
+    max-width: 600px;
+    // margin-top: 2rem;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    .right {
+      margin-top: -10px;
+      margin-right: 5px;
+      font-weight: 700;
+      font-size: 14px;
+      color: #48596c;
+    }
+
+    .result {
+      border: 2px solid #d4d4d8;
+      background-color: #e0e0e2;
+      margin-top: 1rem;
+
+      p {
+        padding: 0 10px;
+
+      }
+    }
+  }
+
+  .search {
+    border-bottom: 0;
+    background-color: transparent;
+    position: absolute;
+    top: 70%;
+    margin-top: -90px;    
+    width: 100%;
     
-    background-color: #333;
-    padding: 1em 0 0.6em;
-    text-align: center;
 
-    .no-results & {
-        position: absolute;
-        left: 0;
+
+
+    .search-bar {
+      width: 100%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+
+      .logo {
+        width: 161px;
+        position: relative;
+        left: 50%;
+        margin-left: -80px;
+      }
+
+      form {
+        position: relative;
+        padding: 20px;
+      }
+
+      input {
         width: 100%;
-        bottom: 0;
+        height: 50px;
+        outline: 0;
+        padding: 1em;
+        font-size: 1.2em;
+
+        &:focus {
+          outline: 0;
+        }
+      }
+
+      button {
+        width: 50px;
+        height: 50px;
+        border: 0;
+        background-color: #127c50;
+
+        img {
+          width: 100%;
+          padding: 9px 7px 5px;
+        }
+      }
+    }
+
+    input {
+      height: 50px;
+    }
+
+    button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
     }
 
     .container {
-        @include parent_height;
-
-        .logo {
-            display: inline-block;
-            margin-right: 1.2em;
-
-            img {
-                vertical-align: top;
-            }
-        }
-
-        & > a {
-            color: #a2a2a2;
-            font-weight: 600;
-            padding: 0.3em 0.6em;
-            font-size: 0.95em;
-
-            &:first-of-type {
-                margin-left: -0.6em;
-            }
-
-            &:hover {
-                text-decoration: none;
-                color: #797b7e;
-            }
-        }
+      width: 100%;
+      padding-left: 0;
     }
+  }
+
+  main {
+    display: none;
+  }
+
+  footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+
+    nav {
+      padding-bottom: 1em;
+      background-color: transparent;
+    }
+
+    .container {
+      text-align: center;
+      width: auto;
+      padding: 0;
+    }
+
+    .container>a {
+      float: none;
+    }
+
+  }
+}
+
+
+
+footer nav {
+
+  background-color: #333;
+  padding: 1em 0 0.6em;
+  text-align: center;
+
+  .no-results & {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+  }
+
+  .container {
+    @include parent_height;
+
+    .logo {
+      display: inline-block;
+      margin-right: 1.2em;
+
+      img {
+        vertical-align: top;
+      }
+    }
+
+    &>a {
+      color: #a2a2a2;
+      font-weight: 600;
+      padding: 0.3em 0.6em;
+      font-size: 0.95em;
+
+      &:first-of-type {
+        margin-left: -0.6em;
+      }
+
+      &:hover {
+        text-decoration: none;
+        color: #797b7e;
+      }
+    }
+  }
 
 }
 
 .home-page {
 
-    footer {
-        position: absolute;
-        width: 100%;
-        bottom: 0;
+  footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 
-        nav {
-            padding-bottom: 1em;
-            background-color: transparent;
-        }
-
-        .container {
-            text-align: center;
-            width: auto;
-            padding: 0;
-        }
-
-        .container > a {
-            float: none;
-        }
-
+    nav {
+      padding-bottom: 1em;
+      background-color: transparent;
     }
 
-}
+    .container {
+      text-align: center;
+      width: auto;
+      padding: 0;
+    }
 
- .search {
+    .container>a {
+      float: none;
+    }
+
+  }
+  .search {
   background-color: #fff;
 
   .no-results & {
@@ -107,7 +246,7 @@
       position: relative;
       padding-top: 20px;
     }
-    
+
     input {
       width: 100%;
       height: 50px;
@@ -169,6 +308,10 @@
   }
 }
 
+}
+
+
+
 
 .topbar__outer {
   background-color: #fff;
@@ -180,22 +323,25 @@
 
 .topbar {
   @include outer-container(900px);
+
   .topbar__logo {
     float: left;
     width: 180px;
     padding-top: 1.8em;
   }
+
   .topbar__links {
     display: block;
     float: right;
     margin-top: 2em;
+
     a {
       color: #a2a2a2;
       text-decoration: none;
       text-transform: uppercase;
       font-weight: 700;
       margin-left: 1em;
-      
+
       &:hover {
         color: #4a4a4a;
       }
@@ -208,6 +354,7 @@
   position: relative;
   padding: 5em 0 2em;
   background-color: #f6f6f6;
+
   .body {
     @include outer-container(900px);
   }
@@ -227,105 +374,11 @@
 }
 
 
-.contact_form {
-  margin-top: 2em;
-
-  p {
-    margin-bottom: 1em;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 2px;
-    color: #444;
-    font-size: 0.8em;
-    text-transform: uppercase;
-  }
-  textarea {
-    width: 100%;
-  }
-
-  input {
-    height: 2em;
-
-  }
-
-  input, textarea {
-    border: 1px solid #eaeaea;
-    padding: 6px;
-  }
-
-  button {
-    padding: 0.5em 1.2em;
-    border: 0;
-    font-size: 1.2em;
-    border-radius: 4px;
-    border: 2px solid #001ba0;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    background-color: #001ba0;
-    color: #fff;
-
-    font-weight: 600;
-    @include transition(all 0.15s ease-in);
-
-    &:hover {
-      background-color: #fff;
-      color: #001ba0;
-    }
-
-  }
-}
-
-.page-about-mobile {
-  .topbar {
-    text-align: center;
-  }
-  .topbar__links {
-    display: none;
-  }
-  .topbar__logo {
-    float: none;
-    display: inline-block;
-  }
-}
-
-.page-footer {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-
-  nav {
-    padding-bottom: 1em;
-  }
-
-  .container {
-    width: auto;
-    padding: 0;
-  }
-
-}
-
-.body__container p {
-  line-height: 1.5em;
-  margin-bottom: 1.5em;
-}
-
-.body__ad {
-  padding-top: 2em;
-}
-
-// ======== CAPTCHA ======== //
-
-.g-recaptcha {
-  padding-bottom: 1.2em;
-}
-
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,600,700,900,300);
- // ======== DEFAULTS ======= //
+// ======== DEFAULTS ======= //
 
- html, body {
+html, body {
   height: 100%;
 }
 
@@ -406,21 +459,21 @@ main {
   width: 800px;
   position: relative;
 
-  .results-page & {
+  // .results-page & {
 
-    @media screen and (min-width: 1200px) {
-      margin-left: 100px;
-    }
+  //   @media screen and (min-width: 1200px) {
+  //     margin-left: 100px;
+  //   }
 
-    @media screen and (min-width: 1400px) {
-      margin-left: 200px;
-    }
+  //   @media screen and (min-width: 1400px) {
+  //     margin-left: 200px;
+  //   }
 
-    @media screen and (min-width: 1650px) {
-      margin-left: 300px;
-    }
+  //   @media screen and (min-width: 1650px) {
+  //     margin-left: 300px;
+  //   }
 
-  }
+  // }
 }
 
 .logo {
@@ -448,22 +501,6 @@ main {
 .home-page {
   margin: 0px;
   position: relative;
-
-  header {
-    height: 100%;
-    background-color: #333;
-    position: relative;
-  }
-
-  #bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-    background-size: cover;
-  }
 
   .search {
     border-bottom: 0;
@@ -494,7 +531,7 @@ main {
       width: 50px;
       height: 50px;
     }
-    
+
     .container {
       width: 600px;
       padding-left: 0;
@@ -503,34 +540,6 @@ main {
 
   main {
     display: none;
-  }
-
-}
-
-
-.home-page {
-
-  footer {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-
-    nav {
-      padding-bottom: 1em;
-      background-color: transparent;
-    }
-
-    .container {
-      
-      text-align: center;
-      width: auto;
-      padding: 0;
-    }
-
-    .container > a {
-      float: none;
-    }
-
   }
 
 }

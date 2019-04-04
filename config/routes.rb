@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     end
   root to: 'application#index'
   get '/search', to: 'application#search'
+  get '/r', to: 'application#r'
 end

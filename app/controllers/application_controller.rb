@@ -29,6 +29,23 @@ class ApplicationController < ActionController::Base
     
   end
 
+  def r
+    compact_params = { kv_delimiter: '__', pair_delimiter: '___', special_characters: {'.' => '_dot_'}}
+    @chnm3 = @gstats.compact(['source', 'campaign_id', 'project_id', 'adgroup_id'], **compact_params, hour: true)
+
+    @lp = "r_1"
+
+    redirect_to '/' unless params[:q].present?
+    search = Search.includes(:queries).find_by(slug: params[:q])
+    if search 
+      @queries = search.queries.order(:weighting).limit(5)
+      @url = 'https://results.searchbe.com/dynamiclander/'
+
+    else
+      # redirect_to "https://results.searchbe.com/dynamiclander/?q=#{params[:q]}"
+    end
+  end
+
 
 
   private

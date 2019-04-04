@@ -1,0 +1,7 @@
+<% @queries.each do |q| %>
+  <a href="<%= "#{@url}?p=2&q=#{q.query}&chnm=fb&chnm2=#{q.query}&chnm3=#{@chnm3}" %>">
+    <div class="result">
+      <p><%= q.query %></p>
+    </div>
+  </a>
+<% end %>
