@@ -16,13 +16,15 @@ class ApplicationController < ActionController::Base
 
     redirect_to '/' unless params[:q].present?
     search = Search.includes(:queries).find_by(slug: params[:q])
+    chnm = 'fb' if params[:utm_source] == 'facebook'
+    chnm = 'gs' if params[:utm_source] == 'adwords'
     if search 
       query = _weighted_choice(search.queries)
       url = 'https://results.searchbe.com/dynamiclander/'
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
       
-      redirect_to "#{url}?p=#{p_val}&q=#{query.query}&chnm=fb&chnm2=#{query.query}&chnm3=#{chnm3}"
+      redirect_to "#{url}?p=#{p_val}&q=#{query.query}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}"
     else
       redirect_to "https://results.searchbe.com/dynamiclander/?q=#{params[:q]}"
     end
