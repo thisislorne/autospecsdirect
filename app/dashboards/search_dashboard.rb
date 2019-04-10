@@ -8,8 +8,8 @@ class SearchDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    # queries: Field::HasMany.with_options(limit: 20),
-    queries: Field::NestedHasMany.with_options(limit: 20),
+    queries: Field::HasMany.with_options(limit: 20),
+    # queries: Field::NestedHasMany.with_options(limit: 20),
     id: Field::Number,
     slug: Field::String,
   }.freeze

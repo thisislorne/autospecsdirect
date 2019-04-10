@@ -31,8 +31,10 @@ gem 'gstats_client', git: 'git@github.com:GroovyMedia/gstats_client.git', :tag =
 gem 'groovy_geo', git: 'git@github.com:GroovyMedia/groovy_geo.git', :tag => 'v0.1.5'
 gem 'newrelic_rpm'
 gem 'mini_racer'
+gem 'thor'
+# gem 'mechanize'
 gem 'administrate'
-gem 'administrate-field-nested_has_many'
+# gem 'administrate-field-nested_has_many'
 gem 'browser'
 
 
