@@ -20,6 +20,9 @@ class ApplicationController < ActionController::Base
     chnm = 'gs' if params[:utm_source] == 'adwords'
     if search 
       query = _weighted_choice(search.queries)
+      # TODO: 
+      # we need to pull out a helper to return the weighted optimised + non optimised but enabled queries
+
       url = 'https://results.searchbe.com/dynamiclander/'
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
@@ -51,8 +54,6 @@ class ApplicationController < ActionController::Base
       # redirect_to "https://results.searchbe.com/dynamiclander/?q=#{params[:q]}"
     end
   end
-
-
 
   private
 

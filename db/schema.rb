@@ -10,20 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_230753) do
+ActiveRecord::Schema.define(version: 2019_04_11_022431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "optimised_queries", force: :cascade do |t|
+    t.integer "query_id", null: false
+    t.integer "weighting", null: false
+    t.string "adgroup_id", null: false
+  end
 
   create_table "queries", force: :cascade do |t|
     t.string "query", null: false
     t.integer "search_id", null: false
     t.integer "weighting", null: false
+    t.boolean "optimisation_enabled", default: true
+    t.boolean "enabled", default: true
+    t.string "query_stripped"
     t.index ["search_id"], name: "index_queries_on_search_id"
   end
 
   create_table "searches", force: :cascade do |t|
     t.string "slug", null: false
+    t.boolean "optimisation_enabled", default: true
     t.index ["slug"], name: "index_searches_on_slug"
   end
 

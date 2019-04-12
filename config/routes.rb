@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :admin do
       resources :searches
       resources :queries
+      resources :optimised_queries
 
       root to: "queries#index"
     end

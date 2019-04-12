@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class SearchDashboard < Administrate::BaseDashboard
+class OptimisedQueryDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,12 +8,10 @@ class SearchDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    queries: Field::HasMany.with_options(limit: 30),
-    optimised_queries: Field::HasMany.with_options(limit: 30),
-    # queries: Field::NestedHasMany.with_options(limit: 20),
+    query: Field::BelongsTo,
     id: Field::Number,
-    slug: Field::String,
-    optimisation_enabled: Field::Boolean
+    weighting: Field::Number,
+    adgroup_id: Field::Text,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -22,34 +20,32 @@ class SearchDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :slug, 
-    :queries,
-    :optimisation_enabled
+    :id,
+    :query,
+    :adgroup_id,
+    :weighting,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :slug,
-    :queries,
-    :optimised_queries,
-    :optimisation_enabled
+    :id,
+    :query,
+    :adgroup_id,
+    :weighting,
   ].freeze
-
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :slug,
-    :queries,
-    :optimisation_enabled
+    :weighting,
   ].freeze
 
-  # Overwrite this method to customize how searches are displayed
+  # Overwrite this method to customize how queries are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(search)
-    "https://searchbe.com/search?q=#{URI.encode(search.slug)}"
+  def display_resource(optimised_query)
+    "query #{optimised_query.query.query}"
   end
 end

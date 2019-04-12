@@ -11,7 +11,12 @@ class QueryDashboard < Administrate::BaseDashboard
     search: Field::BelongsTo,
     id: Field::Number,
     query: Field::String,
+    optimised_queries: Field::HasMany,
     weighting: Field::Number,
+    optimisation_enabled: Field::Boolean,
+    enabled: Field::Boolean,
+    query_stripped: Field::Text,
+    
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -20,10 +25,12 @@ class QueryDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :search,
     :id,
     :query,
     :weighting,
+    :enabled,
+    :optimised_queries,
+    :optimisation_enabled
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -33,6 +40,10 @@ class QueryDashboard < Administrate::BaseDashboard
     :id,
     :query,
     :weighting,
+    :enabled,
+    :optimised_queries,
+    :optimisation_enabled,
+    :query_stripped
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -42,12 +53,14 @@ class QueryDashboard < Administrate::BaseDashboard
     :search,
     :query,
     :weighting,
+    :enabled,
+    :optimisation_enabled,
   ].freeze
 
   # Overwrite this method to customize how queries are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(query)
-  #   "Query ##{query.id}"
-  # end
+  def display_resource(query)
+    "#{query.query}"
+  end
 end
