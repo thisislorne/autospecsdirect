@@ -17,6 +17,7 @@ class Genius < Thor
     adgroups = _get_adgroup_ids(logger, token, site)
 
     adgroups.each do |adgroup|
+    # adgroups[1..2].each do |adgroup|
       begin
         keywords = _get_keyword_rpc(logger, token, site, adgroup['adgroup_id'])
         kw_array = []
@@ -30,7 +31,11 @@ class Genius < Thor
         queries.each do |query|
           next unless query.enabled
           next unless query.optimisation_enabled
+          if query.updated_at <= 3.days.ago
+            # do something here
+          end
           
+
           keyword = keywords.detect {|k| k['keyword_id'].downcase == query.query_stripped}
           logger.info "[IMPORTER] Clicks for #{query.query} #{keyword['clicks_sum']}"
           next unless keyword['clicks_sum'] > 10

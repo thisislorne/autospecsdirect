@@ -14,5 +14,6 @@ class CreateOptimisedKeywords < ActiveRecord::Migration[5.2]
     #   q.query_stripped = q.query.downcase.gsub(/\s+/, "").gsub("'", '')
     #   q.save!
     # end
+
   end
 end

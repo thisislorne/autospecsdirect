@@ -32,6 +32,7 @@ gem 'groovy_geo', git: 'git@github.com:GroovyMedia/groovy_geo.git', :tag => 'v0.
 gem 'newrelic_rpm'
 gem 'mini_racer'
 gem 'thor'
+gem 'whenever', require: false
 # gem 'mechanize'
 gem 'administrate'
 # gem 'administrate-field-nested_has_many'
