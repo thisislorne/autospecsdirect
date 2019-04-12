@@ -1,8 +1,8 @@
 require './config/environment'
 class Genius < Thor
 
-  desc 'fetch_rpc', 'A task to fetch RPCs from gstats, and then optimise queries.'
-  def fetch_rpc
+  desc 'optimise_keywords', 'A task to fetch RPCs from gstats, and then optimise queries.'
+  def optimise_keywords
     require 'rest-client'
     logger = Logger.new(STDOUT)
     logger.level = Logger::INFO
