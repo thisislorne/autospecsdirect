@@ -10,9 +10,9 @@ class CreateOptimisedKeywords < ActiveRecord::Migration[5.2]
     add_column :searches, :optimisation_enabled, :boolean, default: true
     add_column :queries, :query_stripped, :string
 
-    Query.all.each do |q|
-      q.query_stripped = q.query.downcase.gsub(/\s+/, "").gsub("'", '')
-      q.save!
-    end
+    # Query.all.each do |q|
+    #   q.query_stripped = q.query.downcase.gsub(/\s+/, "").gsub("'", '')
+    #   q.save!
+    # end
   end
 end
