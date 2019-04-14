@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
     extra_params = params
     extra_params.delete :controller
     extra_params.delete :action
-    extra_params.delete :q
 
     if search 
       query = _weighted_choice(search.queries)

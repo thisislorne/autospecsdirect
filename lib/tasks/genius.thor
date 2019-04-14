@@ -29,16 +29,19 @@ class Genius < Thor
         queries_to_optimise = []
 
         queries.each do |query|
+          nxt = false
           next unless query.enabled
           next unless query.optimisation_enabled
-          if query.updated_at <= 3.days.ago
-            # do something here
+          if query.updated_at <= 3.days.ago && keyword['clicks_sum'] > 10
+            # query is old and doesn't have clicks.
+            # keep using default weight, but lets ping slack. 
+            next
           end
           
 
           keyword = keywords.detect {|k| k['keyword_id'].downcase == query.query_stripped}
           logger.info "[IMPORTER] Clicks for #{query.query} #{keyword['clicks_sum']}"
-          next unless keyword['clicks_sum'] > 10
+          next unless nxt = false
 
 
           obj = {
