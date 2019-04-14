@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
     search = Search.includes(:queries).find_by(slug: params[:q])
     chnm = 'fb' if params[:utm_source] == 'facebook'
     chnm = 'gs' if params[:utm_source] == 'adwords'
+
+    extra_params = params
+    extra_params.delete :controller
+    extra_params.delete :action
+    extra_params.delete :q
+
     if search 
       query = _weighted_choice(search.queries)
       # TODO: 
@@ -26,17 +32,10 @@ class ApplicationController < ActionController::Base
       url = 'https://results.searchbe.com/dynamiclander/'
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
-
-      extra_params = {
-        utm_source: params[:utm_source],
-        tracking_id: params[:tracking_id],
-        aid: params[:aid],
-        utm_campaign: params[:utm_campaign],
-      }
       
       redirect_to "#{url}?p=#{p_val}&q=#{query.query}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&#{extra_params.to_query}"
     else
-      redirect_to "https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&#{extra_params.to_query}"
+      redirect_to "https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{params[:q]}&chnm3=#{chnm3}&#{extra_params.to_query}"
     end
     
   end
