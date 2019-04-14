@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       
       redirect_to "#{url}?p=#{p_val}&q=#{query.query}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&#{extra_params.to_query}"
     else
-      redirect_to "https://results.searchbe.com/dynamiclander/?q=#{params[:q]}"
+      redirect_to "https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&#{extra_params.to_query}"
     end
     
   end
