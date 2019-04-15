@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
   end
 
   def search
-    redirect_to('/') and return unless params[:q].present?
-
     thumbnails = @ab.test('thumbnails',
       show: 1,
       hide: 1
@@ -19,12 +17,13 @@ class ApplicationController < ActionController::Base
 
     compact_params = { kv_delimiter: '__', pair_delimiter: '___', special_characters: {'.' => '_dot_'}}
     chnm3 = @gstats.compact(['source', 'campaign_id', 'project_id', 'adgroup_id'], **compact_params, hour: true)
-
-    search = Search.includes(:queries).find_by(slug: params[:q])
     chnm = 'fb' if params[:utm_source] == 'facebook'
     chnm = 'gs' if params[:utm_source] == 'adwords'
 
     redirect_to("https://results.searchbe.com/dynamiclander/?q=search&chnm=#{chnm}&chnm2=search&chnm3=#{chnm3}&#{extra_params.to_query}") and return if params[:q].blank?
+
+    search = Search.includes(:queries).find_by(slug: params[:q])
+    
 
     if search.present? && params[:aid] && (search.optimised_queries.where(adgroup_id: params[:aid]).count >= (search.queries.count -1))
       optimised_query = _weighted_choice(search.optimised_queries.where(adgroup_id: params[:aid]))
