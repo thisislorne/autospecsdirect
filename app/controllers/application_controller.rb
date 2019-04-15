@@ -14,7 +14,8 @@ class ApplicationController < ActionController::Base
     compact_params = { kv_delimiter: '__', pair_delimiter: '___', special_characters: {'.' => '_dot_'}}
     chnm3 = @gstats.compact(['source', 'campaign_id', 'project_id', 'adgroup_id'], **compact_params, hour: true)
 
-    redirect_to '/' unless params[:q].present?
+    redirect_to('/') and return unless params[:q].present?
+    redirect_to('/') and return if params[:q].blank?
     search = Search.includes(:queries).find_by(slug: params[:q])
     chnm = 'fb' if params[:utm_source] == 'facebook'
     chnm = 'gs' if params[:utm_source] == 'adwords'
@@ -30,7 +31,7 @@ class ApplicationController < ActionController::Base
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
       
-      redirect_to "#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&#{extra_params.to_query}"
+      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&#{extra_params.to_query}") and return
 
     elsif search.present?
       query = _weighted_choice(search.queries)
@@ -39,9 +40,9 @@ class ApplicationController < ActionController::Base
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
       
-      redirect_to "#{url}?p=#{p_val}&q=#{query.query}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&#{extra_params.to_query}"
+      redirect_to("#{url}?p=#{p_val}&q=#{query.query}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&#{extra_params.to_query}") and return
     else
-      redirect_to "https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{params[:q]}&chnm3=#{chnm3}&#{extra_params.to_query}"
+      redirect_to("https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{params[:q]}&chnm3=#{chnm3}&#{extra_params.to_query}") and return
     end
     
   end
