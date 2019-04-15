@@ -9,7 +9,8 @@ class SearchDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     queries: Field::HasMany.with_options(limit: 30),
-    optimised_queries: Field::HasMany.with_options(limit: 30),
+    # optimised_queries: Field::HasMany.with_options(limit: 30),
+    optimised_queries: Field::OptimisedQueriesField,
     # queries: Field::NestedHasMany.with_options(limit: 20),
     id: Field::Number,
     slug: Field::String,

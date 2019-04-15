@@ -1,0 +1,36 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+<% adgroup_ids = field.data.pluck(:adgroup_id).uniq %>
+
+<% adgroup_ids.each do |adgroup| %>
+  <hr>
+  <h1 style="text-align: center;">adgroup: <%= adgroup %></h1>
+  <canvas id="<%= adgroup %>" width="400" height="100"></canvas>
+  <% oqs = field.data.where(adgroup_id: adgroup).order(weighting: :desc) %>
+  <script>
+  var ctx = "<%= adgroup %>";
+
+  var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: <%= raw(oqs.pluck(:query)) %>,
+      datasets: [{
+        data: <%= oqs.pluck(:weighting) %>,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      rotation: 3,
+    }
+  });
+  </script>
+  <hr>
+<% end %>
