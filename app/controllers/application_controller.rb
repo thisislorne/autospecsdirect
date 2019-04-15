@@ -23,13 +23,17 @@ class ApplicationController < ActionController::Base
     extra_params.delete :controller
     extra_params.delete :action
 
-    # if params[:aid]
-      # query = _weighted_choice(search.optimised_queries.where(adgroup_id: params[:aid])
-    # els
-    if search 
+    if search.present? && params[:aid] && (search.optimised_queries.where(adgroup_id: params[:aid]).count >= (search.queries.count -1))
+      optimised_query = _weighted_choice(search.optimised_queries.where(adgroup_id: params[:aid]))
+
+      url = 'https://results.searchbe.com/dynamiclander/'
+      p_val = 1
+      p_val = 2 unless thumbnails == 'hide'
+      
+      redirect_to "#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&#{extra_params.to_query}"
+
+    elsif search.present?
       query = _weighted_choice(search.queries)
-      # TODO: 
-      # we need to pull out a helper to return the weighted optimised + non optimised but enabled queries
 
       url = 'https://results.searchbe.com/dynamiclander/'
       p_val = 1

@@ -87,7 +87,12 @@ class Genius < Thor
       end
     
     end
-    _slack_notify(query_alerts)
+    begin
+      _slack_notify(query_alerts)  
+    rescue Exception => e
+      logger.info "[IMPORTER] slack failed"
+    end
+    
     
     logger.info "[IMPORTER] done done"
   end
