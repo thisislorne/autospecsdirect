@@ -23,7 +23,9 @@ class ApplicationController < ActionController::Base
     extra_params.delete :controller
     extra_params.delete :action
 
-    if search 
+    if params[:aid]
+      query = _weighted_choice(search.optimised_queries.where(adgroup_id: params[:aid])
+    elsif search 
       query = _weighted_choice(search.queries)
       # TODO: 
       # we need to pull out a helper to return the weighted optimised + non optimised but enabled queries

@@ -13,7 +13,9 @@ class SearchDashboard < Administrate::BaseDashboard
     # queries: Field::NestedHasMany.with_options(limit: 20),
     id: Field::Number,
     slug: Field::String,
-    optimisation_enabled: Field::Boolean
+    optimisation_enabled: Field::Boolean,
+    updated_at: Field::DateTime,
+    created_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
