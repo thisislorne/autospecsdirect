@@ -27,16 +27,15 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'administrate'
+gem 'browser'
 gem 'gstats_client', git: 'git@github.com:GroovyMedia/gstats_client.git', :tag => 'v0.2.9'
 gem 'groovy_geo', git: 'git@github.com:GroovyMedia/groovy_geo.git', :tag => 'v0.1.5'
-gem 'newrelic_rpm'
 gem 'mini_racer'
+gem 'newrelic_rpm'
+gem 'slack-ruby-client'
 gem 'thor'
 gem 'whenever', require: false
-# gem 'mechanize'
-gem 'administrate'
-# gem 'administrate-field-nested_has_many'
-gem 'browser'
 
 
 # Use Capistrano for deployment

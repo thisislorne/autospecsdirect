@@ -15,9 +15,11 @@ class Genius < Thor
 
     token = _get_token(logger)
     adgroups = _get_adgroup_ids(logger, token, site)
+    query_alerts = []
 
-    adgroups.each do |adgroup|
-    # adgroups[1..2].each do |adgroup|
+    # adgroups.each do |adgroup|
+
+    adgroups[1..2].each do |adgroup|
       begin
         keywords = _get_keyword_rpc(logger, token, site, adgroup['adgroup_id'])
         kw_array = []
@@ -29,51 +31,89 @@ class Genius < Thor
         queries_to_optimise = []
 
         queries.each do |query|
-          nxt = false
           next unless query.enabled
           next unless query.optimisation_enabled
-          if query.updated_at <= 3.days.ago && keyword['clicks_sum'] > 10
-            # query is old and doesn't have clicks.
-            # keep using default weight, but lets ping slack. 
-            next
-          end
           
-
           keyword = keywords.detect {|k| k['keyword_id'].downcase == query.query_stripped}
           logger.info "[IMPORTER] Clicks for #{query.query} #{keyword['clicks_sum']}"
-          next unless nxt = false
 
-
-          obj = {
-            query_id: query.id,
-            revenue_per_impression: keyword['revenue_per_impression']
-          }
-          queries_to_optimise.push obj
+          if query.updated_at <= 3.days.ago && keyword['clicks_sum'] < 10 || query.optimisation_enabled == false
+            logger.info "[IMPORTER] Old and no clicks"
+            # query is old and doesn't have clicks.
+            # keep using default weight, but lets ping slack. 
+            obj = { query_id: query.id, weighting_default: query.weighting }
+            queries_to_optimise.push obj
+            qa_obj = { query: query.id }
+            query_alerts.push qa_obj
+          elsif query.optimisation_enabled == false
+            logger.info "[IMPORTER] Optimisation Disabled. Default weighting applies."
+            obj = { query_id: query.id, weighting_default: query.weighting }
+            queries_to_optimise.push obj
+          else
+            obj = { query_id: query.id, revenue_per_impression: keyword['revenue_per_impression'] }
+            queries_to_optimise.push obj
+          end
         end
 
         queries_to_optimise.each do |qto|
-          rpi = qto[:revenue_per_impression]
-          # rev per imp +1 to the power of 10, -1. 
-          optimised_weighting = ((rpi + 1) ** 10 -1) * 10
+          if qto[:weighting_default].present?
+            oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: adgroup['adgroup_id'])
+            oq.weighting = qto[:weighting_default]
+            oq.adgroup_id = adgroup['adgroup_id']
+            oq.save!
 
-          oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: adgroup['adgroup_id'])
-          oq.weighting = optimised_weighting
-          oq.adgroup_id = adgroup['adgroup_id']
-          oq.save!
+            logger.info "[IMPORTER] oq updated #{oq.id} with weighting_default for #{oq.query.query}"
+            
+          elsif qto[:revenue_per_impression].present?
+            rpi = qto[:revenue_per_impression]
+            # rev per imp +1 to the power of 10, -1. 
+            optimised_weighting = ((rpi + 1) ** 10 -1) * 10
+
+            oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: adgroup['adgroup_id'])
+            oq.weighting = optimised_weighting
+            oq.adgroup_id = adgroup['adgroup_id']
+            oq.save!
+
+            logger.info "[IMPORTER] oq updated #{oq.id} with optimised_weighting for #{oq.query.query}"
+          end
           
-          logger.info "[IMPORTER] oq updated #{oq.id} for #{oq.query.query}"
+          
         end  
 
         logger.info "[IMPORTER] adgroup_id #{adgroup['adgroup_id']} done"
       rescue Exception => e
         logger.info "[IMPORTER] failed on #{adgroup['adgroup_id']}"
+        logger.info "#{e}"
       end
-      
+    
     end
+    _slack_notify(query_alerts)
+    
     logger.info "[IMPORTER] done done"
   end
 
   private
+
+  def _slack_notify(query_alerts)
+    client = Slack::Web::Client.new
+    msg = [
+            {"type": "section","text": {"type": "plain_text","emoji": true,"text": "Looks like we have some funky keywords:"}}
+          ]
+
+    query_alerts.each do |qa|
+      query = Query.find(qa[:query])
+      section = {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "*<https://searchbe.com/admin/searches/#{query.search.id}|#{query.query}>* was last updated: #{query.updated_at.strftime('%b %d %Y')} and doesn't have enough clicks to optimise. "
+        }
+      }
+      msg.push section
+    end
+
+    client.chat_postMessage(channel: '#warnings', blocks: msg, as_user: true)
+  end
 
   def _get_keyword_rpc(logger, token, site, adgroup_id)
     headers = {'Authorization': "Token #{token}", 'content_type': 'application/json'}

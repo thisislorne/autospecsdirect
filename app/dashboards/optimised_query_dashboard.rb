@@ -12,6 +12,8 @@ class OptimisedQueryDashboard < Administrate::BaseDashboard
     id: Field::Number,
     weighting: Field::Number,
     adgroup_id: Field::Text,
+    updated_at: Field::DateTime,
+    created_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -33,6 +35,7 @@ class OptimisedQueryDashboard < Administrate::BaseDashboard
     :query,
     :adgroup_id,
     :weighting,
+    :updated_at,
   ].freeze
 
   # FORM_ATTRIBUTES

@@ -16,7 +16,8 @@ class QueryDashboard < Administrate::BaseDashboard
     optimisation_enabled: Field::Boolean,
     enabled: Field::Boolean,
     query_stripped: Field::Text,
-    
+    updated_at: Field::DateTime,
+    created_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -43,7 +44,8 @@ class QueryDashboard < Administrate::BaseDashboard
     :enabled,
     :optimised_queries,
     :optimisation_enabled,
-    :query_stripped
+    :query_stripped,
+    :updated_at,
   ].freeze
 
   # FORM_ATTRIBUTES

@@ -33,7 +33,8 @@ class SearchDashboard < Administrate::BaseDashboard
     :slug,
     :queries,
     :optimised_queries,
-    :optimisation_enabled
+    :optimisation_enabled,
+    :updated_at
   ].freeze
 
 
