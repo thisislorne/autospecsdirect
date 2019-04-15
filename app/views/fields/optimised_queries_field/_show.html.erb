@@ -16,14 +16,7 @@
       labels: <%= raw(oqs.pluck(:query)) %>,
       datasets: [{
         data: <%= oqs.pluck(:weighting) %>,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
+        backgroundColor: ["#11174b", "#152065", "#1c2c7f", "#24448e", "#2e5e9e", "#3577ae", "#3d91be", "#46aace", "#62bed2", "#8acdce", "#b3ddcc", "#dcecc9", "#fded86", "#f5b857", "#f0a04b", "#eb8a40", "#e67235", "#c74e29", "#9d4429", "#753c2c", "#4c3430"],
         borderWidth: 1
       }]
     },
