@@ -103,7 +103,7 @@ class Genius < Thor
     #         {"type": "section","text": {"type": "plain_text","emoji": true,"text": "Updated #{queries_to_optimise.count - @query_alerts.count}"}},
     #         {"type": "section","text": {"type": "plain_text","emoji": true,"text": "And there was  #{@query_alerts.count} query that couldn't be optimised"}}
     #       ]
-    msg = "Optimiser has run.\nUpdated #{queries_to_optimise.count - @query_alerts.count} queries\nAnd there were #{@query_alerts.count} queries that couldn't be optimised or are using default values."
+    msg = "Optimiser has run.\nOptimised weights of #{queries_to_optimise.count - @query_alerts.count} queries\nAnd there were #{@query_alerts.count} queries that couldn't be optimised or are using default weightings."
     begin
       client.chat_postMessage(channel: '#searchbee', text: msg, as_user: true)
     rescue Exception => e
