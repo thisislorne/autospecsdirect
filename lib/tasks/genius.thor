@@ -15,7 +15,10 @@ class Genius < Thor
 
     token = _get_token(logger)
     adgroups = _get_adgroup_ids(logger, token, site)
-    query_alerts = []
+
+
+    @query_alerts = []
+    @queries_to_optimise = []
 
     adgroups.each do |adgroup|
 
@@ -27,8 +30,6 @@ class Genius < Thor
           kw_array.push(keyword['keyword_id'].downcase)
         end
         queries = Query.where(query_stripped: kw_array)
-
-        queries_to_optimise = []
 
         queries.each do |query|
           next unless query.enabled
@@ -42,20 +43,20 @@ class Genius < Thor
             # query is old and doesn't have clicks.
             # keep using default weight, but lets ping slack. 
             obj = { query_id: query.id, weighting_default: query.weighting }
-            queries_to_optimise.push obj
+            @queries_to_optimise.push obj
             qa_obj = { query: query.id }
-            query_alerts.push qa_obj
+            @query_alerts.push qa_obj
           elsif query.optimisation_enabled == false
             logger.info "[IMPORTER] Optimisation Disabled. Default weighting applies."
             obj = { query_id: query.id, weighting_default: query.weighting }
-            queries_to_optimise.push obj
+            @queries_to_optimise.push obj
           else
             obj = { query_id: query.id, revenue_per_impression: keyword['revenue_per_impression'] }
-            queries_to_optimise.push obj
+            @queries_to_optimise.push obj
           end
         end
 
-        queries_to_optimise.each do |qto|
+        @queries_to_optimise.each do |qto|
           if qto[:weighting_default].present?
             oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: adgroup['adgroup_id'])
             oq.weighting = qto[:weighting_default]
@@ -87,37 +88,27 @@ class Genius < Thor
       end
     
     end
-    begin
-      _slack_notify(query_alerts)  
-    rescue Exception => e
-      logger.info "[IMPORTER] slack failed"
-    end
     
+    _slack_notify(@query_alerts, @queries_to_optimise)      
     
     logger.info "[IMPORTER] done done"
   end
 
   private
 
-  def _slack_notify(query_alerts)
+  def _slack_notify(query_alerts, queries_to_optimise)
     client = Slack::Web::Client.new
-    msg = [
-            {"type": "section","text": {"type": "plain_text","emoji": true,"text": "Looks like we have some funky keywords:"}}
-          ]
-
-    query_alerts.each do |qa|
-      query = Query.find(qa[:query])
-      section = {
-        "type": "section",
-        "text": {
-          "type": "mrkdwn",
-          "text": "*<https://searchbe.com/admin/searches/#{query.search.id}|#{query.query}>* was last updated: #{query.updated_at.strftime('%b %d %Y')} and doesn't have enough clicks to optimise. "
-        }
-      }
-      msg.push section
+    # msg = [
+    #         {"type": "section","text": {"type": "plain_text","emoji": true,"text": "Optimiser has run!"}},
+    #         {"type": "section","text": {"type": "plain_text","emoji": true,"text": "Updated #{queries_to_optimise.count - @query_alerts.count}"}},
+    #         {"type": "section","text": {"type": "plain_text","emoji": true,"text": "And there was  #{@query_alerts.count} query that couldn't be optimised"}}
+    #       ]
+    msg = "Optimiser has run.\nUpdated #{queries_to_optimise.count - @query_alerts.count} queries\nAnd there were #{@query_alerts.count} queries that couldn't be optimised or are using default values."
+    begin
+      client.chat_postMessage(channel: '#searchbee', text: msg, as_user: true)
+    rescue Exception => e
+      logger.info "[IMPORTER] slack failed #{e}"
     end
-
-    client.chat_postMessage(channel: '#warnings', blocks: msg, as_user: true)
   end
 
   def _get_keyword_rpc(logger, token, site, adgroup_id)
