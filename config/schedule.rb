@@ -6,7 +6,7 @@ set :output, {
   standard: Rails.root.join('log', "#{@environment}_cron.log"),
   error: Rails.root.join('log', "#{@environment}_cron_error.log")
 }
-every 1.hour do
+every :hour do
   thor 'genius:optimise_keywords'
 end
 
