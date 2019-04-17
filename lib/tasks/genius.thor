@@ -20,9 +20,9 @@ class Genius < Thor
     @query_alerts = []
     @queries_to_optimise = []
 
-    # adgroups.each do |adgroup|
+    adgroups.each do |adgroup|
 
-    adgroups[1..2].each do |adgroup|
+    # adgroups[1..2].each do |adgroup|
       begin
         keywords = _get_keyword_rpc(logger, token, site, adgroup['adgroup_id'])
         kw_array = []
