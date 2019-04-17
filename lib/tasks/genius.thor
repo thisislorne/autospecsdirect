@@ -20,9 +20,9 @@ class Genius < Thor
     @query_alerts = []
     @queries_to_optimise = []
 
-    adgroups.each do |adgroup|
+    # adgroups.each do |adgroup|
 
-    # adgroups[1..2].each do |adgroup|
+    adgroups[1..2].each do |adgroup|
       begin
         keywords = _get_keyword_rpc(logger, token, site, adgroup['adgroup_id'])
         kw_array = []
@@ -42,16 +42,35 @@ class Genius < Thor
             logger.info "[IMPORTER] Old and no clicks"
             # query is old and doesn't have clicks.
             # keep using default weight, but lets ping slack. 
-            obj = { query_id: query.id, weighting_default: query.weighting }
+            obj = { 
+              query_id: query.id, 
+              weighting_default: query.weighting, 
+              revenue_per_impression: keyword['revenue_per_impression'], 
+              rpc: keyword['revenue_per_click'],
+              clicks: keyword['clicks_sum'],
+              impressions: keyword['impressions_sum']
+            }
             @queries_to_optimise.push obj
             qa_obj = { query: query.id }
             @query_alerts.push qa_obj
           elsif query.optimisation_enabled == false
             logger.info "[IMPORTER] Optimisation Disabled. Default weighting applies."
-            obj = { query_id: query.id, weighting_default: query.weighting }
+            obj = { 
+              query_id: query.id, 
+              weighting_default: query.weighting, 
+              rpc: keyword['revenue_per_click'],
+              clicks: keyword['clicks_sum'],
+              impressions: keyword['impressions_sum']
+            }
             @queries_to_optimise.push obj
           else
-            obj = { query_id: query.id, revenue_per_impression: keyword['revenue_per_impression'] }
+            obj = { 
+              query_id: query.id, 
+              revenue_per_impression: keyword['revenue_per_impression'], 
+              rpc: keyword['revenue_per_click'],
+              clicks: keyword['clicks_sum'],
+              impressions: keyword['impressions_sum']
+            }
             @queries_to_optimise.push obj
           end
         end
@@ -60,6 +79,10 @@ class Genius < Thor
           if qto[:weighting_default].present?
             oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: adgroup['adgroup_id'])
             oq.weighting = qto[:weighting_default]
+            oq.rpc = qto[:rpc]
+            oq.clicks = qto[:clicks]
+            oq.impressions = qto[:impressions]
+            oq.rpi = rpi
             oq.adgroup_id = adgroup['adgroup_id']
             oq.save!
 
@@ -72,6 +95,10 @@ class Genius < Thor
 
             oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: adgroup['adgroup_id'])
             oq.weighting = optimised_weighting
+            oq.rpc = qto[:rpc]
+            oq.clicks = qto[:clicks]
+            oq.impressions = qto[:impressions]
+            oq.rpi = rpi
             oq.adgroup_id = adgroup['adgroup_id']
             oq.save!
 
@@ -98,11 +125,6 @@ class Genius < Thor
 
   def _slack_notify(query_alerts, queries_to_optimise)
     client = Slack::Web::Client.new
-    # msg = [
-    #         {"type": "section","text": {"type": "plain_text","emoji": true,"text": "Optimiser has run!"}},
-    #         {"type": "section","text": {"type": "plain_text","emoji": true,"text": "Updated #{queries_to_optimise.count - @query_alerts.count}"}},
-    #         {"type": "section","text": {"type": "plain_text","emoji": true,"text": "And there was  #{@query_alerts.count} query that couldn't be optimised"}}
-    #       ]
     msg = "Optimiser has run.\nOptimised weights of #{queries_to_optimise.count - @query_alerts.count} queries\nAnd there were #{@query_alerts.count} queries that couldn't be optimised or are using default weightings."
     begin
       client.chat_postMessage(channel: '#searchbee', text: msg, as_user: true)
@@ -124,7 +146,9 @@ class Genius < Thor
       ],
       "metrics": [
         "revenue_per_impression",
-        "clicks sum"
+        "revenue_per_click",
+        "clicks sum",
+        "impressions sum"
       ],
       "percent_metrics": [],
       "row_limit": 10000,
