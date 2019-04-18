@@ -16,7 +16,6 @@ class Genius < Thor
     token = _get_token(logger)
     adgroups = _get_adgroup_ids(logger, token, site)
 
-
     @query_alerts = []
     @queries_to_optimise = []
 
@@ -48,7 +47,9 @@ class Genius < Thor
               revenue_per_impression: keyword['revenue_per_impression'], 
               rpc: keyword['revenue_per_click'],
               clicks: keyword['clicks_sum'],
-              impressions: keyword['impressions_sum']
+              impressions: keyword['impressions_sum'],
+              agroup_id: adgroup['adgroup_id']
+
             }
             @queries_to_optimise.push obj
             qa_obj = { query: query.id }
@@ -60,7 +61,8 @@ class Genius < Thor
               weighting_default: query.weighting, 
               rpc: keyword['revenue_per_click'],
               clicks: keyword['clicks_sum'],
-              impressions: keyword['impressions_sum']
+              impressions: keyword['impressions_sum'],
+              agroup_id: adgroup['adgroup_id']
             }
             @queries_to_optimise.push obj
           else
@@ -69,59 +71,58 @@ class Genius < Thor
               revenue_per_impression: keyword['revenue_per_impression'], 
               rpc: keyword['revenue_per_click'],
               clicks: keyword['clicks_sum'],
-              impressions: keyword['impressions_sum']
+              impressions: keyword['impressions_sum'],
+              agroup_id: adgroup['adgroup_id']
             }
             @queries_to_optimise.push obj
           end
         end
 
-        @queries_to_optimise.each do |qto|
-          if qto[:weighting_default].present?
-            oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: adgroup['adgroup_id'])
-            oq.weighting = qto[:weighting_default]
-            oq.rpc = qto[:rpc]
-            oq.clicks = qto[:clicks]
-            oq.impressions = qto[:impressions]
-            oq.rpi = rpi
-            oq.adgroup_id = adgroup['adgroup_id']
-            oq.save!
-
-            logger.info "[IMPORTER] oq updated #{oq.id} with weighting_default for #{oq.query.query}"
-            
-          elsif qto[:revenue_per_impression].present?
-            rpi = qto[:revenue_per_impression]
-            # rev per imp +1 to the power of 10, -1. 
-            optimised_weighting = ((rpi + 1) ** 10 -1) * 10
-
-            oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: adgroup['adgroup_id'])
-            oq.weighting = optimised_weighting
-            oq.rpc = qto[:rpc]
-            oq.clicks = qto[:clicks]
-            oq.impressions = qto[:impressions]
-            oq.rpi = rpi
-            oq.adgroup_id = adgroup['adgroup_id']
-            oq.save!
-
-            logger.info "[IMPORTER] oq updated #{oq.id} with optimised_weighting for #{oq.query.query}"
-          end
-          
-          
-        end  
-
         logger.info "[IMPORTER] adgroup_id #{adgroup['adgroup_id']} done"
       rescue Exception => e
         logger.info "[IMPORTER] failed on #{adgroup['adgroup_id']}"
         logger.info "#{e}"
-      end
-    
+      end    
     end
-    
+
+    _optimise_queries(@queries_to_optimise, logger)
+
     _slack_notify(@query_alerts, @queries_to_optimise)      
     
     logger.info "[IMPORTER] done done"
   end
 
   private
+
+  def _optimise_queries(queries_to_optimise, logger)
+    queries_to_optimise.each do |qto|
+      if qto[:weighting_default].present?
+        oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:query_id])
+        oq.weighting = qto[:weighting_default]
+        oq.rpc = qto[:rpc]
+        oq.clicks = qto[:clicks]
+        oq.impressions = qto[:impressions]
+        oq.rpi = qto[:revenue_per_impression]
+        oq.save!
+
+        logger.info "[IMPORTER] oq updated #{oq.id} with weighting_default for #{oq.query.query}"
+        
+      elsif qto[:revenue_per_impression].present?
+        rpi = qto[:revenue_per_impression]
+        # rev per imp +1 to the power of 10, -1. 
+        optimised_weighting = ((rpi + 1) ** 10 -1) * 10
+        oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:query_id])
+        oq.weighting = optimised_weighting
+        oq.rpc = qto[:rpc]
+        oq.clicks = qto[:clicks]
+        oq.impressions = qto[:impressions]
+        oq.rpi = rpi
+        oq.save!
+
+        logger.info "[IMPORTER] oq updated #{oq.id} with optimised_weighting for #{oq.query.query}"
+      end
+    end  
+  end
 
   def _slack_notify(query_alerts, queries_to_optimise)
     client = Slack::Web::Client.new
