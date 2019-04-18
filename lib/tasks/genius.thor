@@ -48,7 +48,7 @@ class Genius < Thor
               rpc: keyword['revenue_per_click'],
               clicks: keyword['clicks_sum'],
               impressions: keyword['impressions_sum'],
-              agroup_id: adgroup['adgroup_id']
+              adgroup_id: adgroup['adgroup_id']
 
             }
             @queries_to_optimise.push obj
@@ -62,7 +62,7 @@ class Genius < Thor
               rpc: keyword['revenue_per_click'],
               clicks: keyword['clicks_sum'],
               impressions: keyword['impressions_sum'],
-              agroup_id: adgroup['adgroup_id']
+              adgroup_id: adgroup['adgroup_id']
             }
             @queries_to_optimise.push obj
           else
@@ -72,7 +72,7 @@ class Genius < Thor
               rpc: keyword['revenue_per_click'],
               clicks: keyword['clicks_sum'],
               impressions: keyword['impressions_sum'],
-              agroup_id: adgroup['adgroup_id']
+              adgroup_id: adgroup['adgroup_id']
             }
             @queries_to_optimise.push obj
           end
@@ -96,6 +96,7 @@ class Genius < Thor
 
   def _optimise_queries(queries_to_optimise, logger)
     queries_to_optimise.each do |qto|
+      next if qto[:adgroup_id].nil?
       if qto[:weighting_default].present?
         oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:adgroup_id])
         oq.weighting = qto[:weighting_default]
