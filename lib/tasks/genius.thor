@@ -97,7 +97,7 @@ class Genius < Thor
   def _optimise_queries(queries_to_optimise, logger)
     queries_to_optimise.each do |qto|
       if qto[:weighting_default].present?
-        oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:query_id])
+        oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:adgroup_id])
         oq.weighting = qto[:weighting_default]
         oq.rpc = qto[:rpc]
         oq.clicks = qto[:clicks]
@@ -111,7 +111,7 @@ class Genius < Thor
         rpi = qto[:revenue_per_impression]
         # rev per imp +1 to the power of 10, -1. 
         optimised_weighting = ((rpi + 1) ** 10 -1) * 10
-        oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:query_id])
+        oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:adgroup_id])
         oq.weighting = optimised_weighting
         oq.rpc = qto[:rpc]
         oq.clicks = qto[:clicks]
