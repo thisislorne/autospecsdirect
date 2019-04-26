@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     search = Search.includes(:queries).find_by(slug: params[:q])
     
 
-    if search.present? && params[:aid] && (search.optimised_queries.where(adgroup_id: params[:aid]).count >= (search.queries.count -1))
+    if search.present? && params[:aid] && (search.optimised_queries.where(adgroup_id: params[:aid]).count >= (search.queries.count - 1))
       optimised_query = _weighted_choice(search.optimised_queries.where(adgroup_id: params[:aid]))
 
       url = 'https://results.searchbe.com/dynamiclander/'
