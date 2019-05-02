@@ -24,23 +24,28 @@ class ApplicationController < ActionController::Base
 
     search = Search.includes(:queries).find_by(slug: params[:q])
     
-
-    if search.present? && params[:aid] && (search.optimised_queries.where(adgroup_id: params[:aid]).count >= (search.queries.count - 1))
+    if search.present? && params[:aid].in?(search.optimised_queries.pluck(:adgroup_id))
       optimised_query = _weighted_choice(search.optimised_queries.where(adgroup_id: params[:aid]))
+      cpr = (optimised_query.rpc * 15).round(2)
 
       url = 'https://results.searchbe.com/dynamiclander/'
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
       
+      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&cpr=#{cpr}&#{extra_params.to_query}") and return unless optimised_query.rpc.nil?
       redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&#{extra_params.to_query}") and return
 
     elsif search.present?
       query = _weighted_choice(search.queries)
+      rpcs = query.optimised_queries.where("rpc > 0")
+      ave = (rpcs.sum(:rpc) / rpcs.count)
 
       url = 'https://results.searchbe.com/dynamiclander/'
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
+
       
+      redirect_to("#{url}?p=#{p_val}&q=#{query.query}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&cpr=#{(ave*15).round(2)}&#{extra_params.to_query}") and return unless ave.nil?
       redirect_to("#{url}?p=#{p_val}&q=#{query.query}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&#{extra_params.to_query}") and return
     else
       redirect_to("https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{params[:q]}&chnm3=#{chnm3}&#{extra_params.to_query}") and return
