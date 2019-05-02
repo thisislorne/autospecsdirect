@@ -36,9 +36,10 @@ class ApplicationController < ActionController::Base
       redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&#{extra_params.to_query}") and return
 
     elsif search.present?
+      ave = 0.0
       query = _weighted_choice(search.queries)
       rpcs = query.optimised_queries.where("rpc > 0")
-      ave = (rpcs.sum(:rpc) / rpcs.count)
+      ave = (rpcs.sum(:rpc) / rpcs.count) unless rpcs.empty?
 
       url = 'https://results.searchbe.com/dynamiclander/'
       p_val = 1
