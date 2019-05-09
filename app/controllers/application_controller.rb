@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
     chnm3 = @gstats.compact(['source', 'campaign_id', 'project_id', 'adgroup_id'], **compact_params, hour: true)
     chnm = 'fb' if params[:utm_source] == 'facebook'
     chnm = 'gs' if params[:utm_source] == 'adwords'
+    chnm = 'gdn' if params[:utm_source] == 'gdn'
 
     redirect_to("https://results.searchbe.com/dynamiclander/?q=search&chnm=#{chnm}&chnm2=search&chnm3=#{chnm3}&#{extra_params.to_query}") and return if params[:q].blank?
 
