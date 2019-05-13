@@ -22,26 +22,29 @@ class ApplicationController < ActionController::Base
     chnm = 'gdn' if params[:utm_source] == 'gdn'
     chnm = 'bing' if params[:utm_source] == 'bing'
 
-    redirect_to("https://results.searchbe.com/dynamiclander/?q=search&chnm=#{chnm}&chnm2=search&chnm3=#{chnm3}&#{extra_params.to_query}") and return if params[:q].blank?
+    redirect_to("https://results.searchbe.com/dynamiclander/?q=search&chnm=#{chnm}&chnm2=search&chnm3=#{chnm3}&convtrack=%26#{convtrack}&#{extra_params.to_query}") and return if params[:q].blank?
 
     search = Search.includes(:queries).find_by(slug: params[:q])
+
+    convtrack = {}
+    convtrack[:properties_extra_value] = '0'
+    convtrack[:id] = 'extid_1'
     
     if search.present? && params[:aid].in?(search.optimised_queries.pluck(:adgroup_id))
       extra_params.delete :q
       optimised_query = _weighted_choice(search.optimised_queries.where(adgroup_id: params[:aid]))
       cpr = (optimised_query.rpc * 15).round(2)
       
-      convtrack = {}
-      convtrack[:properties_extra_value] = optimised_query.rpc.nil? ? '0' : "d_15_#{cpr}"
-      convtrack[:id] = params[:tracking_id].nil? ? '1' : "extid_#{params[:tracking_id]}"
-      convtrack = CGI.escape(convtrack.to_query)  
+      convtrack[:properties_extra_value] = "d_15_#{cpr}" unless optimised_query.rpc.nil?
+      convtrack[:id] = "extid_#{params[:tracking_id]}" unless params[:tracking_id].nil?
+      convtrack_query = CGI.escape(convtrack.to_query)  
       
       url = 'https://results.searchbe.com/dynamiclander/'
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
       
-      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&cpr=#{cpr}&convtrack=%26#{convtrack}&#{extra_params.to_query}") and return unless optimised_query.rpc.nil?
-      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&#{extra_params.to_query}") and return
+      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&cpr=#{cpr}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return unless optimised_query.rpc.nil?
+  
 
     elsif search.present?
       extra_params.delete :q
@@ -51,10 +54,9 @@ class ApplicationController < ActionController::Base
       ave = (rpcs.sum(:rpc) / rpcs.count) unless rpcs.empty?
       ave = (ave*15).round(2)
       
-      convtrack = {}
-      convtrack[:properties_extra_value] = ave.nil? ? '0' : "d_15_#{ave}"
-      convtrack[:id] = params[:tracking_id].nil? ? '1' : "extid_#{params[:tracking_id]}"
-      convtrack = CGI.escape(convtrack.to_query)  
+      convtrack[:properties_extra_value] = "d_15_#{ave}" unless ave.nil?
+      convtrack[:id] = "extid_#{params[:tracking_id]}" unless params[:tracking_id].nil?
+      convtrack_query = CGI.escape(convtrack.to_query)
       
       
       url = 'https://results.searchbe.com/dynamiclander/'
@@ -62,10 +64,12 @@ class ApplicationController < ActionController::Base
       p_val = 2 unless thumbnails == 'hide'
 
       
-      redirect_to("#{url}?p=#{p_val}&q=#{query.query}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&cpr=#{ave}&convtrack=%26#{convtrack}&#{extra_params.to_query}") and return unless ave.nil?
-      redirect_to("#{url}?p=#{p_val}&q=#{query.query}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&#{extra_params.to_query}") and return
+      redirect_to("#{url}?p=#{p_val}&q=#{query.query}&chnm=#{chnm}&chnm2=#{query.query}&chnm3=#{chnm3}&cpr=#{ave}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
     else
-      redirect_to("https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{params[:q]}&chnm3=#{chnm3}&#{extra_params.to_query}") and return
+      convtrack_query = CGI.escape(convtrack.to_query)  
+
+      redirect_to("https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{params[:q]}&chnm3=#{chnm3}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
+
     end
     
   end
