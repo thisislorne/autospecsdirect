@@ -22,13 +22,14 @@ class ApplicationController < ActionController::Base
     chnm = 'gdn' if params[:utm_source] == 'gdn'
     chnm = 'bing' if params[:utm_source] == 'bing'
 
-    redirect_to("https://results.searchbe.com/dynamiclander/?q=search&chnm=#{chnm}&chnm2=search&chnm3=#{chnm3}&convtrack=%26#{convtrack}&#{extra_params.to_query}") and return if params[:q].blank?
-
-    search = Search.includes(:queries).find_by(slug: params[:q])
-
     convtrack = {}
     convtrack[:properties_extra_value] = '0'
     convtrack[:id] = 'extid_1'
+
+    redirect_to("https://results.searchbe.com/dynamiclander/?q=search&chnm=#{chnm}&chnm2=search&chnm3=#{chnm3}&convtrack=%26#{convtrack}&#{extra_params.to_query}") and return if params[:q].blank?
+
+    search = Search.includes(:queries).find_by(slug: params[:q])
+    
     
     if search.present? && params[:aid].in?(search.optimised_queries.pluck(:adgroup_id))
       extra_params.delete :q
