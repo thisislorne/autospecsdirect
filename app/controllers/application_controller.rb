@@ -35,16 +35,19 @@ class ApplicationController < ActionController::Base
     if search.present? && params[:aid].in?(search.optimised_queries.pluck(:adgroup_id))
       extra_params.delete :q
       optimised_query = _weighted_choice(search.optimised_queries.where(adgroup_id: params[:aid]))
+
+      cpr = 0.0
+      cpr = "d_15_#{(optimised_query.rpc * 15).round(2)}" unless optimised_query.rpc.nil?
       
-      convtrack[:properties_extra_value] = "d_15_#{(optimised_query.rpc * 15).round(2)}" unless optimised_query.rpc.nil?
+      convtrack[:properties_extra_value] = cpr
       convtrack[:id] = "extid_#{params[:tracking_id]}" unless params[:tracking_id].nil?
       convtrack_query = CGI.escape(convtrack.to_query)  
-      
+            
       url = 'https://results.searchbe.com/dynamiclander/'
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
       
-      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&cpr=d_15_#{(optimised_query.rpc * 15).round(2)}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
+      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&cpr=#{cpr}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
     elsif search.present?
       extra_params.delete :q
       ave = 0.0
