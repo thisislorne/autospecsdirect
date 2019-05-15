@@ -44,9 +44,7 @@ class ApplicationController < ActionController::Base
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
       
-      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&cpr=#{cpr}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return unless optimised_query.rpc.nil?
-  
-
+      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&cpr=#{cpr}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
     elsif search.present?
       extra_params.delete :q
       ave = 0.0
@@ -70,10 +68,7 @@ class ApplicationController < ActionController::Base
       convtrack_query = CGI.escape(convtrack.to_query)  
 
       redirect_to("https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{params[:q]}&chnm3=#{chnm3}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
-
     end
-
-    redirect_to("https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{params[:q]}&chnm3=#{chnm3}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
     
   end
 
