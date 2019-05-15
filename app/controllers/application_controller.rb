@@ -25,8 +25,9 @@ class ApplicationController < ActionController::Base
     convtrack = {}
     convtrack[:properties_extra_value] = '0'
     convtrack[:id] = 'extid_1'
+    convtrack_query = CGI.escape(convtrack.to_query)
 
-    redirect_to("https://results.searchbe.com/dynamiclander/?q=search&chnm=#{chnm}&chnm2=search&chnm3=#{chnm3}&convtrack=%26#{convtrack}&#{extra_params.to_query}") and return if params[:q].blank?
+    redirect_to("https://results.searchbe.com/dynamiclander/?q=search&chnm=#{chnm}&chnm2=search&chnm3=#{chnm3}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return if params[:q].blank?
 
     search = Search.includes(:queries).find_by(slug: params[:q])
     
@@ -71,6 +72,8 @@ class ApplicationController < ActionController::Base
       redirect_to("https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{params[:q]}&chnm3=#{chnm3}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
 
     end
+
+    redirect_to("https://results.searchbe.com/dynamiclander/?q=#{params[:q]}&chnm=#{chnm}&chnm2=#{params[:q]}&chnm3=#{chnm3}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
     
   end
 
