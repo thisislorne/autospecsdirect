@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     if search.present? && params[:aid].in?(search.optimised_queries.pluck(:adgroup_id))
       extra_params.delete :q
       optimised_query = _weighted_choice(search.optimised_queries.where(adgroup_id: params[:aid]))
-      cpr = (optimised_query.rpc * 15).round(2)
+      cpr = (optimised_query.rpc * 15).round(2) unless optimised_query.rpc.nil?
       
       convtrack[:properties_extra_value] = "d_15_#{cpr}" unless optimised_query.rpc.nil?
       convtrack[:id] = "extid_#{params[:tracking_id]}" unless params[:tracking_id].nil?
