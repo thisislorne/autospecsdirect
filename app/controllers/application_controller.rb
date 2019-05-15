@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
       p_val = 1
       p_val = 2 unless thumbnails == 'hide'
       
-      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&cpr=#{cpr}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
+      redirect_to("#{url}?p=#{p_val}&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&cpr=d_15_#{(optimised_query.rpc * 15).round(2)}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
     elsif search.present?
       extra_params.delete :q
       ave = 0.0
