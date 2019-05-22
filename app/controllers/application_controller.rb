@@ -37,9 +37,11 @@ class ApplicationController < ActionController::Base
       optimised_query = _weighted_choice(search.optimised_queries.where(adgroup_id: params[:aid]))
 
       cpr = 0.0
-      cpr = "d_15_#{(optimised_query.rpc * 15).round(2)}" unless optimised_query.rpc.nil?
+      dcpr = 'd_15_0'
+      cpr = (optimised_query.rpc * 15).round(2) unless optimised_query.rpc.nil?
+      dcpr = "d_15_#{(optimised_query.rpc * 15).round(2)}" unless optimised_query.rpc.nil?
       
-      convtrack[:properties_extra_value] = cpr
+      convtrack[:properties_extra_value] = dcpr
       convtrack[:id] = "extid_#{params[:tracking_id]}" unless params[:tracking_id].nil?
       convtrack_query = CGI.escape(convtrack.to_query)  
             
