@@ -32,12 +32,11 @@ class Genius < Thor
 
         queries.each do |query|
           next unless query.enabled
-          next unless query.optimisation_enabled
           
           keyword = keywords.detect {|k| k['keyword_id'].downcase == query.query_stripped}
           logger.info "[IMPORTER] Clicks for #{query.query} #{keyword['clicks_sum']}"
 
-          if query.updated_at <= 3.days.ago && keyword['clicks_sum'] < 10 || query.optimisation_enabled == false
+          if query.updated_at <= 3.days.ago && keyword['clicks_sum'] < 10
             logger.info "[IMPORTER] Old and no clicks"
             # query is old and doesn't have clicks.
             # keep using default weight, but lets ping slack. 
