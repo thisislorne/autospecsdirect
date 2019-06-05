@@ -7,8 +7,8 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     http_basic_authenticate_with(
-      name: 'admin',
-      password: '100Yellow'
+      name: Rails.application.credentials.production[:admin][:name],
+      password: Rails.application.credentials.production[:admin][:password]
       )
   end
 end
