@@ -29,51 +29,55 @@ class Genius < Thor
           kw_array.push(keyword['keyword_id'].downcase)
         end
         queries = Query.where(query_stripped: kw_array)
+        
+        searches = Search.where(id: queries.pluck(:search_id).uniq)
+        searches.each do |search|
 
-        queries.each do |query|
-          next unless query.enabled
-          
-          keyword = keywords.detect {|k| k['keyword_id'].downcase == query.query_stripped}
-          logger.info "[IMPORTER] Clicks for #{query.query} #{keyword['clicks_sum']}"
+          search.queries.each do |query|
+            next unless query.enabled
+            
+            keyword = keywords.detect {|k| k['keyword_id'].downcase == query.query_stripped}
+            logger.info "[IMPORTER] Clicks for #{query.query} #{keyword['clicks_sum']}"
 
-          if query.updated_at <= 3.days.ago && keyword['clicks_sum'] < 10
-            logger.info "[IMPORTER] Old and no clicks"
-            # query is old and doesn't have clicks.
-            # keep using default weight, but lets ping slack. 
-            obj = { 
-              query_id: query.id, 
-              weighting_default: query.weighting, 
-              revenue_per_impression: keyword['revenue_per_impression'], 
-              rpc: keyword['revenue_per_click'],
-              clicks: keyword['clicks_sum'],
-              impressions: keyword['impressions_sum'],
-              adgroup_id: adgroup['adgroup_id']
+            if query.updated_at <= 3.days.ago && keyword['clicks_sum'] < 10
+              logger.info "[IMPORTER] Old and no clicks"
+              # query is old and doesn't have clicks.
+              # keep using default weight, but lets ping slack. 
+              obj = { 
+                query_id: query.id, 
+                weighting_default: query.weighting, 
+                revenue_per_impression: keyword['revenue_per_impression'], 
+                rpc: keyword['revenue_per_click'],
+                clicks: keyword['clicks_sum'],
+                impressions: keyword['impressions_sum'],
+                adgroup_id: adgroup['adgroup_id']
 
-            }
-            @queries_to_optimise.push obj
-            qa_obj = { query: query.id }
-            @query_alerts.push qa_obj
-          elsif query.optimisation_enabled == false
-            logger.info "[IMPORTER] Optimisation Disabled. Default weighting applies."
-            obj = { 
-              query_id: query.id, 
-              weighting_default: query.weighting, 
-              rpc: keyword['revenue_per_click'],
-              clicks: keyword['clicks_sum'],
-              impressions: keyword['impressions_sum'],
-              adgroup_id: adgroup['adgroup_id']
-            }
-            @queries_to_optimise.push obj
-          else
-            obj = { 
-              query_id: query.id, 
-              revenue_per_impression: keyword['revenue_per_impression'], 
-              rpc: keyword['revenue_per_click'],
-              clicks: keyword['clicks_sum'],
-              impressions: keyword['impressions_sum'],
-              adgroup_id: adgroup['adgroup_id']
-            }
-            @queries_to_optimise.push obj
+              }
+              @queries_to_optimise.push obj
+              qa_obj = { query: query.id }
+              @query_alerts.push qa_obj
+            elsif query.optimisation_enabled == false
+              logger.info "[IMPORTER] Optimisation Disabled. Default weighting applies."
+              obj = { 
+                query_id: query.id, 
+                weighting_default: query.weighting, 
+                rpc: keyword['revenue_per_click'],
+                clicks: keyword['clicks_sum'],
+                impressions: keyword['impressions_sum'],
+                adgroup_id: adgroup['adgroup_id']
+              }
+              @queries_to_optimise.push obj
+            else
+              obj = { 
+                query_id: query.id, 
+                revenue_per_impression: keyword['revenue_per_impression'], 
+                rpc: keyword['revenue_per_click'],
+                clicks: keyword['clicks_sum'],
+                impressions: keyword['impressions_sum'],
+                adgroup_id: adgroup['adgroup_id']
+              }
+              @queries_to_optimise.push obj
+            end
           end
         end
 
