@@ -13,8 +13,44 @@ class Genius < Thor
 
     site = 'searchbe.com'
 
+
+    # get all the searches first
+    # then match against adgroup RPCs
+    keywords = []
+
     token = _get_token(logger)
     adgroups = _get_adgroup_ids(logger, token, site)
+    adgroups.each do |adgroup|
+      begin
+        ks = _get_keyword_rpc(logger, token, site, adgroup['adgroup_id'])
+        ks.each do |k|
+          keywords.push(k)
+        end
+      rescue => ex
+        logger.info ex
+      end
+    end
+    
+    Search.where(optimisation_enabled: true)[75..77].each do |search|
+      search.queries.each do |query|
+        next unless query.enabled
+        query.search.adgroup_ids = []
+        matched_kws = keywords.select {|k| k['keyword_id'].downcase == query.query_stripped}
+        matched_kws.each do |mkw|
+          query.search.adgroup_ids.push(mkw['adgroup_id'])
+          query.search.save!
+        end
+
+        query.search.adgroup_ids.each do |adgroup_id|
+          oq = query.optimised_queries.find_or_create_by(adgroup_id: adgroup_id, weighting: query.weighting)
+          oq.save!
+        end
+      end
+    end
+
+
+
+    
 
     @query_alerts = []
     @queries_to_optimise = []
@@ -95,7 +131,7 @@ class Genius < Thor
 
     _optimise_queries(@queries_to_optimise, logger)
 
-    _slack_notify(@query_alerts, @queries_to_optimise)      
+    # _slack_notify(@query_alerts, @queries_to_optimise)      
     
     logger.info "[IMPORTER] done done"
   end
@@ -152,7 +188,8 @@ class Genius < Thor
       "since": "3 days ago",
       "until": "now",
       "groupby": [
-        "keyword_id"
+        "keyword_id",
+        "adgroup_id"
       ],
       "metrics": [
         "revenue_per_impression",
