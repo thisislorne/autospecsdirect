@@ -31,7 +31,7 @@ class Genius < Thor
       end
     end
     
-    Search.where(optimisation_enabled: true)[75..77].each do |search|
+    Search.where(optimisation_enabled: true).each do |search|
       search.queries.each do |query|
         next unless query.enabled
         query.search.adgroup_ids = []
