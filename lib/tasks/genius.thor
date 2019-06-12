@@ -47,6 +47,7 @@ class Genius < Thor
       search.queries.each do |query|
         search.adgroup_ids.each do |adgroup_id|
           oq = query.optimised_queries.find_or_create_by(adgroup_id: adgroup_id)
+          oq.weighting = query.weighting
           oq.save!
           logger.info "[IMPORTER] updated default query - #{oq.query.query} #{adgroup_id}"
         end
