@@ -81,6 +81,7 @@ class Genius < Thor
             obj = { 
               query_id: query.id, 
               revenue_per_impression: keyword['revenue_per_impression'], 
+              weighting_default: query.weighting,
               rpc: keyword['revenue_per_click'],
               clicks: keyword['clicks_sum'],
               impressions: keyword['impressions_sum'],
@@ -109,31 +110,21 @@ class Genius < Thor
   def _optimise_queries(queries_to_optimise, logger)
     queries_to_optimise.each do |qto|
       next if qto[:adgroup_id].nil?
-      if qto[:weighting_default].present?
-        oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:adgroup_id])
-        oq.weighting = qto[:weighting_default]
-        oq.rpc = qto[:rpc]
-        oq.clicks = qto[:clicks]
-        oq.impressions = qto[:impressions]
-        oq.rpi = qto[:revenue_per_impression]
-        oq.save!
 
-        logger.info "[IMPORTER] oq updated #{oq.id} with weighting_default for #{oq.query.query}"
-        
-      elsif qto[:revenue_per_impression].present?
-        rpi = qto[:revenue_per_impression]
-        # rev per imp +1 to the power of 10, -1. 
-        optimised_weighting = ((rpi + 1) ** 10 -1) * 10
-        oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:adgroup_id])
-        oq.weighting = optimised_weighting
-        oq.rpc = qto[:rpc]
-        oq.clicks = qto[:clicks]
-        oq.impressions = qto[:impressions]
-        oq.rpi = rpi
-        oq.save!
+      rpi = qto[:revenue_per_impression]
+      # rev per imp +1 to the power of 10, -1. 
+      optimised_weighting = ((rpi + 1) ** 10 -1) * 10
+      # add on the default weighting to ensure we are bumping the good stuff, and can still override.
+      optimised_default = optimised_weighting + qto[:weighting_default]
+      oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:adgroup_id])
+      oq.weighting = optimised_default
+      oq.rpc = qto[:rpc]
+      oq.clicks = qto[:clicks]
+      oq.impressions = qto[:impressions]
+      oq.rpi = rpi
+      oq.save!
 
-        logger.info "[IMPORTER] oq updated #{oq.id} with optimised_weighting for #{oq.query.query}"
-      end
+      logger.info "[IMPORTER] oq updated #{oq.id} with optimised_weighting for #{oq.query.query}"
     end  
   end
 
