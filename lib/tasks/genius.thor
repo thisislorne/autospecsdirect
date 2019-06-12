@@ -101,7 +101,7 @@ class Genius < Thor
 
     _optimise_queries(@queries_to_optimise, logger)
 
-    # _slack_notify(@query_alerts, @queries_to_optimise)      
+    _slack_notify(@query_alerts, @queries_to_optimise)      
     
     logger.info "[IMPORTER] done done"
   end
