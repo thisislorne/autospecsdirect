@@ -32,17 +32,20 @@ class Genius < Thor
     end
     
     Search.where(optimisation_enabled: true).each do |search|
+      search.adgroup_ids = []
       search.queries.each do |query|
         next unless query.enabled
-        query.search.adgroup_ids = []
         matched_kws = keywords.select {|k| k['keyword_id'].downcase == query.query_stripped}
         matched_kws.each do |mkw|
           query.search.adgroup_ids.push(mkw['adgroup_id'])
           query.search.save!
           logger.info "[IMPORTER] matched_kws - #{query.query} #{mkw['adgroup_id']}"
         end
-
-        query.search.adgroup_ids.each do |adgroup_id|
+      end
+      search.adgroup_ids = search.adgroup_ids.uniq
+      search.save!
+      search.queries.each do |query|
+        search.adgroup_ids.each do |adgroup_id|
           oq = query.optimised_queries.find_or_create_by(adgroup_id: adgroup_id, weighting: query.weighting)
           oq.save!
           logger.info "[IMPORTER] updated default query - #{oq.query.query} #{adgroup_id}"
@@ -54,16 +57,19 @@ class Genius < Thor
     @query_alerts = []
     @queries_to_optimise = []
 
+    kw_array = []
+    keywords.each do |keyword|
+      kw_array.push(keyword['keyword_id'].downcase)
+    end
+
     adgroups.each do |adgroup|
 
     # adgroups[1..2].each do |adgroup|
       begin
-        keywords = _get_keyword_rpc(logger, token, site, adgroup['adgroup_id'])
-        kw_array = []
-        keywords.each do |keyword|
-          kw_array.push(keyword['keyword_id'].downcase)
-        end
-        queries = Query.where(query_stripped: kw_array)
+        s = Search.where("? = ANY(adgroup_ids)", adgroup['adgroup_id']).first
+        next unless s.present?
+        queries = s.queries
+        next unless queries.present?
 
         queries.each do |query|
           next unless query.enabled
@@ -71,35 +77,7 @@ class Genius < Thor
           keyword = keywords.detect {|k| k['keyword_id'].downcase == query.query_stripped}
           logger.info "[IMPORTER] Clicks for #{query.query} #{keyword['clicks_sum']}"
 
-          if query.updated_at <= 3.days.ago && keyword['clicks_sum'] < 10
-            logger.info "[IMPORTER] Old and no clicks"
-            # query is old and doesn't have clicks.
-            # keep using default weight, but lets ping slack. 
-            obj = { 
-              query_id: query.id, 
-              weighting_default: query.weighting, 
-              revenue_per_impression: keyword['revenue_per_impression'], 
-              rpc: keyword['revenue_per_click'],
-              clicks: keyword['clicks_sum'],
-              impressions: keyword['impressions_sum'],
-              adgroup_id: adgroup['adgroup_id']
-
-            }
-            @queries_to_optimise.push obj
-            qa_obj = { query: query.id }
-            @query_alerts.push qa_obj
-          elsif query.optimisation_enabled == false
-            logger.info "[IMPORTER] Optimisation Disabled. Default weighting applies."
-            obj = { 
-              query_id: query.id, 
-              weighting_default: query.weighting, 
-              rpc: keyword['revenue_per_click'],
-              clicks: keyword['clicks_sum'],
-              impressions: keyword['impressions_sum'],
-              adgroup_id: adgroup['adgroup_id']
-            }
-            @queries_to_optimise.push obj
-          else
+          if keyword['clicks_sum'] > 10
             obj = { 
               query_id: query.id, 
               revenue_per_impression: keyword['revenue_per_impression'], 
@@ -121,7 +99,7 @@ class Genius < Thor
 
     _optimise_queries(@queries_to_optimise, logger)
 
-    _slack_notify(@query_alerts, @queries_to_optimise)      
+    # _slack_notify(@query_alerts, @queries_to_optimise)      
     
     logger.info "[IMPORTER] done done"
   end
