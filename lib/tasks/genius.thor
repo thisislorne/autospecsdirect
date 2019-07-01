@@ -13,125 +13,52 @@ class Genius < Thor
 
     site = 'searchbe.com'
 
-
-    # get all the searches first
-    # then match against adgroup RPCs
-    keywords = []
+    # create default weightings
+    Query.all.each do |q|
+      oq = OptimisedQuery.find_or_create_by(query_id: q.id, adgroup_id: 'default')
+      oq.weighting = q.weighting
+      oq.save!
+    end
 
     token = _get_token(logger)
-    adgroups = _get_adgroup_ids(logger, token, site)
-    adgroups.each do |adgroup|
+    queries = _get_keyword_rpcs(logger, token, site)
+
+    queries.each do |query|
       begin
-        ks = _get_keyword_rpc(logger, token, site, adgroup['adgroup_id'])
-        ks.each do |k|
-          keywords.push(k)
-        end
-      rescue => ex
-        logger.info ex
-      end
-    end
-    
-    Search.where(optimisation_enabled: true).each do |search|
-      search.adgroup_ids = []
-      search.queries.each do |query|
-        next unless query.enabled
-        matched_kws = keywords.select {|k| k['keyword_id'].downcase == query.query_stripped}
-        matched_kws.each do |mkw|
-          query.search.adgroup_ids.push(mkw['adgroup_id'])
-          query.search.save!
-          logger.info "[IMPORTER] matched_kws - #{query.query} #{mkw['adgroup_id']}"
-        end
-      end
-      search.adgroup_ids = search.adgroup_ids.uniq
-      search.save!
-      search.queries.each do |query|
-        search.adgroup_ids.each do |adgroup_id|
-          oq = query.optimised_queries.find_or_create_by(adgroup_id: adgroup_id)
-          oq.weighting = query.weighting
-          oq.save!
-          logger.info "[IMPORTER] updated default query - #{oq.query.query} #{adgroup_id}"
-        end
-      end
-    end
-    
+        q = Query.where(query_stripped: query['keyword_id'].downcase).first
+        next unless q.present?
+        next unless q.enabled
+        
+        logger.info "[IMPORTER] Clicks for #{q.query} #{query['SUM_clicks_']}"
 
-    @query_alerts = []
-    @queries_to_optimise = []
+        oq = OptimisedQuery.find_or_create_by(query_id: q.id, adgroup_id: query['adgroup_id'])
 
-    kw_array = []
-    keywords.each do |keyword|
-      kw_array.push(keyword['keyword_id'].downcase)
-    end
+        oq.rpi = query['revenue_per_impression']
+        optimised_weighting = ((oq.rpi + 1) ** 10 -1) * 10
+        optimised_default = optimised_weighting + q.weighting
+        oq.weighting = optimised_default
+        oq.rpc = query['revenue_per_click']
+        oq.clicks = query['SUM_clicks_']
+        oq.impressions = query['impressions_sum']
+        oq.save!
 
-    adgroups.each do |adgroup|
-
-    # adgroups[1..2].each do |adgroup|
-      begin
-        s = Search.where("? = ANY(adgroup_ids)", adgroup['adgroup_id']).first
-        next unless s.present?
-        queries = s.queries
-        next unless queries.present?
-
-        queries.each do |query|
-          next unless query.enabled
-          
-          keyword = keywords.detect {|k| k['keyword_id'].downcase == query.query_stripped}
-          logger.info "[IMPORTER] Clicks for #{query.query} #{keyword['clicks_sum']}"
-
-          if keyword['clicks_sum'] > 10
-            obj = { 
-              query_id: query.id, 
-              revenue_per_impression: keyword['revenue_per_impression'], 
-              weighting_default: query.weighting,
-              rpc: keyword['revenue_per_click'],
-              clicks: keyword['clicks_sum'],
-              impressions: keyword['impressions_sum'],
-              adgroup_id: adgroup['adgroup_id']
-            }
-            @queries_to_optimise.push obj
-          end
-        end
-
-        logger.info "[IMPORTER] adgroup_id #{adgroup['adgroup_id']} done"
+        logger.info "[IMPORTER] adgroup_id #{query['adgroup_id']} done"
       rescue Exception => e
-        logger.info "[IMPORTER] failed on #{adgroup['adgroup_id']}"
+        logger.info "[IMPORTER] failed on #{query['keyword_id']} - #{query['adgroup_id']}"
         logger.info "#{e}"
       end    
     end
 
-    _optimise_queries(@queries_to_optimise, logger)
-
-    _slack_notify(@query_alerts, @queries_to_optimise)      
+    _slack_notify(site)
     
     logger.info "[IMPORTER] done done"
   end
 
   private
 
-  def _optimise_queries(queries_to_optimise, logger)
-    queries_to_optimise.each do |qto|
-      next if qto[:adgroup_id].nil?
-
-      rpi = qto[:revenue_per_impression]
-      # rev per imp +1 to the power of 10, -1. 
-      optimised_weighting = ((rpi + 1) ** 10 -1) * 10
-      # add on the default weighting to ensure we are bumping the good stuff, and can still override.
-      optimised_default = optimised_weighting + qto[:weighting_default]
-      oq = OptimisedQuery.find_or_create_by(query_id: qto[:query_id], adgroup_id: qto[:adgroup_id])
-      oq.weighting = optimised_default
-      oq.rpc = qto[:rpc]
-      oq.clicks = qto[:clicks]
-      oq.impressions = qto[:impressions]
-      oq.rpi = rpi
-      oq.save!
-
-      logger.info "[IMPORTER] oq updated #{oq.id} with optimised_weighting for #{oq.query.query}"
-    end  
-  end
-
-  def _slack_notify(query_alerts, queries_to_optimise)
+  def _slack_notify(site)
     client = Slack::Web::Client.new
-    msg = "Optimiser has run.\nOptimised weights of #{queries_to_optimise.count - @query_alerts.count} queries\nAnd there were #{@query_alerts.count} queries that couldn't be optimised or are using default weightings."
+    msg = "Optimiser has run for #{site} - #{Rails.env}"
     begin
       client.chat_postMessage(channel: '#searchbee', text: msg, as_user: true)
     rescue Exception => e
@@ -139,8 +66,9 @@ class Genius < Thor
     end
   end
 
-  def _get_keyword_rpc(logger, token, site, adgroup_id)
+  def _get_keyword_rpcs(logger, token, site)
     headers = {'Authorization': "Token #{token}", 'content_type': 'application/json'}
+
     form_data = {
       "datasource": "9__table",
       "viz_type": "table",
@@ -148,27 +76,49 @@ class Genius < Thor
       "since": "3 days ago",
       "until": "now",
       "groupby": [
-        "keyword_id",
-        "adgroup_id"
+        "adgroup_id",
+        "keyword_id"
       ],
       "metrics": [
+        {
+          "expressionType": "SIMPLE",
+          "column": {
+            "expression": "",
+            "filterable": false,
+            "groupby": false,
+            "column_name": "clicks",
+            "type": "FLOAT",
+            "is_dttm": false,
+            "optionName": "_col_clicks"
+          },
+          "aggregate": "SUM",
+          "hasCustomLabel": false,
+          "fromFormData": true,
+          "label": "SUM(clicks)",
+          "optionName": "metric_tyfbpgglwas_i15kdpwd3ug"
+        },
         "revenue_per_impression",
         "revenue_per_click",
-        "clicks sum",
         "impressions sum"
       ],
-      "percent_metrics": [],
+      "percent_metrics": [
+        
+      ],
       "row_limit": 10000,
       "include_time": false,
       "order_desc": true,
-      "all_columns": [],
-      "order_by_cols": [],
+      "all_columns": [
+        
+      ],
+      "order_by_cols": [
+        
+      ],
       "adhoc_filters": [
         {
           "expressionType": "SIMPLE",
           "subject": "project_id",
           "operator": "==",
-          "comparator": "searchbe.com",
+          "comparator": site,
           "clause": "WHERE",
           "fromFormData": true,
           "filterOptionName": "filter_9emmrilqafp_4vwhe2ilccx"
@@ -176,11 +126,18 @@ class Genius < Thor
         {
           "expressionType": "SIMPLE",
           "subject": "adgroup_id",
-          "operator": "==",
-          "comparator": "#{adgroup_id}",
+          "operator": "IS NOT NULL",
+          "comparator": "",
           "clause": "WHERE",
           "fromFormData": true,
-          "filterOptionName": "filter_4tt0mctf8ku_npx5sov8i2"
+          "filterOptionName": "filter_lankvzvxoc_inw8mph8zsk"
+        },
+        {
+          "expressionType": "SQL",
+          "sqlExpression": "SUM(clicks) > 10",
+          "clause": "HAVING",
+          "fromFormData": true,
+          "filterOptionName": "filter_a9mnd9dit4_83yhr5f9eab"
         }
       ],
       "table_timestamp_format": "%Y-%m-%d %H:%M:%S",
@@ -189,92 +146,30 @@ class Genius < Thor
       "table_filter": false,
       "align_pn": false,
       "color_pn": true,
-      "having_filters": [],
-      "url_params": {},
-      "having": "",
+      "where": "",
+      "url_params": {
+        
+      },
+      "having_filters": [
+        
+      ],
       "filters": [
         {
           "op": "==",
           "col": "project_id",
-          "val": "searchbe.com"
+          "val": site
         }
-      ]
+      ],
+      "having": ""
     }
-
+    
     r = (RestClient::Request.execute(
       :method => :get,
       :url => "https://groovyreports.com/superset/explore_json/?form_data=#{URI.encode(form_data.to_json)}",
       :headers => headers
     ))
 
-    logger.info "[IMPORTER] Got rpcs for #{adgroup_id}"
-    return JSON.parse(r)['data']['records']
-  end
-
-  def _get_adgroup_ids(logger, token, site)
-    headers = {'Authorization': "Token #{token}", 'content_type': 'application/json'}
-    form_data = {
-      "datasource": "9__table",
-      "viz_type": "table",
-      "granularity_sqla": "period_start",
-      "since": "2 days ago",
-      "until": "now",
-      "groupby": [
-        "campaign_id",
-        "adgroup_id"
-      ],
-      "metrics": [
-        {
-          "expressionType": "SIMPLE",
-          "column": {
-            "expression": "",
-            "groupby": false,
-            "filterable": false,
-            "is_dttm": false,
-            "column_name": "clicks",
-            "type": "FLOAT",
-            "optionName": "_col_clicks"
-          },
-          "aggregate": "SUM",
-          "hasCustomLabel": false,
-          "fromFormData": false,
-          "label": "SUM(clicks)",
-          "optionName": "metric_tyfbpgglwas_i15kdpwd3ug"
-        }
-      ],
-      "percent_metrics": [],
-      "row_limit": 10000,
-      "include_time": false,
-      "order_desc": true,
-      "all_columns": [],
-      "order_by_cols": [],
-      "adhoc_filters": [
-        {
-          "expressionType": "SIMPLE",
-          "subject": "project_id",
-          "operator": "==",
-          "comparator": "searchbe.com",
-          "clause": "WHERE",
-          "fromFormData": true,
-          "filterOptionName": "filter_9emmrilqafp_4vwhe2ilccx"
-        }
-      ],
-      "table_timestamp_format": "%Y-%m-%d %H:%M:%S",
-      "page_length": 0,
-      "include_search": false,
-      "table_filter": false,
-      "align_pn": false,
-      "color_pn": true,
-      "url_params": {}
-    }
-
-    r = (RestClient::Request.execute(
-      :method => :get,
-      :url => "https://groovyreports.com/superset/explore_json/?form_data=#{URI.encode(form_data.to_json)}",
-      :headers => headers
-    ))
-    logger.info "[IMPORTER] Got Adgroups"
-
+    logger.info "[IMPORTER] Got rpcs"
     return JSON.parse(r)['data']['records']
   end
 
