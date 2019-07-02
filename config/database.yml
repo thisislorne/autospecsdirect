@@ -12,6 +12,13 @@ test:
   <<: *default
   database: searchbe_test
 
+staging:
+  <<: *default
+  host: localhost
+  database: searchbe_staging
+  username: searchbe_staging
+  password: <%= Rails.application.credentials.production[:staging_db][:password] %>
+
 production:
   <<: *default
   host: localhost
