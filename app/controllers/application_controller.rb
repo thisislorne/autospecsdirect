@@ -30,9 +30,16 @@ class ApplicationController < ActionController::Base
     defaults = search.optimised_queries.where(adgroup_id: 'default').where.not(query_id: optimised.pluck(:query_id))
     merged = optimised.or(defaults)
 
+
     if search.present?
       extra_params.delete :q
-      optimised_query = _weighted_choice(merged)
+
+      if merged.count == 0
+        optimised_query = _weighted_choice(search.queries)
+      else
+        optimised_query = _weighted_choice(merged)
+        optimised_query = optimised_query.query
+      end
 
       cpr = 0.0
       dcpr = 'd_15_0'
@@ -45,7 +52,7 @@ class ApplicationController < ActionController::Base
             
       url = 'https://results.searchbe.com/dynamiclander/'
       
-      redirect_to("#{url}?p=2&q=#{optimised_query.query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query.query}&chnm3=#{chnm3}&cpr=#{cpr}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
+      redirect_to("#{url}?p=2&q=#{optimised_query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query}&chnm3=#{chnm3}&cpr=#{cpr}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
     else
       convtrack_query = CGI.escape(convtrack.to_query)  
 
