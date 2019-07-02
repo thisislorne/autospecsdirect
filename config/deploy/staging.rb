@@ -1,4 +1,4 @@
-server '34.232.222.53', user: 'deploy', roles: %w(web app db)
+server 'staging.searchbe.com', user: 'deploy', roles: %w(web app db)
 
 set :rails_env, 'staging'
 set :nginx_domains, 'staging.searchbe.com'
