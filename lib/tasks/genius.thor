@@ -134,7 +134,7 @@ class Genius < Thor
         },
         {
           "expressionType": "SQL",
-          "sqlExpression": "SUM(clicks) > 10",
+          "sqlExpression": "SUM(clicks) > 2",
           "clause": "HAVING",
           "fromFormData": true,
           "filterOptionName": "filter_a9mnd9dit4_83yhr5f9eab"
