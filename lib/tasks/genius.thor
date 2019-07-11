@@ -101,18 +101,12 @@ class Genius < Thor
         "revenue_per_click",
         "impressions sum"
       ],
-      "percent_metrics": [
-        
-      ],
+      "percent_metrics": [],
       "row_limit": 10000,
       "include_time": false,
       "order_desc": true,
-      "all_columns": [
-        
-      ],
-      "order_by_cols": [
-        
-      ],
+      "all_columns": [],
+      "order_by_cols": [],
       "adhoc_filters": [
         {
           "expressionType": "SIMPLE",
@@ -150,9 +144,7 @@ class Genius < Thor
       "url_params": {
         
       },
-      "having_filters": [
-        
-      ],
+      "having_filters": [],
       "filters": [
         {
           "op": "==",
