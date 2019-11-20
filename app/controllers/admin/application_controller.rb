@@ -10,5 +10,20 @@ module Admin
       name: Rails.application.credentials.production[:admin][:name],
       password: Rails.application.credentials.production[:admin][:password]
       )
+
+    def index
+      search_term = params[:search].to_s.strip
+      resources = Administrate::Search.new(scoped_resource, dashboard_class, search_term).run
+      # resources = order.apply(resources)
+      resources = resources.page(params[:page]).per(records_per_page)
+      page = Administrate::Page::Collection.new(dashboard)
+
+      render locals: {
+        resources: resources,
+        search_term: search_term,
+        page: page,
+        show_search_bar: show_search_bar?,
+      }
+    end
   end
 end
