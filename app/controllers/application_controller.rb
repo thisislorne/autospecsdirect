@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
     chnm = 'gdn' if params[:utm_source] == 'gdn'
     chnm = 'bing' if params[:utm_source] == 'bing'
     chnm = 'taboola' if params[:utm_source] == 'taboola'
+    chnm = 'outbrain' if params[:utm_source] == 'outbrain'
 
     convtrack = {}
     convtrack[:properties_extra_value] = '0'
