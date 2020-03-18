@@ -1,0 +1,36 @@
+<div id="homeCarousel" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner" role="listbox">
+
+    <% @slider.each_with_index do |page, index| %>
+      <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+        <a href="<%= page_url(page) %>" class="carousel-article-link">
+          <article class="fill" style="background-image:url('<%= page.image_url %>');">
+            <div class="carousel-caption-wrapper">
+              <div class="carousel-caption text-center">
+                <span class="caption-date"><%= page.updated_at.strftime("%d %b, %Y") %></span>
+                <h1><%= page.title %></h1>
+                <h3><%= page.subtitle %></h3>
+              </div>
+            </div>
+          </article>
+        </a>
+      </div>
+
+    <% end %>
+
+
+
+    <ol class="carousel-indicators">
+      <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#homeCarousel" data-slide-to="1"></li>
+    </ol>
+  </div>
+  <a class="carousel-control-prev" href="#homeCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#homeCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

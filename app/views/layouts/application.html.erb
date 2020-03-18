@@ -9,5 +9,9 @@
     <%= javascript_include_tag 'application' %>
     <%= render 'layouts/head_scripts' %>
   </head>
-  <%= yield %>
+  <body>
+    <%= render 'layouts/top_nav', cached: true %>
+    <%= yield %>  
+    <%= render 'layouts/footer', cached: true %>
+  </body>
 </html>

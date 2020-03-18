@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_10_030541) do
+ActiveRecord::Schema.define(version: 2020_03_17_002919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2019_06_10_030541) do
     t.float "rpi"
     t.integer "clicks"
     t.integer "impressions"
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "subtitle"
+    t.string "image_url"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "queries", force: :cascade do |t|

@@ -1,0 +1,11 @@
+<aside class="sidebar row">
+  <% @sidebar.each do |page| %>
+    <a class="sidebar-link col-12 col-md-6 col-lg-12" href="<%= page_url(page) %>">
+      <article class="sidebar-article">
+        <div class="sidebar-image fill" style="background-image:url('<%= page.image_url %>');"></div>
+        <span class="sidebar-date"><%= page.updated_at.strftime("%d %b, %Y") %></span>
+        <h3><%= page.title %></h3>
+      </article>
+    </a>
+  <% end %>
+</aside>

@@ -1,3 +1,48 @@
+<section class="section-top row no-gutters">
+  <div class="col-12 col-lg-8 col-xl-9">
+    <%= render 'slider' %>
+  </div>
+  <div class="col-12 col-lg-4 col-xl-3">
+    <div class="container">
+      <%= render 'sidebar' %>
+    </div>
+  </div>
+</section>
+<section class="section-secondary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-xl-8">
+        <div class="text">
+          <h2>Auto Info Pro, you're place for car information</h2>
+          <p>
+            A vehicle is one of the biggest financial purchases of your life. In your lifetime, you'll spend over five years in one. Yet, this process is often dreaded by buyers and sellers alike. Auto Info Pro makes it easy to find the right information that you need to make a more informed purchase. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section-grid">
+  <div class="container">
+    <h2>Check Out More Articles</h2>
+    <div class="row justify-content-center">
+
+      <% @grid.each do |page| %>
+        <a class="section-grid-link col-12 col-md-6 col-lg-4" href="<%= page_url(page) %>">
+          <article class="section-grid-article">
+            <div class="section-grid-image" style="background-image:url('<%= page.image_url %>');"></div>
+            <span class="section-grid-date"><%= page.updated_at.strftime("%d %b, %Y") %></span>
+            <h3><%= page.title %></h3>
+          </article>
+        </a>
+      <% end %>
+
+    </div>
+  </div>
+</section>
+
+<!-- 
+
 <body class="home-page">
   <header>
     <section class="search">
@@ -26,4 +71,4 @@
       </div>
     </nav>
   </footer>
-</body>
+</body> -->

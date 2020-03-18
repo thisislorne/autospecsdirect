@@ -2,7 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def index
-
+    @pages = Page.all
+    @slider = @pages[0..2]
+    @sidebar = @pages[3..4]
+    @grid = @pages[5..10]
+  
   end
 
   def search

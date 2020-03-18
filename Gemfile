@@ -5,6 +5,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+end
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2'
@@ -37,6 +42,9 @@ gem 'slack-ruby-client'
 gem 'thor'
 gem 'whenever', require: false
 
+gem 'trix-rails', require: 'trix'
+gem 'administrate-field-trix'
+gem 'bootstrap', '4.0.0.alpha6'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

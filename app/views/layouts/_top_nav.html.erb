@@ -1,0 +1,29 @@
+<div>
+  <div class="container border-bottom-0">
+    <nav class="navbar navbar-light navbar-toggleable-md">
+      <a class="navbar-brand" href="/">
+        <img src="<%= asset_path 'searchbe-logo.png' %>" class="navbar-logo">
+      </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#dsNav" aria-controls="dsNav" aria-expanded="false" aria-label="Toggle navigation">
+        <%= image_tag 'hamburger_mobile.png' %>
+      </button>
+
+      <div class="collapse navbar-collapse" id="dsNav">
+        <ul class="navbar-nav ml-auto my-3">
+          <li class="nav-item">
+            <a class="nav-link" href="/">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://privacy.autoinfopro.com/contact-us" target="_blank">CONTACT US</a>
+          </li>
+        </ul>
+        <form action="/search" method="get" class="form-inline mb-3 mb-lg-0 mt-md-0 SearchForm">
+          <div class="input-group SearchForm__input-group">
+            <input class="form-control SearchForm__search-box" type="text" placeholder="Search" name='q' value='<%= params[:q] %>' >
+            <button class="btn btn-outline-primary input-group-addon SearchForm__button" type="submit" ><%= image_tag 'search-solid.svg', class: 'SearchForm__magnifying-glass' %></button>
+          </div>
+        </form>
+      </div>
+    </nav>
+  </div>
+</div>

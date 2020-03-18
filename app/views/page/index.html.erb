@@ -1,0 +1,14 @@
+<div class="container container-page">
+  <div class="row">
+    <div class="col-sm-12 col-md-3 pt-2">
+      <div class="list-group">
+        <% @pages.each do |p| %>
+          <%= link_to p.title, page_path(p), class: "list-group-item" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-7 pt-2">
+      <p><img src="<%= asset_path 'autolistings360_header.jpg' %>" class="img-fluid"></p>
+    </div>
+  </div>
+</div>
