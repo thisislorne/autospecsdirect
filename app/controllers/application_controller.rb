@@ -15,13 +15,21 @@ class ApplicationController < ActionController::Base
     extra_params.delete :action
 
     compact_params = { kv_delimiter: '__', pair_delimiter: '___', special_characters: {'.' => '_dot_'}}
-    chnm3 = @gstats.compact(['source', 'campaign_id', 'project_id', 'adgroup_id'], **compact_params, hour: true, date: true)
+    
     chnm = 'fb' if params[:utm_source] == 'facebook'
     chnm = 'gs' if params[:utm_source] == 'adwords'
     chnm = 'gdn' if params[:utm_source] == 'gdn'
     chnm = 'bing' if params[:utm_source] == 'bing'
     chnm = 'taboola' if params[:utm_source] == 'taboola'
     chnm = 'outbrain' if params[:utm_source] == 'outbrain'
+
+    if chnm == 'outbrain'
+      chnm3 = @gstats.compact(['source', 'campaign_id', 'project_id'], **compact_params, hour: true, date: true)
+    else
+      chnm3 = @gstats.compact(['source', 'campaign_id', 'project_id', 'adgroup_id'], **compact_params, hour: true, date: true)
+    end
+
+    
 
     convtrack = {}
     convtrack[:properties_extra_value] = '0'
