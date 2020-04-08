@@ -15,6 +15,7 @@ class SearchDashboard < Administrate::BaseDashboard
     id: Field::Number,
     slug: Field::String,
     optimisation_enabled: Field::Boolean,
+    p_val: Field::Number,
     updated_at: Field::DateTime,
     created_at: Field::DateTime,
   }.freeze
@@ -35,6 +36,7 @@ class SearchDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :slug,
     :queries,
+    :p_val,
     :optimised_queries,
     :optimisation_enabled,
     :updated_at
@@ -46,6 +48,7 @@ class SearchDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :slug,
+    :p_val,
     :queries,
     :optimisation_enabled
   ].freeze

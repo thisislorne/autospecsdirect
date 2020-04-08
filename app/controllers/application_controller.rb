@@ -22,13 +22,7 @@ class ApplicationController < ActionController::Base
     chnm = 'bing' if params[:utm_source] == 'bing'
     chnm = 'taboola' if params[:utm_source] == 'taboola'
     chnm = 'outbrain' if params[:utm_source] == 'outbrain'
-
-    if chnm == 'outbrain'
-      chnm3 = @gstats.compact(['source', 'campaign_id', 'project_id'], **compact_params, hour: true, date: true)
-    else
-      chnm3 = @gstats.compact(['source', 'campaign_id', 'project_id', 'adgroup_id'], **compact_params, hour: true, date: true)
-    end
-
+    chnm3 = @gstats.compact(['source', 'campaign_id', 'project_id', 'adgroup_id'], **compact_params, hour: true)
     
 
     convtrack = {}
@@ -66,7 +60,7 @@ class ApplicationController < ActionController::Base
             
       url = 'https://results.searchbe.com/dynamiclander/'
       
-      redirect_to("#{url}?p=2&q=#{optimised_query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query}&chnm3=#{chnm3}&cpr=#{cpr}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
+      redirect_to("#{url}?p=#{search.p_val}&q=#{optimised_query.query}&chnm=#{chnm}&chnm2=#{optimised_query.query}&chnm3=#{chnm3}&cpr=#{cpr}&convtrack=%26#{convtrack_query}&#{extra_params.to_query}") and return
     else
       convtrack_query = CGI.escape(convtrack.to_query)  
 
