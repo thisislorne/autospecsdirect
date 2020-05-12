@@ -7,17 +7,17 @@ default: &default
 
 development:
   <<: *default
-  database: searchbe_dev
+  database: autospecsdirect_dev
 
 test:
   <<: *default
-  database: searchbe_test
+  database: autospecsdirect_test
 
 staging:
   <<: *default
   host: localhost
-  database: searchbe_staging
-  username: searchbe_staging
+  database: autospecsdirect_staging
+  username: autospecsdirect_staging
   password: <%= Rails.application.credentials.production[:staging_db][:password] %>
 
 production:

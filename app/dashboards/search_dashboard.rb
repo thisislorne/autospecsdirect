@@ -57,6 +57,6 @@ class SearchDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(search)
-    "https://searchbe.com/search?q=#{URI.encode(search.slug)}"
+    "https://autospecsdirect.com/search?q=#{URI.encode(search.slug)}"
   end
 end

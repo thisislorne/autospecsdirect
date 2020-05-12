@@ -9,10 +9,10 @@ set :default_stage, 'staging'
 set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-2.3.1'
 
-set :application, 'searchbe'
+set :application, 'autospecsdirect'
 
-set :repo_url, 'git@github.com:GroovyMedia/searchbe.git'
-set :deploy_to, '/home/deploy/searchbe'
+set :repo_url, 'git@github.com:GroovyMedia/autospecsdirect.git'
+set :deploy_to, '/home/deploy/autospecsdirect'
 
 set :keep_releases, 2
 

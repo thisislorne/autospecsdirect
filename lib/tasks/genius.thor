@@ -11,7 +11,7 @@ class Genius < Thor
     started = Time.now
     logger.info "[IMPORTER] Started - #{started}"
 
-    site = 'searchbe.com'
+    site = 'autospecsdirect.com'
 
     # create default weightings
     Query.all.each do |q|
@@ -60,7 +60,7 @@ class Genius < Thor
     client = Slack::Web::Client.new
     msg = "Optimiser has run for #{site} - #{Rails.env}"
     begin
-      client.chat_postMessage(channel: '#searchbee', text: msg, as_user: true)
+      client.chat_postMessage(channel: '#autospecsdirecte', text: msg, as_user: true)
     rescue Exception => e
       logger.info "[IMPORTER] slack failed #{e}"
     end
